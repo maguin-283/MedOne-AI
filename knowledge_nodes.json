@@ -1,0 +1,1051 @@
+{
+  "knowledge_nodes": [
+    {
+      "id": "node_anatomy_001",
+      "subject": "Anatomy",
+      "chapter": "Central Nervous System",
+      "topic": "Cerebral Circulation",
+      "concept": "Middle Cerebral Artery Stroke",
+      "definition": "Occlusion of the MCA leading to ischemia in the distribution of the middle cerebral artery, typically affecting motor cortex and language areas",
+      "characteristics": [
+        "Contralateral hemiplegia",
+        "Contralateral sensory loss",
+        "Homonymous hemianopia",
+        "Aphasia (dominant hemisphere)",
+        "Neglect syndrome (non-dominant hemisphere)"
+      ],
+      "clinicalRelevance": [
+        "Acute onset weakness on one side of body",
+        "Speech difficulty",
+        "Visual field loss",
+        "Facial droop",
+        "Most common cause of ischemic stroke"
+      ],
+      "relatedConcepts": [
+        "Anterior Cerebral Artery Stroke",
+        "Posterior Cerebral Artery Stroke",
+        "Lacunar Stroke",
+        "Hemorrhagic Stroke",
+        "Transient Ischemic Attack"
+      ],
+      "mechanisms": [
+        "Thrombotic occlusion of MCA",
+        "Embolic occlusion from cardiac source",
+        "Hemodynamic insufficiency",
+        "Atherosclerotic plaque rupture"
+      ],
+      "nerves": [
+        "Facial nerve (CN VII)",
+        "Corticospinal tract"
+      ],
+      "treatments": [
+        "Thrombolysis (tPA within 4.5 hours)",
+        "Mechanical thrombectomy",
+        "Antiplatelet therapy (aspirin)",
+        "Anticoagulation in cases of cardioembolism",
+        "Rehabilitation and physical therapy"
+      ],
+      "negativeFeatures": [
+        "Pupillary dilation",
+        "Cerebellar signs",
+        "Nystagmus",
+        "Ataxia",
+        "Bilateral symptoms"
+      ],
+      "epidemiology": {
+        "commonAge": "60-80",
+        "prevalence": "45% of all ischemic strokes",
+        "riskFactors": [
+          "Hypertension",
+          "Atrial fibrillation",
+          "Diabetes",
+          "Smoking",
+          "Hypercholesterolemia"
+        ]
+      },
+      "pathophysiology": {
+        "mechanism": "Vascular occlusion → reduced cerebral perfusion → ischemia → cell death",
+        "timeline": "Minutes to hours for irreversible damage"
+      },
+      "highYield": true,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_anatomy_002",
+      "subject": "Anatomy",
+      "chapter": "Peripheral Nervous System",
+      "topic": "Brachial Plexus Injuries",
+      "concept": "Erb's Palsy",
+      "definition": "Upper brachial plexus injury (C5-C6) causing weakness of shoulder abduction and external rotation",
+      "characteristics": [
+        "Weakness of deltoid",
+        "Weakness of infraspinatus",
+        "Loss of shoulder abduction",
+        "Loss of external rotation",
+        "Waiter's tip position (characteristic posture)",
+        "Sensory loss over lateral shoulder"
+      ],
+      "clinicalRelevance": [
+        "Obstetric injury during difficult delivery",
+        "Shoulder dislocation complications",
+        "Birth trauma (most common brachial plexus injury)",
+        "Motorcycle accidents",
+        "Gunshot wounds"
+      ],
+      "relatedConcepts": [
+        "Klumpke's Palsy",
+        "Axillary nerve palsy",
+        "Suprascapular nerve palsy",
+        "Radial nerve palsy"
+      ],
+      "mechanisms": [
+        "Traction injury during childbirth",
+        "Shoulder dislocation with nerve stretching",
+        "Blunt trauma to upper shoulder",
+        "Avulsion of nerve roots from spinal cord"
+      ],
+      "nerves": [
+        "Upper trunk of brachial plexus",
+        "C5-C6 nerve roots",
+        "Suprascapular nerve",
+        "Axillary nerve"
+      ],
+      "treatments": [
+        "Physical therapy and rehabilitation",
+        "Nerve transfer surgery",
+        "Tendon transfer surgery",
+        "Observation for spontaneous recovery (75% recover)",
+        "Early intervention if no recovery at 3-6 months"
+      ],
+      "negativeFeatures": [
+        "Intact hand grip",
+        "Intact wrist movement",
+        "Intact finger movement",
+        "Normal lower limb function"
+      ],
+      "highYield": true,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_physiology_001",
+      "subject": "Physiology",
+      "chapter": "Cardiovascular System",
+      "topic": "Cardiac Conduction",
+      "concept": "Atrial Fibrillation",
+      "definition": "Irregular cardiac rhythm originating from multiple ectopic foci in the atria, resulting in chaotic atrial depolarization and loss of coordinated atrial contraction",
+      "characteristics": [
+        "Irregular heart rate",
+        "Absence of P waves on ECG",
+        "Irregularly irregular rhythm",
+        "Rapid ventricular rate (often 100-150 bpm)",
+        "Decreased cardiac output",
+        "Risk of thromboembolism"
+      ],
+      "clinicalRelevance": [
+        "Palpitations",
+        "Dyspnea",
+        "Syncope or presyncope",
+        "Chest discomfort",
+        "Risk of stroke (5-fold increase)",
+        "Heart failure exacerbation"
+      ],
+      "relatedConcepts": [
+        "Atrial flutter",
+        "Supraventricular tachycardia",
+        "Ventricular fibrillation",
+        "Sick sinus syndrome"
+      ],
+      "mechanisms": [
+        "Increased atrial ectopic activity",
+        "Reentry circuits in atrium",
+        "Enhanced automaticity",
+        "Triggered activity from pulmonary veins"
+      ],
+      "receptors": [
+        "Beta-1 adrenergic receptors",
+        "M2 muscarinic receptors",
+        "Calcium channels"
+      ],
+      "treatments": [
+        "Rate control: Beta-blockers, calcium channel blockers, digoxin",
+        "Rhythm control: Amiodarone, sotalol, flecainide",
+        "Anticoagulation: Warfarin, DOACs",
+        "Cardioversion: Electrical or pharmacological",
+        "Ablation: Catheter or surgical"
+      ],
+      "negativeFeatures": [
+        "Regular rhythm",
+        "Identifiable P waves",
+        "Normal ventricular rate",
+        "Absence of embolic phenomena"
+      ],
+      "epidemiology": {
+        "prevalence": "1-2% of population, increases with age",
+        "riskFactors": [
+          "Hypertension",
+          "Heart disease",
+          "Diabetes",
+          "Hyperthyroidism",
+          "Sleep apnea",
+          "Alcohol abuse"
+        ]
+      },
+      "highYield": true,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_biochemistry_001",
+      "subject": "Biochemistry",
+      "chapter": "Metabolism",
+      "topic": "Glycolysis",
+      "concept": "Pyruvate Dehydrogenase Complex Deficiency",
+      "definition": "Rare genetic deficiency of pyruvate dehydrogenase enzyme complex leading to impaired conversion of pyruvate to acetyl-CoA and severe lactic acidosis",
+      "characteristics": [
+        "Severe lactic acidosis",
+        "Neurological symptoms (seizures, developmental delay)",
+        "Muscle weakness",
+        "Cardiac dysfunction",
+        "Hypoglycemia",
+        "Elevated pyruvate and lactate levels"
+      ],
+      "clinicalRelevance": [
+        "Severe metabolic acidosis",
+        "Developmental delay in infancy",
+        "Seizures",
+        "Muscle weakness and hypotonia",
+        "Cardiomyopathy",
+        "Failure to thrive"
+      ],
+      "relatedConcepts": [
+        "Mitochondrial myopathy",
+        "MELAS syndrome",
+        "Leigh syndrome",
+        "Lactic acidosis"
+      ],
+      "mechanisms": [
+        "Impaired pyruvate oxidation",
+        "Accumulation of pyruvate",
+        "Shunting to lactate production",
+        "Anaerobic metabolism",
+        "Energy depletion"
+      ],
+      "enzymes": [
+        "Pyruvate dehydrogenase complex",
+        "E1 alpha subunit (most common mutation)",
+        "E1 beta subunit",
+        "Lipoyl transferase"
+      ],
+      "treatments": [
+        "Ketogenic diet",
+        "Thiamine supplementation",
+        "Dichloroacetate (investigational)",
+        "L-arginine during acute crises",
+        "Avoid high-carbohydrate loads",
+        "Supportive care for complications"
+      ],
+      "negativeFeatures": [
+        "Normal primary carbohydrate metabolism",
+        "Absence of hepatomegaly",
+        "Normal liver function initially",
+        "No hypoglycemia without fasting"
+      ],
+      "epidemiology": {
+        "prevalence": "1 in 100,000 to 1 in 200,000",
+        "inheritance": "X-linked (most common), autosomal recessive"
+      },
+      "highYield": false,
+      "difficulty": "Hard"
+    },
+    {
+      "id": "node_pharmacology_001",
+      "subject": "Pharmacology",
+      "chapter": "Antimicrobials",
+      "topic": "Beta-Lactam Antibiotics",
+      "concept": "Penicillin Mechanism and Resistance",
+      "definition": "Beta-lactam antibiotics inhibit bacterial cell wall synthesis by binding to penicillin-binding proteins and cross-linking peptidoglycan",
+      "characteristics": [
+        "Bactericidal activity",
+        "Inhibition of cell wall cross-linking",
+        "Time-dependent killing",
+        "Broad spectrum coverage (varies by type)",
+        "Low toxicity to human cells",
+        "Multiple resistance mechanisms"
+      ],
+      "clinicalRelevance": [
+        "Treatment of bacterial infections",
+        "Surgical prophylaxis",
+        "Community-acquired infections",
+        "Hospital-acquired infections",
+        "Empiric therapy in many settings"
+      ],
+      "relatedConcepts": [
+        "Cephalosporins",
+        "Carbapenems",
+        "Beta-lactamase inhibitors",
+        "Vancomycin",
+        "Fluoroquinolones"
+      ],
+      "mechanisms": [
+        "Binding to penicillin-binding proteins",
+        "Inhibition of transpeptidase",
+        "Prevention of peptidoglycan cross-linking",
+        "Cell wall weakening and lysis"
+      ],
+      "resistanceMechanisms": [
+        "Beta-lactamase production",
+        "Altered penicillin-binding proteins",
+        "Reduced membrane permeability",
+        "Efflux pump activity"
+      ],
+      "treatments": [
+        "Selection based on organism and infection type",
+        "Dosing adjusted for renal function",
+        "Combination with beta-lactamase inhibitors if resistance",
+        "Alternative agents if allergy present"
+      ],
+      "negativeFeatures": [
+        "Not effective against gram-negative anaerobes (basic penicillin)",
+        "No activity against MRSA (except carbapenems)",
+        "Limited intracellular penetration",
+        "Inactivated by broad-spectrum beta-lactamases"
+      ],
+      "epidemiology": {
+        "resistancePatterns": [
+          "MRSA prevalence varies geographically",
+          "ESBL prevalence increasing",
+          "Carbapenem resistance emerging"
+        ]
+      },
+      "highYield": true,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_pathology_001",
+      "subject": "Pathology",
+      "chapter": "Neoplasia",
+      "topic": "Lung Cancer",
+      "concept": "Adenocarcinoma of the Lung",
+      "definition": "Malignant tumor arising from mucus-secreting glands in the lung, most common type of lung cancer in non-smokers",
+      "characteristics": [
+        "Peripheral location",
+        "Glandular differentiation",
+        "Often advanced at diagnosis",
+        "Associated with EGFR mutations",
+        "Associated with ALK translocations",
+        "Better prognosis than squamous cell cancer"
+      ],
+      "clinicalRelevance": [
+        "Cough (often productive)",
+        "Hemoptysis",
+        "Dyspnea",
+        "Chest pain",
+        "Weight loss",
+        "Bone metastases with pain"
+      ],
+      "relatedConcepts": [
+        "Squamous cell carcinoma of lung",
+        "Small cell carcinoma",
+        "Large cell carcinoma",
+        "Mesothelioma",
+        "Bronchial adenoma"
+      ],
+      "mechanisms": [
+        "Malignant transformation of bronchial mucosa",
+        "EGFR pathway activation",
+        "ALK pathway activation",
+        "Loss of tumor suppressors",
+        "Angiogenesis and invasion"
+      ],
+      "stagingSystem": [
+        "TNM classification",
+        "Stage I: Localized to lung",
+        "Stage II: Regional lymph node involvement",
+        "Stage III: Mediastinal involvement",
+        "Stage IV: Distant metastases"
+      ],
+      "treatments": [
+        "Surgical resection (if early stage)",
+        "Chemotherapy (platinum-based)",
+        "Targeted therapy (EGFR inhibitors, ALK inhibitors)",
+        "Immunotherapy (checkpoint inhibitors)",
+        "Radiation therapy",
+        "Combination approaches"
+      ],
+      "negativeFeatures": [
+        "No smoking history",
+        "Central location (less common)",
+        "No asbestos exposure history",
+        "Absence of squamous differentiation"
+      ],
+      "epidemiology": {
+        "prevalence": "Most common cause of cancer death",
+        "riskFactors": [
+          "Smoking (but can occur in non-smokers)",
+          "Environmental exposure",
+          "Family history",
+          "Previous lung disease"
+        ],
+        "prognosis": "5-year survival ~20% overall, better for early stages"
+      },
+      "highYield": true,
+      "difficulty": "Hard"
+    },
+    {
+      "id": "node_microbiology_001",
+      "subject": "Microbiology",
+      "chapter": "Bacterial Infections",
+      "topic": "Gram-Positive Cocci",
+      "concept": "Staphylococcus aureus Infection",
+      "definition": "Gram-positive cocci causing community-acquired and hospital-acquired infections, can be methicillin-susceptible or methicillin-resistant",
+      "characteristics": [
+        "Catalase positive",
+        "Coagulase positive",
+        "Forms grape-like clusters",
+        "Produces numerous virulence factors",
+        "Can survive on dry surfaces",
+        "Forms biofilms"
+      ],
+      "clinicalRelevance": [
+        "Skin and soft tissue infections",
+        "Osteomyelitis",
+        "Endocarditis",
+        "Pneumonia",
+        "Sepsis",
+        "Toxic shock syndrome"
+      ],
+      "relatedConcepts": [
+        "Streptococcus aureus (different organism)",
+        "Staphylococcus epidermidis",
+        "MRSA infections",
+        "Community-associated MRSA",
+        "Healthcare-associated MRSA"
+      ],
+      "virulenceFactors": [
+        "Alpha-hemolysin (pore formation)",
+        "Panton-Valentine leukocidin (tissue destruction)",
+        "Coagulase (fibrin clot formation)",
+        "Protein A (immune evasion)",
+        "Superantigens (toxic shock)"
+      ],
+      "treatments": [
+        "Beta-lactams for MSSA (nafcillin, oxacillin)",
+        "Vancomycin for MRSA",
+        "Linezolid for resistant strains",
+        "Doxycycline for community-acquired",
+        "Clindamycin for soft tissue infections",
+        "Combination therapy for severe infections"
+      ],
+      "diagnosisMethod": [
+        "Gram stain (gram-positive cocci in clusters)",
+        "Culture on blood agar (golden colonies)",
+        "Catalase test (positive)",
+        "Coagulase test (positive)",
+        "PCR for resistance genes"
+      ],
+      "highYield": true,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_immunology_001",
+      "subject": "Immunology",
+      "chapter": "Hypersensitivity Reactions",
+      "topic": "Type I Hypersensitivity",
+      "concept": "IgE-Mediated Allergic Reaction",
+      "definition": "Immediate hypersensitivity reaction mediated by IgE antibodies and mast cell degranulation occurring within minutes of allergen exposure",
+      "characteristics": [
+        "Rapid onset (minutes)",
+        "IgE antibody involvement",
+        "Mast cell and basophil degranulation",
+        "Release of histamine and mediators",
+        "Biphasic reaction possible",
+        "Can be life-threatening"
+      ],
+      "clinicalRelevance": [
+        "Anaphylaxis",
+        "Urticaria and angioedema",
+        "Allergic rhinitis",
+        "Allergic asthma",
+        "Food allergies",
+        "Drug allergies"
+      ],
+      "relatedConcepts": [
+        "Type II hypersensitivity (cytotoxic)",
+        "Type III hypersensitivity (immune complex)",
+        "Type IV hypersensitivity (cell-mediated)",
+        "Anaphylactoid reactions"
+      ],
+      "mechanisms": [
+        "Allergen cross-linking of IgE on mast cells",
+        "Mast cell activation and degranulation",
+        "Release of histamine, tryptase, leukotrienes",
+        "Increased vascular permeability",
+        "Smooth muscle contraction",
+        "Inflammatory cell recruitment"
+      ],
+      "mediatorsReleased": [
+        "Histamine",
+        "Tryptase",
+        "Leukotrienes (C4, D4, E4)",
+        "Prostaglandins",
+        "Thromboxane",
+        "Platelet-activating factor"
+      ],
+      "treatments": [
+        "Avoidance of allergen",
+        "Epinephrine for anaphylaxis",
+        "Antihistamines (H1 and H2 blockers)",
+        "Corticosteroids",
+        "Beta-agonists for bronchospasm",
+        "Immunotherapy (desensitization)"
+      ],
+      "diagnosticTests": [
+        "Skin prick testing",
+        "Specific IgE testing",
+        "Tryptase level in acute anaphylaxis",
+        "Component-resolved diagnostics"
+      ],
+      "highYield": true,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_parasitology_001",
+      "subject": "Parasitology",
+      "chapter": "Protozoal Infections",
+      "topic": "Malaria",
+      "concept": "Plasmodium falciparum Malaria",
+      "definition": "Infection with Plasmodium falciparum protozoan transmitted by Anopheles mosquito, causing severe malaria with high mortality if untreated",
+      "characteristics": [
+        "Fever cycle (irregular in P. falciparum)",
+        "Hemolysis and anemia",
+        "Cytoadherence and sequestration",
+        "Rosetting of infected RBCs",
+        "Rapid parasite multiplication",
+        "Severe organ dysfunction possible"
+      ],
+      "clinicalRelevance": [
+        "High fever with rigors",
+        "Severe headache and myalgia",
+        "Nausea and vomiting",
+        "Cerebral malaria",
+        "Severe anemia",
+        "Acute kidney injury",
+        "Pulmonary edema",
+        "Hypoglycemia"
+      ],
+      "relatedConcepts": [
+        "P. vivax malaria",
+        "P. malariae malaria",
+        "P. ovale malaria",
+        "P. knowlesi malaria"
+      ],
+      "lifeCycle": [
+        "Mosquito ingestion of gametocytes",
+        "Sexual reproduction in mosquito",
+        "Sporozoite formation in mosquito salivary glands",
+        "Inoculation into human during mosquito bite",
+        "Liver stage (exoerythrocytic)",
+        "RBC stage (erythrocytic)",
+        "Gametocyte formation"
+      ],
+      "treatments": [
+        "Artemisinin derivatives (artemether, artesunate)",
+        "Artemether-lumefantrine combination",
+        "Quinine or quinidine IV",
+        "Supportive care for complications",
+        "Exchange transfusion for severe anemia",
+        "Management of cerebral malaria"
+      ],
+      "prevention": [
+        "Artemisinin-based chemoprophylaxis",
+        "Mosquito nets (preferably insecticide-treated)",
+        "Indoor residual spraying",
+        "Repellents and protective clothing"
+      ],
+      "diagnosticTests": [
+        "Blood smear microscopy",
+        "Rapid diagnostic tests (RDTs)",
+        "PCR (gold standard)",
+        "Serology"
+      ],
+      "highYield": true,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_histology_001",
+      "subject": "Histology",
+      "chapter": "Epithelial Tissues",
+      "topic": "Simple Epithelium",
+      "concept": "Simple Columnar Epithelium",
+      "definition": "Single layer of tall columnar cells specialized for absorption and secretion, found in gastrointestinal tract and respiratory epithelium",
+      "characteristics": [
+        "Single layer of cells",
+        "Tall columnar shape",
+        "Nuclei positioned basally",
+        "Presence of microvilli (in GI tract)",
+        "Tight junctions between cells",
+        "Specialized for absorption or secretion"
+      ],
+      "locations": [
+        "Small intestine (most abundant)",
+        "Stomach",
+        "Colon",
+        "Bile ducts",
+        "Fallopian tubes"
+      ],
+      "cellTypes": [
+        "Absorptive cells",
+        "Goblet cells (mucus secretion)",
+        "Enteroendocrine cells",
+        "Paneth cells (antimicrobial peptides)"
+      ],
+      "specializations": [
+        "Microvilli for increased surface area",
+        "Tight junctions for selective permeability",
+        "Desmosomes for cell-cell adhesion",
+        "Mucus-secreting goblet cells"
+      ],
+      "functions": [
+        "Absorption of nutrients",
+        "Secretion of mucus",
+        "Secretion of digestive enzymes",
+        "Barrier function",
+        "Hormone secretion"
+      ],
+      "clinicalCorrelations": [
+        "Intestinal metaplasia in Barrett's esophagus",
+        "Brush border enzyme deficiencies",
+        "Lactase deficiency",
+        "Celiac disease (villous atrophy)"
+      ],
+      "highYield": true,
+      "difficulty": "Easy"
+    },
+    {
+      "id": "node_embryology_001",
+      "subject": "Embryology",
+      "chapter": "Cardiovascular Development",
+      "topic": "Congenital Heart Defects",
+      "concept": "Patent Foramen Ovale",
+      "definition": "Persistent opening in the atrial septum due to failure of foramen ovale closure after birth, allowing right-to-left shunting",
+      "characteristics": [
+        "Probe-patent foramen ovale (common finding)",
+        "Usually hemodynamically insignificant",
+        "Can permit paradoxical embolism",
+        "Risk of stroke in some individuals",
+        "Often discovered incidentally"
+      ],
+      "embryology": [
+        "Foramen ovale forms as normal fetal structure",
+        "Allows right-to-left shunting in fetus (bypasses lungs)",
+        "Valve of foramen ovale acts as one-way valve",
+        "Should functionally close after birth when pulmonary pressures decrease",
+        "Anatomic closure occurs over weeks to months"
+      ],
+      "clinicalRelevance": [
+        "Usually asymptomatic",
+        "Risk of cryptogenic stroke",
+        "Risk of paradoxical embolism",
+        "Potential complication during air travel",
+        "Diving restrictions"
+      ],
+      "relatedConditions": [
+        "Atrial Septal Defect (ASD)",
+        "Eisenmenger syndrome",
+        "Cyanotic heart disease"
+      ],
+      "diagnosticFindings": [
+        "Echocardiography (bubble study)",
+        "Cardiac catheterization",
+        "Transesophageal echocardiography",
+        "No murmur typically"
+      ],
+      "treatments": [
+        "Observation for most patients",
+        "Percutaneous closure for high-risk patients",
+        "Antiplatelet therapy",
+        "Anticoagulation if history of stroke"
+      ],
+      "highYield": false,
+      "difficulty": "Medium"
+    },
+    {
+      "id": "node_publichealth_001",
+      "subject": "Biostatistics",
+      "chapter": "Study Design",
+      "topic": "Epidemiological Studies",
+      "concept": "Case-Control Study",
+      "definition": "Observational study design that identifies individuals with a disease (cases) and without the disease (controls) and compares their past exposure to potential risk factors",
+      "characteristics": [
+        "Retrospective",
+        "Cost-effective",
+        "Good for rare diseases",
+        "Useful for long latency periods",
+        "Susceptible to selection and recall bias",
+        "Odds ratio as measure of association"
+      ],
+      "advantages": [
+        "Efficient for rare diseases",
+        "Relatively inexpensive",
+        "Quick to conduct",
+        "Good for diseases with long latency",
+        "Multiple exposures can be examined"
+      ],
+      "disadvantages": [
+        "Recall bias",
+        "Selection bias",
+        "Cannot determine incidence",
+        "Not ideal for rare exposures",
+        "Temporal relationship unclear"
+      ],
+      "studySteps": [
+        "Define cases and controls",
+        "Select appropriate controls (matched)",
+        "Collect exposure history",
+        "Calculate odds ratio",
+        "Assess for bias and confounding"
+      ],
+      "oddsRatioInterpretation": [
+        "OR = 1: No association",
+        "OR > 1: Increased odds with exposure",
+        "OR < 1: Decreased odds with exposure",
+        "95% CI should not include 1 for significance"
+      ],
+      "clinicalExamples": [
+        "Association between smoking and lung cancer",
+        "Association between oral contraceptives and thrombosis",
+        "Association between alcohol and liver cirrhosis"
+      ],
+      "comparisonWithOtherDesigns": [
+        "Case-control vs cohort studies",
+        "Case-control vs cross-sectional",
+        "Case-control vs RCT"
+      ],
+      "highYield": true,
+      "difficulty": "Medium"
+    }
+  ],
+  "generated_questions_sample": [
+    {
+      "id": "Q_node_anatomy_001_Clinical_Scenario_1",
+      "nodeId": "node_anatomy_001",
+      "type": "Clinical Scenario",
+      "questionType": "Clinical Scenario",
+      "subject": "Anatomy",
+      "chapter": "Central Nervous System",
+      "topic": "Cerebral Circulation",
+      "concept": "Middle Cerebral Artery Stroke",
+      "stem": "A 72-year-old male presents with acute onset weakness on the left side of his body and difficulty speaking. Examination reveals left facial droop and left-sided hemiplegia. Which of the following is the most likely diagnosis?",
+      "choices": [
+        "Middle Cerebral Artery Stroke",
+        "Anterior Cerebral Artery Stroke",
+        "Posterior Cerebral Artery Stroke",
+        "Hemorrhagic Stroke"
+      ],
+      "answer": 0,
+      "explanation": "The clinical presentation of acute hemiplegia with speech difficulty and facial droop is classic for Middle Cerebral Artery (MCA) stroke. The MCA supplies the motor cortex and language areas (Broca's area in dominant hemisphere). This is the most common type of ischemic stroke.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Cerebral Circulation", "Stroke", "Clinical Scenario"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_anatomy_001_Basic_Recall_1",
+      "nodeId": "node_anatomy_001",
+      "type": "Basic Recall",
+      "questionType": "Basic Recall",
+      "subject": "Anatomy",
+      "chapter": "Central Nervous System",
+      "topic": "Cerebral Circulation",
+      "concept": "Middle Cerebral Artery Stroke",
+      "stem": "Which of the following best describes Middle Cerebral Artery stroke?",
+      "choices": [
+        "Occlusion of the MCA leading to ischemia in the distribution of the middle cerebral artery, typically affecting motor cortex and language areas",
+        "Occlusion of the anterior cerebral artery affecting medial motor cortex",
+        "Occlusion of the posterior cerebral artery affecting visual cortex",
+        "Bleeding in the basal ganglia region"
+      ],
+      "answer": 0,
+      "explanation": "By definition, MCA stroke is occlusion of the MCA leading to ischemia in the distribution of the middle cerebral artery. The MCA typically affects the motor cortex and language areas, making it the most common ischemic stroke.",
+      "difficulty": "Easy",
+      "highYield": true,
+      "tags": ["Cerebral Circulation", "Stroke", "Definition"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_anatomy_001_Mechanism_1",
+      "nodeId": "node_anatomy_001",
+      "type": "Mechanism",
+      "questionType": "Mechanism",
+      "subject": "Anatomy",
+      "chapter": "Central Nervous System",
+      "topic": "Cerebral Circulation",
+      "concept": "Middle Cerebral Artery Stroke",
+      "stem": "The mechanism by which Middle Cerebral Artery stroke produces its clinical effects involves:",
+      "choices": [
+        "Thrombotic occlusion of MCA",
+        "Direct trauma to the brain tissue",
+        "Increased intracranial pressure",
+        "Venous obstruction"
+      ],
+      "answer": 0,
+      "explanation": "The primary mechanism of MCA stroke is thrombotic occlusion of the vessel, preventing blood flow and causing ischemia. Other mechanisms include embolic occlusion from cardiac sources and hemodynamic insufficiency.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Cerebral Circulation", "Pathophysiology"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_anatomy_001_Negative_1",
+      "nodeId": "node_anatomy_001",
+      "type": "Negative Question",
+      "questionType": "Negative Question",
+      "subject": "Anatomy",
+      "chapter": "Central Nervous System",
+      "topic": "Cerebral Circulation",
+      "concept": "Middle Cerebral Artery Stroke",
+      "stem": "A patient with Middle Cerebral Artery stroke would be LEAST likely to have: (Choose the LEAST LIKELY or EXCEPT option)",
+      "choices": [
+        "Contralateral hemiplegia",
+        "Contralateral sensory loss",
+        "Homonymous hemianopia",
+        "Bilateral symptoms"
+      ],
+      "answer": 3,
+      "explanation": "All of the first three findings are characteristic of MCA stroke affecting one side of the brain. However, bilateral symptoms would NOT be expected in a unilateral MCA stroke, as the stroke affects only one cerebral hemisphere.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Cerebral Circulation", "Diagnostic", "Negative"],
+      "isNegative": true,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_physiology_001_Most_Likely_Diagnosis_1",
+      "nodeId": "node_physiology_001",
+      "type": "Most Likely Diagnosis",
+      "questionType": "Most Likely Diagnosis",
+      "subject": "Physiology",
+      "chapter": "Cardiovascular System",
+      "topic": "Cardiac Conduction",
+      "concept": "Atrial Fibrillation",
+      "stem": "A 68-year-old patient with hypertension presents with palpitations and dyspnea. ECG shows an irregularly irregular rhythm at 120 bpm with no identifiable P waves. What is the most likely diagnosis?",
+      "choices": [
+        "Atrial Fibrillation",
+        "Atrial Flutter",
+        "Supraventricular Tachycardia",
+        "Ventricular Tachycardia"
+      ],
+      "answer": 0,
+      "explanation": "The irregularly irregular rhythm with absence of P waves on ECG is pathognomonic for atrial fibrillation. Atrial flutter would show a regular rate with sawtooth pattern. The patient's risk factors (age, hypertension) also support AF.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Cardiac Conduction", "Arrhythmia", "Diagnosis"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_pharmacology_001_Most_Appropriate_Treatment_1",
+      "nodeId": "node_pharmacology_001",
+      "type": "Most Appropriate Treatment",
+      "questionType": "Most Appropriate Treatment",
+      "subject": "Pharmacology",
+      "chapter": "Antimicrobials",
+      "topic": "Beta-Lactam Antibiotics",
+      "concept": "Penicillin Mechanism and Resistance",
+      "stem": "A patient with a MRSA skin infection presents to the emergency department. Which of the following is the most appropriate initial treatment?",
+      "choices": [
+        "Vancomycin IV",
+        "Amoxicillin orally",
+        "Ampicillin IV",
+        "Penicillin G IV"
+      ],
+      "answer": 0,
+      "explanation": "MRSA (Methicillin-Resistant Staphylococcus aureus) is resistant to all beta-lactam antibiotics including penicillins. Vancomycin is the first-line treatment for serious MRSA infections. Other options would be ineffective against MRSA.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Antimicrobials", "Resistance", "Treatment"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_immunology_001_Mechanism_1",
+      "nodeId": "node_immunology_001",
+      "type": "Mechanism",
+      "questionType": "Mechanism",
+      "subject": "Immunology",
+      "chapter": "Hypersensitivity Reactions",
+      "topic": "Type I Hypersensitivity",
+      "concept": "IgE-Mediated Allergic Reaction",
+      "stem": "The mechanism by which IgE-mediated allergic reactions produce immediate symptoms involves:",
+      "choices": [
+        "Allergen cross-linking of IgE on mast cells leading to degranulation and release of histamine",
+        "Activation of complement cascade",
+        "Formation of immune complexes",
+        "T-cell mediated cytotoxicity"
+      ],
+      "answer": 0,
+      "explanation": "Type I hypersensitivity is mediated by IgE antibodies. Allergens cross-link IgE bound to mast cells and basophils, causing them to degranulate and release histamine and other mediators, producing immediate symptoms.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Hypersensitivity", "Immunology", "Mechanism"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_microbiology_001_Most_Likely_Diagnosis_1",
+      "nodeId": "node_microbiology_001",
+      "type": "Most Likely Diagnosis",
+      "questionType": "Most Likely Diagnosis",
+      "subject": "Microbiology",
+      "chapter": "Bacterial Infections",
+      "topic": "Gram-Positive Cocci",
+      "concept": "Staphylococcus aureus Infection",
+      "stem": "A 45-year-old patient with diabetes presents with an acutely swollen, red, and warm knee joint. Joint fluid culture grows catalase-positive, coagulase-positive gram-positive cocci in clusters. What is the most likely organism?",
+      "choices": [
+        "Staphylococcus aureus",
+        "Streptococcus pyogenes",
+        "Staphylococcus epidermidis",
+        "Listeria monocytogenes"
+      ],
+      "answer": 0,
+      "explanation": "The catalase-positive and coagulase-positive gram-positive cocci in clusters are characteristic of Staphylococcus aureus. This organism commonly causes septic arthritis, especially in patients with risk factors like diabetes.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Gram-Positive Cocci", "Infection", "Diagnosis"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_histology_001_Basic_Recall_1",
+      "nodeId": "node_histology_001",
+      "type": "Basic Recall",
+      "questionType": "Basic Recall",
+      "subject": "Histology",
+      "chapter": "Epithelial Tissues",
+      "topic": "Simple Epithelium",
+      "concept": "Simple Columnar Epithelium",
+      "stem": "Simple columnar epithelium is characterized by:",
+      "choices": [
+        "Single layer of tall columnar cells with basally positioned nuclei and specialized for absorption or secretion",
+        "Multiple layers of cells for protective function",
+        "Flat squamous cells for gas exchange",
+        "Cuboidal cells with spherical nuclei"
+      ],
+      "answer": 0,
+      "explanation": "Simple columnar epithelium consists of a single layer of tall columnar cells with nuclei positioned basally. These cells are specialized for absorption (in the small intestine) and secretion (in various organs).",
+      "difficulty": "Easy",
+      "highYield": true,
+      "tags": ["Epithelium", "Histology", "Structure"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    },
+    {
+      "id": "Q_node_publichealth_001_Concept_Comparison_1",
+      "nodeId": "node_publichealth_001",
+      "type": "Concept Comparison",
+      "questionType": "Concept Comparison",
+      "subject": "Biostatistics",
+      "chapter": "Study Design",
+      "topic": "Epidemiological Studies",
+      "concept": "Case-Control Study",
+      "stem": "How does a case-control study differ from a cohort study?",
+      "choices": [
+        "Case-control studies are retrospective and compare past exposures between diseased and non-diseased individuals, while cohort studies are prospective and follow exposed and unexposed individuals forward in time",
+        "Both study designs are identical in their approach",
+        "Case-control studies are used only for common diseases",
+        "Cohort studies cannot determine risk ratios"
+      ],
+      "answer": 0,
+      "explanation": "Case-control studies are retrospective, starting with the disease outcome and looking back at exposures. Cohort studies are prospective, starting with exposure status and following individuals forward to see who develops disease. These fundamental differences make each study design suited for different research questions.",
+      "difficulty": "Medium",
+      "highYield": true,
+      "tags": ["Study Design", "Epidemiology", "Comparison"],
+      "isNegative": false,
+      "imageUrl": null,
+      "reference": null,
+      "createdAt": "2024-01-15T10:30:00Z",
+      "generatedFromNode": true
+    }
+  ],
+  "exam_distribution": {
+    "official_distribution": {
+      "Anatomy": 31,
+      "Embryology": 5,
+      "Histology": 10,
+      "Physiology": 27,
+      "Biochemistry": 27,
+      "Microbiology": 17,
+      "Immunology": 11,
+      "Parasitology": 7,
+      "Biostatistics": 15,
+      "Pharmacology": 25,
+      "Pathology": 25
+    },
+    "total_questions": 200,
+    "difficulty_distribution": {
+      "Easy": 0.20,
+      "Medium": 0.50,
+      "Hard": 0.30
+    }
+  },
+  "user_stats_template": {
+    "accuracy": 0,
+    "avgTime": 0,
+    "todayQuestions": 0,
+    "streak": 0,
+    "examsGenerated": 0,
+    "weakestSubject": "N/A",
+    "questionsAttempted": 0,
+    "correctAnswers": 0,
+    "lastPracticeDate": null
+  },
+  "task_template": {
+    "id": "task_001",
+    "title": "Study Anatomy Chapter 1",
+    "description": "Review central nervous system anatomy",
+    "category": "Study",
+    "priority": "High",
+    "dueDate": "2024-01-20",
+    "dueTime": "18:00",
+    "subject": "Anatomy",
+    "completed": false,
+    "completedDate": null,
+    "subtasks": [],
+    "tags": ["important", "urgent"],
+    "estimatedHours": 2,
+    "actualHours": 0,
+    "timeSpent": 0,
+    "notes": "Focus on cerebral circulation",
+    "createdDate": "2024-01-15T10:30:00Z",
+    "updatedDate": "2024-01-15T10:30:00Z"
+  }
+}
