@@ -217,6 +217,24 @@
       border-color: #999;
     }
 
+    .btn-success {
+      background: #28a745;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #218838;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #c82333;
+    }
+
     .btn-group {
       display: flex;
       gap: 10px;
@@ -233,6 +251,52 @@
       padding: 40px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       margin-bottom: 30px;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .quiz-info {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .quiz-info strong {
+      color: #667eea;
+      font-size: 16px;
+    }
+
+    .progress-section {
+      margin-bottom: 30px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transition: width 0.3s;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: #999;
+      text-align: center;
     }
 
     .question-display {
@@ -298,6 +362,11 @@
       border-color: #dc3545;
     }
 
+    .answer-option.disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
     .feedback {
       padding: 20px;
       border-radius: 8px;
@@ -345,25 +414,74 @@
     }
 
     /* ===================================
-       PROGRESS BAR
+       QUIZ COMPLETION SCREEN
        =================================== */
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: #ddd;
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 10px 0;
+    .quiz-completion {
+      background: white;
+      border-radius: 16px;
+      padding: 60px 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: none;
     }
 
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-      transition: width 0.3s;
+    .quiz-completion.show {
+      display: block;
+    }
+
+    .completion-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+    }
+
+    .completion-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .completion-score {
+      font-size: 48px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+
+    .completion-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .completion-stat {
+      padding: 20px;
+      background: #f0f0f0;
+      border-radius: 12px;
+    }
+
+    .completion-stat-label {
+      font-size: 12px;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .completion-stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #667eea;
+    }
+
+    .completion-message {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
     }
 
     /* ===================================
-       PREDICTION ANALYSIS
+       ANALYSIS CARD
        =================================== */
     .analysis-card {
       background: white;
@@ -378,27 +496,6 @@
       font-weight: 600;
       color: #333;
       margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .trend-indicator {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .trend-up {
-      background: #d4edda;
-      color: #155724;
-    }
-
-    .trend-down {
-      background: #e2e3e5;
-      color: #383d41;
     }
 
     .topic-list {
@@ -484,6 +581,11 @@
       .question-stem {
         font-size: 16px;
       }
+
+      .quiz-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -491,28 +593,26 @@
   <div class="container">
     <!-- ===== HEADER ===== -->
     <div class="header">
-      <h1>🏥 MedOne AI - Exam Prediction Engine</h1>
-      <p>Taiwan Medical Licensing Exam - AI-Powered Question Prediction & Generation</p>
+      <h1>🏥 MedOne AI - Smart Quiz Practice</h1>
+      <p>20-Question Adaptive Quizzes with Instant Regeneration</p>
       <div class="status-bar">
         <div class="status-item">
-          <span>📚 Predicted Questions:</span>
-          <span class="status-value" id="questionsCount">0</span>
+          <span>📚 Total Questions:</span>
+          <span class="status-value" id="totalQuestionsCount">0</span>
         </div>
         <div class="status-item">
-          <span>📊 Topics Analyzed:</span>
-          <span class="status-value" id="topicsCount">0</span>
+          <span>✅ Quizzes Completed:</span>
+          <span class="status-value" id="quizzesCompleted">0</span>
         </div>
         <div class="status-item">
-          <span>🎯 Prediction Confidence:</span>
-          <span class="status-value" id="confidenceLevel">0%</span>
+          <span>📊 Best Score:</span>
+          <span class="status-value" id="bestScore">0%</span>
         </div>
       </div>
       
       <div class="nav-tabs">
         <button class="nav-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
-        <button class="nav-btn" onclick="switchTab('prediction')">🔮 Trend Prediction</button>
-        <button class="nav-btn" onclick="switchTab('generated')">✨ AI-Generated Q's</button>
-        <button class="nav-btn" onclick="switchTab('practice')">📚 Practice</button>
+        <button class="nav-btn" onclick="switchTab('practice')">📚 Start Quiz</button>
         <button class="nav-btn" onclick="switchTab('analysis')">📈 Analysis</button>
       </div>
     </div>
@@ -521,154 +621,77 @@
     <div id="dashboard" class="tab-content active">
       <div class="dashboard-grid">
         <div class="stat-card">
-          <div class="stat-label">📈 3-Year Trend Analysis</div>
-          <div class="stat-value" id="trendScore">+42%</div>
-          <div class="stat-description">Most repeated topics</div>
+          <div class="stat-label">📊 Available Questions</div>
+          <div class="stat-value" id="availableCount">100+</div>
+          <div class="stat-description">From 3-year exam analysis</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-label">🎯 Predicted Hot Topics</div>
-          <div class="stat-value" id="hotTopicCount">8</div>
-          <div class="stat-description">High probability questions</div>
+          <div class="stat-label">🎯 Quiz Format</div>
+          <div class="stat-value">20 Q's</div>
+          <div class="stat-description">Per quiz session</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-label">✨ AI Generated Questions</div>
-          <div class="stat-value" id="generatedCount">0</div>
-          <div class="stat-description">Similar to past exams</div>
+          <div class="stat-label">🔄 Regenerate</div>
+          <div class="stat-value">Infinite</div>
+          <div class="stat-description">Get different 20 Q's</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-label">⚡ Question Difficulty Shift</div>
-          <div class="stat-value" id="difficultyShift">Stable</div>
-          <div class="stat-description">Year-over-year change</div>
+          <div class="stat-label">🧠 Learn Mode</div>
+          <div class="stat-value">Adaptive</div>
+          <div class="stat-description">Retry wrong answers</div>
         </div>
       </div>
 
       <div class="btn-group">
-        <button class="btn btn-primary" onclick="generatePredictedQuestions()">🔮 Generate Predicted Questions</button>
-        <button class="btn btn-secondary" onclick="switchTab('prediction')">📊 View Trend Analysis</button>
-        <button class="btn btn-secondary" onclick="switchTab('analysis')">📈 Detailed Analysis</button>
+        <button class="btn btn-primary" onclick="startNewQuiz()">▶ Start New 20-Question Quiz</button>
       </div>
 
       <div class="alert alert-info" style="margin-top: 20px;">
-        <strong>🔍 How It Works:</strong> Our AI analyzes 3 years of Taiwan Medical Licensing Exam questions to predict likely topics, creates similar questions, and provides practice material based on exam trends.
-      </div>
-    </div>
-
-    <!-- ===== TREND PREDICTION TAB ===== -->
-    <div id="prediction" class="tab-content">
-      <div class="analysis-card">
-        <h2 class="analysis-title">🔮 3-Year Exam Trend Analysis</h2>
-        
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">📊 Most Repeated Topics (2022-2025)</h3>
-          <ul class="topic-list" id="mostRepeatedTopics">
-            <li class="topic-item">
-              <span class="topic-name">Cardiac Arrhythmias</span>
-              <span class="topic-frequency">12 times ↑↑</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Antibiotic Resistance (MRSA, Sepsis)</span>
-              <span class="topic-frequency">11 times ↑↑</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Stroke & Cerebrovascular Disease</span>
-              <span class="topic-frequency">10 times ↑</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Pulmonary Hypertension & ARDS</span>
-              <span class="topic-frequency">9 times ↑</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Type 2 Diabetes Management</span>
-              <span class="topic-frequency">8 times ↑</span>
-            </li>
-          </ul>
-        </div>
-
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">🎯 Emerging Topics (Increasing Frequency)</h3>
-          <ul class="topic-list" id="emergingTopics">
-            <li class="topic-item">
-              <span class="topic-name">COVID-19 Complications & Vaccines</span>
-              <span class="topic-frequency">7 times NEW ↑↑↑</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Immunotherapy & Cancer Treatment</span>
-              <span class="topic-frequency">6 times NEW ↑↑</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Genetic Testing & Precision Medicine</span>
-              <span class="topic-frequency">5 times NEW ↑</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Mental Health & Psychopharmacology</span>
-              <span class="topic-frequency">4 times ↑</span>
-            </li>
-          </ul>
-        </div>
-
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">📉 Declining Topics (Less Likely This Year)</h3>
-          <ul class="topic-list" id="decliningTopics">
-            <li class="topic-item">
-              <span class="topic-name">Infectious Disease (except resistant bacteria)</span>
-              <span class="topic-frequency">3 times ↓</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Rare Genetic Disorders</span>
-              <span class="topic-frequency">2 times ↓↓</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="alert alert-success">
-          <strong>✅ Prediction Confidence: 87%</strong><br>
-          Based on analysis of 600+ questions from past 3 exams
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== AI-GENERATED QUESTIONS TAB ===== -->
-    <div id="generated" class="tab-content">
-      <div class="analysis-card">
-        <h2 class="analysis-title">✨ AI-Generated Questions Based on Predicted Topics</h2>
-        
-        <div style="margin-bottom: 20px;">
-          <p style="color: #666; margin-bottom: 15px;">
-            These questions were AI-generated to match the style, difficulty, and content patterns of past exam questions on predicted topics.
-          </p>
-        </div>
-
-        <div id="generatedQuestionsContainer">
-          <div style="text-align: center; padding: 40px; color: #999;">
-            <p>Click button below to generate AI questions based on predicted topics</p>
-          </div>
-        </div>
-
-        <div class="btn-group">
-          <button class="btn btn-primary" onclick="generateAIQuestions()">🤖 Generate AI Questions</button>
-          <button class="btn btn-secondary" onclick="switchTab('practice')">📚 Practice Generated</button>
-        </div>
+        <strong>📖 How It Works:</strong> Each quiz has 20 questions. Answer all questions first. Wrong answers will be replayed until you get them correct. Once you complete all questions and review all wrong answers, your quiz is finished!
       </div>
     </div>
 
     <!-- ===== PRACTICE TAB ===== -->
     <div id="practice" class="tab-content">
       <div class="practice-container">
-        <div id="practiceLoading" style="text-align: center; padding: 40px; display: none;">
-          <div style="font-size: 40px; margin-bottom: 15px;">⏳</div>
-          <p style="color: #666;">Loading question...</p>
+        
+        <!-- Quiz Header -->
+        <div class="quiz-header">
+          <div>
+            <div class="quiz-info">
+              Quiz #<span id="quizNumber">1</span> | Question <span id="currentQuestionNum">1</span> of <span id="totalQuestionNum">20</span>
+            </div>
+          </div>
+          <div>
+            <div class="quiz-info">
+              Correct: <span id="correctCount">0</span> | Wrong: <span id="wrongCount">0</span>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-danger" onclick="exitQuiz()">❌ Exit Quiz</button>
+          </div>
         </div>
 
-        <div id="practiceContent" style="display: none;">
+        <!-- Progress Section -->
+        <div class="progress-section">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+          </div>
+          <div class="progress-text">
+            <span id="progressText">0% Complete</span>
+          </div>
+        </div>
+
+        <!-- Quiz Content -->
+        <div id="quizContent" style="display: none;">
           <div class="question-display">
             <div class="question-meta">
-              <span id="questionNumber">Question 1</span>
               <span id="questionTopic">Topic: —</span>
-              <span id="questionRarity">Frequency: —</span>
-              <span id="questionSource">Source: —</span>
+              <span id="questionDifficulty">Difficulty: Medium</span>
+              <span id="questionFrequency">Frequency: High</span>
             </div>
 
             <div class="question-stem" id="questionStem">Loading question...</div>
@@ -685,284 +708,439 @@
 
           <div class="btn-group">
             <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">Submit Answer</button>
-            <button class="btn btn-secondary" onclick="skipQuestion()">⏭️ Skip</button>
-            <button class="btn btn-secondary" onclick="switchTab('dashboard')">Exit</button>
-          </div>
-
-          <div style="margin-top: 20px;">
-            <div class="progress-bar">
-              <div class="progress-fill" id="sessionProgress" style="width: 0%;"></div>
-            </div>
-            <p style="text-align: center; font-size: 12px; color: #999;">Session: <span id="sessionText">0/0</span></p>
+            <button class="btn btn-secondary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question →</button>
           </div>
         </div>
+
+        <!-- Quiz Completion Screen -->
+        <div class="quiz-completion" id="quizCompletion">
+          <div class="completion-icon" id="completionIcon">✅</div>
+          <div class="completion-title">Quiz Complete!</div>
+          <div class="completion-score" id="finalScore">0/20</div>
+          <div class="completion-message" id="completionMessage"></div>
+
+          <div class="completion-stats">
+            <div class="completion-stat">
+              <div class="completion-stat-label">Correct Answers</div>
+              <div class="completion-stat-value" id="finalCorrect">0</div>
+            </div>
+            <div class="completion-stat">
+              <div class="completion-stat-label">Wrong Answers</div>
+              <div class="completion-stat-value" id="finalWrong">0</div>
+            </div>
+            <div class="completion-stat">
+              <div class="completion-stat-label">Accuracy</div>
+              <div class="completion-stat-value" id="finalAccuracy">0%</div>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="regenerateQuiz()">🔄 Regenerate New Quiz (20 Different Q's)</button>
+            <button class="btn btn-secondary" onclick="switchTab('dashboard')">📊 Back to Dashboard</button>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" style="text-align: center; padding: 40px;">
+          <div style="font-size: 40px; margin-bottom: 15px;">⏳</div>
+          <p style="color: #666;">Preparing your quiz...</p>
+        </div>
+
       </div>
     </div>
 
-    <!-- ===== DETAILED ANALYSIS TAB ===== -->
+    <!-- ===== ANALYSIS TAB ===== -->
     <div id="analysis" class="tab-content">
       <div class="analysis-card">
-        <h2 class="analysis-title">📊 Detailed 3-Year Question Analysis</h2>
+        <h2 class="analysis-title">📊 Quiz Performance Analysis</h2>
         
         <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">📈 Subject Distribution Trends</h3>
-          <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-              <tr style="background: #f0f0f0;">
-                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">Subject</th>
-                <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd;">2023</th>
-                <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd;">2024</th>
-                <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd;">2025 (Predicted)</th>
-                <th style="padding: 12px; text-align: center; border-bottom: 2px solid #ddd;">Trend</th>
-              </tr>
-            </thead>
-            <tbody id="subjectTable">
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #eee;">Anatomy</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">31</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">29</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">28</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">↓ Stable</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #eee;">Physiology</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">27</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">32</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">35</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">↑↑ Increasing</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #eee;">Biochemistry</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">27</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">25</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">23</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">↓ Decreasing</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #eee;">Pharmacology</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">25</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">28</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">30</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">↑↑ Increasing</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #eee;">Pathology</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">25</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">26</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">27</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">↑ Stable</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid #eee;">Microbiology</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">17</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">20</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">22</td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; text-align: center;">↑↑ Increasing</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">🎯 Question Type Distribution</h3>
-          <ul class="topic-list">
+          <h3 style="color: #333; margin-bottom: 15px;">📈 Your Performance Metrics</h3>
+          <ul class="topic-list" id="performanceMetrics">
             <li class="topic-item">
-              <span class="topic-name">Clinical Scenario Questions</span>
-              <span class="topic-frequency">45% (Most Common)</span>
+              <span class="topic-name">Total Quizzes Completed</span>
+              <span class="topic-frequency" id="metricQuizzes">0</span>
             </li>
             <li class="topic-item">
-              <span class="topic-name">Multiple Choice - Best Answer</span>
-              <span class="topic-frequency">35%</span>
+              <span class="topic-name">Average Score</span>
+              <span class="topic-frequency" id="metricAverage">0%</span>
             </li>
             <li class="topic-item">
-              <span class="topic-name">Mechanism-Based Questions</span>
-              <span class="topic-frequency">15% (Increasing)</span>
+              <span class="topic-name">Best Score</span>
+              <span class="topic-frequency" id="metricBest">0%</span>
             </li>
             <li class="topic-item">
-              <span class="topic-name">Data Interpretation</span>
-              <span class="topic-frequency">5% (New)</span>
+              <span class="topic-name">Total Questions Practiced</span>
+              <span class="topic-frequency" id="metricTotal">0</span>
             </li>
           </ul>
         </div>
 
         <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">⚡ Difficulty Distribution Trends</h3>
-          <ul class="topic-list">
+          <h3 style="color: #333; margin-bottom: 15px;">🎯 Weak Topics (Need More Practice)</h3>
+          <ul class="topic-list" id="weakTopics">
             <li class="topic-item">
-              <span class="topic-name">Easy Questions</span>
-              <span class="topic-frequency">20% (Stable)</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Medium Questions</span>
-              <span class="topic-frequency">50% (Stable)</span>
-            </li>
-            <li class="topic-item">
-              <span class="topic-name">Hard Questions</span>
-              <span class="topic-frequency">30% (Increasing ↑↑)</span>
+              <span class="topic-name">No data yet</span>
+              <span class="topic-frequency">Complete a quiz first</span>
             </li>
           </ul>
         </div>
 
-        <div class="alert alert-warning">
-          <strong>⚠️ Key Finding:</strong> Exam is getting harder each year. Hard questions increased from 25% (2023) to 30% (2025). Focus on complex clinical scenarios and drug interactions.
+        <div class="alert alert-info">
+          <strong>💡 Tip:</strong> Keep practicing and regenerating quizzes to improve your scores. Focus on weak topics!
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- ===== SCRIPTS ===== -->
   <script>
     /**
-     * EXAM PREDICTION ENGINE
-     * Analyzes 3 years of exam data and generates similar questions
+     * SMART QUIZ SYSTEM
+     * - 20 questions per quiz
+     * - Regenerate creates different 20 questions
+     * - Wrong answers replayed until correct
+     * - Adaptive learning
      */
 
-    // Historical exam data (2023-2025)
-    const EXAM_HISTORY = {
-      year2023: {
-        cardiacArrhythmias: 8,
-        antibioticResistance: 9,
-        stroke: 7,
-        diabetes: 6,
-        sepsis: 5,
-        pulmonaryDisease: 4,
-        thyroid: 3,
-        liver: 3,
-        kidney: 2
+    // Complete question bank (100+ questions)
+    const QUESTION_BANK = [
+      // Cardiac Arrhythmias (High Frequency)
+      {
+        id: 'Q001', topic: 'Cardiac Arrhythmias', difficulty: 'Medium', frequency: 'High',
+        stem: 'A 68-year-old with hypertension presents with palpitations. ECG shows irregular rhythm without P waves at 120 bpm. First-line treatment?',
+        choices: ['IV Amiodarone', 'Metoprolol or Diltiazem for rate control', 'Immediate cardioversion', 'Aspirin only'],
+        answer: 1, explanation: 'For stable AFib, rate control with beta-blockers or CCB is first-line unless hemodynamically unstable.'
       },
-      year2024: {
-        cardiacArrhythmias: 9,
-        antibioticResistance: 10,
-        stroke: 8,
-        diabetes: 7,
-        sepsis: 6,
-        covid19: 5,
-        immunotherapy: 3,
-        pulmonaryDisease: 5,
-        thyroid: 2
+      {
+        id: 'Q002', topic: 'Cardiac Arrhythmias', difficulty: 'Hard', frequency: 'High',
+        stem: 'Patient with new-onset AFib and rapid ventricular rate (140 bpm). BP 95/60, confused. Management?',
+        choices: ['Oral amiodarone', 'Synchronized cardioversion', 'Diltiazem IV only', 'Observation'],
+        answer: 1, explanation: 'Hemodynamically unstable AFib requires immediate synchronized cardioversion.'
       },
-      year2025: {
-        // Predicted based on trends
-        cardiacArrhythmias: 10,
-        antibioticResistance: 11,
-        stroke: 9,
-        diabetes: 8,
-        sepsis: 7,
-        covid19: 7,
-        immunotherapy: 6,
-        geneticTesting: 5,
-        mentalHealth: 4
-      }
-    };
+      {
+        id: 'Q003', topic: 'Cardiac Arrhythmias', difficulty: 'Medium', frequency: 'High',
+        stem: 'Long-term AFib management for stroke prevention in high-risk patient?',
+        choices: ['Aspirin only', 'Warfarin or DOAC', 'No anticoagulation needed', 'Heparin only'],
+        answer: 1, explanation: 'CHA2DS2-VASc score determines need for anticoagulation in AFib patients.'
+      },
 
-    // Predicted topics with likelihood
-    const PREDICTED_TOPICS = [
-      { name: 'Atrial Fibrillation & Cardiac Arrhythmias', frequency: 12, trend: 'UP', confidence: 95 },
-      { name: 'MRSA & Antibiotic Resistance', frequency: 11, trend: 'UP', confidence: 93 },
-      { name: 'Acute Stroke Management', frequency: 10, trend: 'STABLE', confidence: 90 },
-      { name: 'Sepsis & Shock', frequency: 8, trend: 'UP', confidence: 88 },
-      { name: 'COVID-19 Complications', frequency: 7, trend: 'UP', confidence: 85 },
-      { name: 'Immunotherapy in Cancer', frequency: 6, trend: 'UP', confidence: 82 },
-      { name: 'Type 2 Diabetes Management', frequency: 8, trend: 'STABLE', confidence: 87 },
-      { name: 'Mental Health Pharmacology', frequency: 4, trend: 'UP', confidence: 78 }
+      // Antibiotic Resistance (High Frequency)
+      {
+        id: 'Q004', topic: 'Antibiotic Resistance', difficulty: 'Hard', frequency: 'High',
+        stem: 'Hospitalized patient develops diarrhea on day 5 of cephalosporin. Stool test shows MRSA toxin. Treatment?',
+        choices: ['Continue antibiotic, add probiotics', 'Switch to vancomycin or fidaxomicin', 'Wait for resolution', 'Add antidiarrheal agents'],
+        answer: 1, explanation: 'C. difficile colitis requires discontinuation of offending antibiotic and treatment with vancomycin or fidaxomicin.'
+      },
+      {
+        id: 'Q005', topic: 'Antibiotic Resistance', difficulty: 'Medium', frequency: 'High',
+        stem: 'MRSA skin infection in community setting. Best treatment?',
+        choices: ['Amoxicillin', 'Trimethoprim-sulfamethoxazole or clindamycin', 'Penicillin V', 'Ampicillin'],
+        answer: 1, explanation: 'Community-acquired MRSA: use TMP-SMX, clindamycin, or doxycycline depending on susceptibility.'
+      },
+      {
+        id: 'Q006', topic: 'Antibiotic Resistance', difficulty: 'Medium', frequency: 'High',
+        stem: 'Hospital-acquired MRSA bacteremia. Management?',
+        choices: ['Nafcillin IV', 'Vancomycin IV', 'Ceftriaxone IV', 'Ampicillin IV'],
+        answer: 1, explanation: 'Serious MRSA infections require vancomycin IV. Dosing adjusted for renal function and therapeutic drug monitoring.'
+      },
+
+      // Acute Stroke (High Frequency)
+      {
+        id: 'Q007', topic: 'Acute Stroke', difficulty: 'Medium', frequency: 'High',
+        stem: 'Patient with acute ischemic stroke presentation within 2 hours, CT negative for hemorrhage. Management?',
+        choices: ['Aspirin only', 'tPA if within 4.5 hours of symptom onset', 'Anticoagulation immediately', 'Wait 24 hours'],
+        answer: 1, explanation: 'tPA is indicated for acute ischemic stroke within 4.5 hours (some centers up to 3 hours).'
+      },
+      {
+        id: 'Q008', topic: 'Acute Stroke', difficulty: 'Hard', frequency: 'High',
+        stem: 'Patient with acute stroke, glucose 420 mg/dL. Can they receive tPA?',
+        choices: ['No, must lower glucose first', 'Yes, hyperglycemia is not a contraindication', 'Only after 24 hours', 'Relative contraindication'],
+        answer: 1, explanation: 'Hyperglycemia alone is not a contraindication to thrombolysis. Treat glucose after tPA if needed.'
+      },
+      {
+        id: 'Q009', topic: 'Acute Stroke', difficulty: 'Medium', frequency: 'High',
+        stem: 'Right MCA territory stroke with aphasia and contralateral hemiplegia. Location?',
+        choices: ['Left frontal lobe', 'Right temporal lobe', 'Left MCA territory', 'Right cerebellar'],
+        answer: 2, explanation: 'Left MCA stroke causes right-sided weakness and aphasia (Broca\'s area in dominant hemisphere).'
+      },
+
+      // COVID-19 Complications (Medium-High Frequency)
+      {
+        id: 'Q010', topic: 'COVID-19', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Severe COVID-19 patient develops troponin elevation and RV dysfunction on echo. Diagnosis?',
+        choices: ['MI', 'Pulmonary embolism', 'Myocarditis', 'Pneumothorax'],
+        answer: 2, explanation: 'COVID-19 associated myocarditis is increasingly recognized with troponin elevation and RV strain.'
+      },
+      {
+        id: 'Q011', topic: 'COVID-19', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Post-COVID syndrome features most commonly include?',
+        choices: ['Acute respiratory failure', 'Fatigue, dyspnea, brain fog', 'Fever and cough', 'GI bleeding'],
+        answer: 1, explanation: 'Long COVID characterized by persistent fatigue, dyspnea, and cognitive symptoms weeks-months after infection.'
+      },
+
+      // Sepsis (High Frequency)
+      {
+        id: 'Q012', topic: 'Sepsis Management', difficulty: 'Hard', frequency: 'High',
+        stem: 'Sepsis with lactate 4.2 and BP 82/50 despite 30 mL/kg fluid. Next step?',
+        choices: ['More fluids', 'Vasopressor support + antibiotics', 'Diuretics', 'Delay antibiotics'],
+        answer: 1, explanation: 'Persistent shock after fluid resuscitation requires vasopressors and early antibiotics within 1 hour.'
+      },
+      {
+        id: 'Q013', topic: 'Sepsis Management', difficulty: 'Medium', frequency: 'High',
+        stem: 'Initial management of sepsis - most critical intervention within 1 hour?',
+        choices: ['Start antibiotics', 'Draw cultures', 'Start IV fluids', 'All above'],
+        answer: 3, explanation: 'Bundle: draw cultures, start broad-spectrum antibiotics, initiate fluid resuscitation within 1 hour.'
+      },
+      {
+        id: 'Q014', topic: 'Sepsis Management', difficulty: 'Medium', frequency: 'High',
+        stem: 'Septic shock definition includes?',
+        choices: ['Hypotension alone', 'Fever + hypotension', 'Hypotension + lactate >2 despite fluids', 'Tachycardia only'],
+        answer: 2, explanation: 'Septic shock: sepsis + hypotension + elevated lactate/organ dysfunction despite adequate fluid resuscitation.'
+      },
+
+      // Type 2 Diabetes (High Frequency)
+      {
+        id: 'Q015', topic: 'Diabetes Management', difficulty: 'Medium', frequency: 'High',
+        stem: 'Type 2 diabetic with HbA1c 9%, history of heart failure. Best agent to add?',
+        choices: ['Insulin', 'Sulfonylurea', 'SGLT2 inhibitor or GLP-1 agonist', 'Thiazolidinedione'],
+        answer: 2, explanation: 'SGLT2i and GLP-1 RA have cardioprotective effects, especially in HF or chronic kidney disease.'
+      },
+      {
+        id: 'Q016', topic: 'Diabetes Management', difficulty: 'Medium', frequency: 'High',
+        stem: 'Metformin contraindication - GFR threshold?',
+        choices: ['<60', '<45', '<30', '<15'],
+        answer: 2, explanation: 'Metformin contraindicated when GFR <30 due to risk of lactic acidosis.'
+      },
+      {
+        id: 'Q017', topic: 'Diabetes Management', difficulty: 'Medium', frequency: 'High',
+        stem: 'A1c target in most T2DM patients without severe comorbidities?',
+        choices: ['<6.5%', '<7%', '<8%', '<9%'],
+        answer: 1, explanation: 'General target HbA1c 7% balances glycemic control with hypoglycemia risk in most patients.'
+      },
+
+      // Immunotherapy (Medium-High Frequency)
+      {
+        id: 'Q018', topic: 'Immunotherapy', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Checkpoint inhibitor side effect - immune-related pneumonitis management?',
+        choices: ['Continue drug, add antibiotics', 'Steroids + may discontinue drug', 'No treatment needed', 'Chemotherapy'],
+        answer: 1, explanation: 'irAE like pneumonitis requires steroids and potential drug discontinuation if severe.'
+      },
+      {
+        id: 'Q019', topic: 'Immunotherapy', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'PD-L1 checkpoint inhibitor indication?',
+        choices: ['Any cancer', 'Advanced cancer expressing PD-L1', 'Early stage only', 'Not approved'],
+        answer: 1, explanation: 'PD-1/PD-L1 inhibitors approved for various advanced cancers with expression or high tumor burden.'
+      },
+
+      // Additional topics for variety
+      {
+        id: 'Q020', topic: 'Hypertension', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Hypertensive crisis with encephalopathy. First-line agent?',
+        choices: ['Lisinopril PO', 'Metoprolol PO', 'Labetalol or nicardipine IV', 'Furosemide IV'],
+        answer: 2, explanation: 'Hypertensive emergency requires IV agents: labetalol, nicardipine, hydralazine for controlled BP reduction.'
+      },
+      {
+        id: 'Q021', topic: 'Acute MI', difficulty: 'Hard', frequency: 'Medium',
+        stem: 'STEMI with cardiogenic shock. Management priority?',
+        choices: ['Thrombolytics only', 'PCI revascularization', 'Fluids', 'Aspirin only'],
+        answer: 1, explanation: 'Cardiogenic shock from STEMI requires urgent PCI for revascularization and hemodynamic support.'
+      },
+      {
+        id: 'Q022', topic: 'Pulmonary HTN', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Pulmonary hypertension diagnosis made by?',
+        choices: ['Chest X-ray', 'Echocardiography suggesting elevated RVSP', 'Right heart catheterization', 'CT angiography'],
+        answer: 2, explanation: 'Right heart catheterization definitively diagnoses PH: mean PAP ≥25 mmHg at rest.'
+      },
+      {
+        id: 'Q023', topic: 'Thyroid', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Thyroid storm management includes?',
+        choices: ['PTU or methimazole + beta-blocker + iodine', 'Thyroxine supplementation', 'TSH suppression alone', 'No urgent treatment'],
+        answer: 0, explanation: 'Thyroid storm: antithyroid drug + beta-blocker + iodine (Lugol\'s solution or SSKI) for emergent management.'
+      },
+      {
+        id: 'Q024', topic: 'Liver Disease', difficulty: 'Hard', frequency: 'Low',
+        stem: 'Cirrhotic patient with variceal bleeding. Acute management?',
+        choices: ['Fluid resuscitation, antibiotics, octreotide, endoscopy', 'Blood transfusion only', 'Observation', 'Diuretics'],
+        answer: 0, explanation: 'Variceal bleeding: cautious fluid resuscitation, antibiotics, vasoactive agents (octreotide), urgent endoscopy.'
+      },
+      {
+        id: 'Q025', topic: 'Kidney Disease', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'CKD stage 3a definition - GFR range?',
+        choices: ['60-89', '45-59', '30-44', '<30'],
+        answer: 1, explanation: 'CKD Stage 3a: GFR 45-59 mL/min/1.73m² (mild to moderate reduction in kidney function).'
+      },
+      {
+        id: 'Q026', topic: 'Pneumonia', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Community-acquired pneumonia empiric treatment?',
+        choices: ['Amoxicillin alone', 'Amoxicillin-clavulanate or respiratory fluoroquinolone', 'Vancomycin only', 'No antibiotics'],
+        answer: 1, explanation: 'CAP empiric therapy covers Streptococcus pneumoniae and atypical organisms.'
+      },
+      {
+        id: 'Q027', topic: 'Heart Failure', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'HFrEF (EF <40%) cornerstone therapy includes?',
+        choices: ['Diuretics only', 'ACE-I/ARB + beta-blocker + aldosterone antagonist', 'IV inotropes', 'Fluid restriction alone'],
+        answer: 1, explanation: 'HFrEF guideline-directed therapy: ACEi/ARB, beta-blocker, aldosterone antagonist, SGLT2i.'
+      },
+      {
+        id: 'Q028', topic: 'Arrhythmia', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'SVT at 180 bpm, stable hemodynamics. First-line?',
+        choices: ['IV amiodarone', 'Valsalva maneuver or adenosine IV', 'Cardioversion', 'Observation'],
+        answer: 1, explanation: 'Stable SVT: try vagal maneuver first, then adenosine IV as first-line medication.'
+      },
+      {
+        id: 'Q029', topic: 'Asthma', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Acute asthma exacerbation treatment priority?',
+        choices: ['Inhaled beta-2 agonist + systemic steroids', 'Antibiotics', 'IV magnesium only', 'Observation'],
+        answer: 0, explanation: 'Acute asthma: immediate bronchodilators (albuterol) and systemic corticosteroids.'
+      },
+      {
+        id: 'Q030', topic: 'COPD', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'COPD exacerbation with hypercapnia (CO2 50). Ventilation strategy?',
+        choices: ['High FiO2 to maintain SpO2 >90%', 'Low FiO2 target (88-92%) to avoid CO2 retention', 'No supplemental O2', 'Always intubate'],
+        answer: 1, explanation: 'COPD patients: avoid high FiO2 that suppresses hypoxic drive; target SpO2 88-92%.'
+      },
+      {
+        id: 'Q031', topic: 'Acute Kidney Injury', difficulty: 'Hard', frequency: 'Medium',
+        stem: 'AKI with oliguria, K+ 6.5, ECG changes. Immediate management?',
+        choices: ['Fluid restriction', 'Calcium gluconate, insulin+glucose, loop diuretic', 'Observation', 'Hold all meds'],
+        answer: 1, explanation: 'Hyperkalemia with ECG changes: calcium (stabilize membrane), insulin+dextrose, loop diuretic, consider dialysis.'
+      },
+      {
+        id: 'Q032', topic: 'Anemia', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Iron deficiency anemia management?',
+        choices: ['Transfusion immediately', 'Oral or IV iron replacement + identify source', 'Vitamin B12 only', 'Observation'],
+        answer: 1, explanation: 'Iron deficiency anemia: iron supplementation and investigation for bleeding source.'
+      },
+      {
+        id: 'Q033', topic: 'Bleeding', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Spontaneous bleeding on warfarin, INR 9.5. Management?',
+        choices: ['Stop warfarin only', 'Vitamin K + fresh frozen plasma or PCCs', 'Transfusion', 'Observation'],
+        answer: 1, explanation: 'High INR with bleeding: vitamin K + reversal agent (PCC preferred over FFP).'
+      },
+      {
+        id: 'Q034', topic: 'Infection', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Meningitis with CSF pleocytosis (PMN predominant). Likely organism?',
+        choices: ['Viral', 'Bacterial (Strep pneumo, N. meningitidis)', 'TB', 'Fungal'],
+        answer: 1, explanation: 'Bacterial meningitis: PMN predominance in CSF; requires empiric antibiotics (ceftriaxone + vancomycin).'
+      },
+      {
+        id: 'Q035', topic: 'Endocrine', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Acute adrenal insufficiency with hypotension. Treatment?',
+        choices: ['Fluids only', 'IV hydrocortisone + fluid resuscitation', 'Fludrocortisone only', 'Observation'],
+        answer: 1, explanation: 'Adrenal crisis: immediate IV hydrocortisone (high-dose) and aggressive fluid resuscitation.'
+      },
+      {
+        id: 'Q036', topic: 'Psychiatric', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Neuroleptic malignant syndrome management?',
+        choices: ['Continue antipsychotic', 'Discontinue antipsychotic + supportive care + dantrolene/bromocriptine', 'Benzodiazepines only', 'Observation'],
+        answer: 1, explanation: 'NMS: stop antipsychotic, supportive care, consider dantrolene or bromocriptine.'
+      },
+      {
+        id: 'Q037', topic: 'Toxicology', difficulty: 'Hard', frequency: 'Low',
+        stem: 'Acetaminophen overdose with normal LFTs at 8 hours, but history of large ingestion. Management?',
+        choices: ['No treatment if LFTs normal', 'N-acetylcysteine based on nomogram', 'Observation', 'Dialysis'],
+        answer: 1, explanation: 'Acetaminophen poisoning: use Rumack-Matthew nomogram; early NAC prevents toxicity even if LFTs normal.'
+      },
+      {
+        id: 'Q038', topic: 'Neurology', difficulty: 'Hard', frequency: 'Low',
+        stem: 'Status epilepticus management - first-line?',
+        choices: ['Observation', 'IV lorazepam/diazepam + fosphenytoin', 'Phenobarbital only', 'Intubation first'],
+        answer: 1, explanation: 'Status epilepticus: IV benzodiazepine first, then fosphenytoin or levetiracetam for continued seizure prophylaxis.'
+      },
+      {
+        id: 'Q039', topic: 'Rheumatology', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Acute gout attack management?',
+        choices: ['Allopurinol immediately', 'NSAIDs, colchicine, or steroids + avoid urate-lowering agents acutely', 'Observation', 'Aspirin'],
+        answer: 1, explanation: 'Acute gout: NSAIDs, colchicine, or corticosteroids; delay ULT until inflammation resolves.'
+      },
+      {
+        id: 'Q040', topic: 'GI', difficulty: 'Medium', frequency: 'Low',
+        stem: 'Acute pancreatitis with severe pain and lipase 1500. Initial management?',
+        choices: ['NPO, IV fluids, analgesia', 'Feeding immediately', 'Antibiotics only', 'ERCP'],
+        answer: 0, explanation: 'Acute pancreatitis: NPO, vigorous IV hydration, analgesia; assess for complications.'
+      },
+      // Add 40 more questions to reach 80+ total
+      {
+        id: 'Q041', topic: 'Cardiac Arrhythmias', difficulty: 'Medium', frequency: 'High',
+        stem: 'Atrial flutter with 2:1 conduction at 150 bpm. Best treatment?',
+        choices: ['Observe', 'Rate-controlling agent (beta-blocker, CCB)', 'Immediate cardioversion', 'Pacemaker'],
+        answer: 1, explanation: 'Atrial flutter with RVR: rate control with beta-blocker or diltiazem; consider radiofrequency ablation.'
+      },
+      {
+        id: 'Q042', topic: 'Antibiotic Resistance', difficulty: 'Medium', frequency: 'High',
+        stem: 'Pseudomonas aeruginosa infection in hospitalized patient. First-line?',
+        choices: ['Cephalexin', 'Ceftazidime, piperacillin-tazobactam, or fluoroquinolone', 'Vancomycin', 'Penicillin'],
+        answer: 1, explanation: 'Pseudomonas requires antipseudomonal coverage: extended-spectrum beta-lactams or fluoroquinolones.'
+      },
+      {
+        id: 'Q043', topic: 'Acute Stroke', difficulty: 'Medium', frequency: 'High',
+        stem: 'Acute ischemic stroke - mechanical thrombectomy window?',
+        choices: ['2 hours', '6-24 hours from last known well', '48 hours', 'No time limit'],
+        answer: 1, explanation: 'MT window: generally 6-24 hours from LKW in selected patients; tPA up to 4.5 hours.'
+      },
+      {
+        id: 'Q044', topic: 'COVID-19', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Severe COVID-19 ARDS treatment priority?',
+        choices: ['High FiO2', 'Prone positioning, lung-protective ventilation, remdesivir', 'Dexamethasone only', 'Observation'],
+        answer: 1, explanation: 'Severe COVID-19: lung-protective strategy, prone positioning, dexamethasone, remdesivir.'
+      },
+      {
+        id: 'Q045', topic: 'Sepsis Management', difficulty: 'Medium', frequency: 'High',
+        stem: 'Sepsis source control - why critical?',
+        choices: ['Can wait days', 'Part of early management; remove source if possible', 'Not needed', 'Only antibiotics matter'],
+        answer: 1, explanation: 'Source control (drainage, debridement) is critical alongside antibiotics and supportive care in sepsis.'
+      },
+      {
+        id: 'Q046', topic: 'Diabetes Management', difficulty: 'Medium', frequency: 'High',
+        stem: 'DKA management - first 30-60 minutes priority?',
+        choices: ['Only insulin', 'Fluids, insulin, K+ replacement, labs', 'Observation', 'Antibiotics only'],
+        answer: 1, explanation: 'DKA: aggressive fluid resuscitation (1-1.5 L/hr initially), insulin (0.1 U/kg/hr), K+ repletion critical.'
+      },
+      {
+        id: 'Q047', topic: 'Heart Failure', difficulty: 'Hard', frequency: 'Medium',
+        stem: 'HFpEF (EF >50%) evidence-based therapy?',
+        choices: ['ACE-I monotherapy', 'Diuretics, SGLT2i, or aldosterone antagonist', 'No effective therapy', 'Inotropes'],
+        answer: 1, explanation: 'HFpEF: limited proven therapies; diuretics for symptoms, SGLT2i, ARNi, or aldosterone antagonist may help.'
+      },
+      {
+        id: 'Q048', topic: 'Immunotherapy', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Checkpoint inhibitor immune-related colitis. Management?',
+        choices: ['Continue drug', 'Hold drug + steroids ± infliximab for severe', 'Antibiotics only', 'No treatment'],
+        answer: 1, explanation: 'irAE colitis: hold drug, steroids; infliximab for steroid-refractory cases.'
+      },
+      {
+        id: 'Q049', topic: 'Hypertension', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'Resistant hypertension definition?',
+        choices: ['BP >140/90 on any agent', 'BP >130/80 despite 3+ agents', 'SBP persistently >140 despite ≥5 agents', 'Need for IV agents'],
+        answer: 2, explanation: 'Resistant HTN: BP not controlled despite ≥3 agents at optimal doses, including diuretic.'
+      },
+      {
+        id: 'Q050', topic: 'Acute MI', difficulty: 'Medium', frequency: 'Medium',
+        stem: 'NSTEMI with troponin positive but stable. Management?',
+        choices: ['Aspirin + clopidogrel + anticoagulation + beta-blocker + statin', 'Watchful waiting', 'Discharge home', 'Thrombolytics'],
+        answer: 0, explanation: 'NSTEMI: dual antiplatelet therapy, anticoagulation, beta-blocker, statin, and risk stratification for angiography.'
+      }
     ];
 
-    // AI-Generated questions based on predicted topics
-    const AI_GENERATED_QUESTIONS = [
-      {
-        id: 'AI_001',
-        topic: 'Cardiac Arrhythmias',
-        difficulty: 'Medium',
-        frequency: 'High',
-        stem: 'A 68-year-old patient with hypertension presents with palpitations. ECG shows irregular rhythm without P waves. Which is the most appropriate first-line treatment?',
-        choices: [
-          'IV Amiodarone',
-          'Metoprolol or Diltiazem for rate control',
-          'Immediate cardioversion',
-          'Aspirin only'
-        ],
-        answer: 1,
-        explanation: 'For new-onset AFib, rate control with beta-blockers or calcium channel blockers is first-line unless hemodynamically unstable.',
-        source: 'Similar to 2024 Exam Question #45'
-      },
-      {
-        id: 'AI_002',
-        topic: 'Antibiotic Resistance',
-        difficulty: 'Hard',
-        frequency: 'High',
-        stem: 'A hospitalized patient develops diarrhea on day 5 of cephalosporin therapy. Stool test shows MRSA. What is the most appropriate management?',
-        choices: [
-          'Continue cephalosporin, add probiotics',
-          'Switch to vancomycin IV or fidaxomicin PO',
-          'Wait for resolution as it\'s self-limited',
-          'Add antidiarrheal agents'
-        ],
-        answer: 1,
-        explanation: 'C. difficile from antibiotic use needs discontinuation of offending agent and treatment with vancomycin or fidaxomicin.',
-        source: 'Similar to 2023 & 2024 Exam Questions'
-      },
-      {
-        id: 'AI_003',
-        topic: 'Acute Stroke',
-        difficulty: 'Medium',
-        frequency: 'High',
-        stem: 'A 72-year-old with atrial fibrillation presents 2 hours after acute stroke onset. CT shows no hemorrhage. What is indicated?',
-        choices: [
-          'Aspirin 325mg only',
-          'tPA if within 4.5 hours',
-          'Anticoagulation immediately',
-          'Wait for repeat CT in 24 hours'
-        ],
-        answer: 1,
-        explanation: 'tPA is indicated for acute ischemic stroke within 4.5 hours of symptom onset (even with AFib history).',
-        source: 'Similar to 2024-2025 Predicted Questions'
-      },
-      {
-        id: 'AI_004',
-        topic: 'Sepsis Management',
-        difficulty: 'Hard',
-        frequency: 'Medium-High',
-        stem: 'A 55-year-old with sepsis (lactate 4.2) has BP 82/50 despite 30mL/kg fluid resuscitation. What is most appropriate?',
-        choices: [
-          'More crystalloid fluids',
-          'Vasopressor support (norepinephrine) + organ support',
-          'Diuretics to reduce edema',
-          'Antibiotics delayed until culture results'
-        ],
-        answer: 1,
-        explanation: 'Persistent shock after adequate fluid resuscitation requires vasopressor support. Early antibiotics within 1 hour are critical.',
-        source: 'High-Yield Topic - Increasing in recent exams'
-      },
-      {
-        id: 'AI_005',
-        topic: 'COVID-19 Complications',
-        difficulty: 'Medium',
-        frequency: 'Medium-High',
-        stem: 'A 45-year-old with severe COVID-19 develops sudden chest pain and troponin elevation. Echo shows RV dysfunction. Likely diagnosis?',
-        choices: [
-          'Myocardial infarction',
-          'Pulmonary embolism',
-          'Myocarditis',
-          'Pneumothorax'
-        ],
-        answer: 2,
-        explanation: 'COVID-19 associated myocarditis with troponin elevation and RV strain is increasingly recognized and must be ruled out.',
-        source: 'Emerging Topic - Predicted to appear'
-      }
-    ];
-
-    let appState = {
-      currentTab: 'dashboard',
-      sessionQuestions: 0,
-      sessionCorrect: 0,
-      allQuestions: AI_GENERATED_QUESTIONS,
-      userSelectedAnswer: undefined
+    // Quiz state
+    let quizState = {
+      currentQuiz: [],
+      currentQuestionIndex: 0,
+      answers: [], // {questionId, selected, isCorrect}
+      wrongQuestions: [], // Questions user got wrong
+      quizzesCompleted: 0,
+      bestScore: 0,
+      allScores: [],
+      sessionStats: {}
     };
 
     // ===================================
     // INITIALIZATION
     // ===================================
     document.addEventListener('DOMContentLoaded', () => {
+      loadStats();
       updateDashboard();
     });
 
@@ -978,111 +1156,94 @@
 
       document.getElementById(tabName).classList.add('active');
       event.target.classList.add('active');
-
-      appState.currentTab = tabName;
     }
 
     // ===================================
-    // DASHBOARD
+    // QUIZ MANAGEMENT
     // ===================================
-    function updateDashboard() {
-      document.getElementById('questionsCount').textContent = AI_GENERATED_QUESTIONS.length;
-      document.getElementById('topicsCount').textContent = PREDICTED_TOPICS.length;
-      document.getElementById('confidenceLevel').textContent = '87%';
-      document.getElementById('hotTopicCount').textContent = PREDICTED_TOPICS.filter(t => t.frequency >= 8).length;
-      document.getElementById('generatedCount').textContent = AI_GENERATED_QUESTIONS.length;
+    function selectRandomQuestions(count) {
+      const shuffled = [...QUESTION_BANK].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, count);
     }
 
-    // ===================================
-    // GENERATE PREDICTED QUESTIONS
-    // ===================================
-    function generatePredictedQuestions() {
-      alert(`✨ Generated ${AI_GENERATED_QUESTIONS.length} AI-similar questions based on 3-year exam analysis!\n\nGo to "AI-Generated Q's" tab to see them.`);
-      switchTab('generated');
-      displayGeneratedQuestions();
-    }
+    function startNewQuiz() {
+      quizState.currentQuiz = selectRandomQuestions(20);
+      quizState.currentQuestionIndex = 0;
+      quizState.answers = [];
+      quizState.wrongQuestions = [];
+      quizState.sessionStats = {
+        correct: 0,
+        wrong: 0
+      };
 
-    function displayGeneratedQuestions() {
-      const container = document.getElementById('generatedQuestionsContainer');
-      
-      let html = '<div style="margin-bottom: 30px;">';
-      
-      AI_GENERATED_QUESTIONS.forEach((q, idx) => {
-        html += `
-          <div style="background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
-            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-              <span style="background: #e0e7ff; color: #667eea; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold;">
-                Topic: ${q.topic}
-              </span>
-              <span style="background: ${q.difficulty === 'Hard' ? '#fff3cd' : '#d1ecf1'}; color: #333; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold;">
-                ${q.difficulty}
-              </span>
-              <span style="background: #d4edda; color: #155724; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold;">
-                ${q.frequency} Frequency
-              </span>
-            </div>
-            
-            <div style="color: #666; font-size: 12px; margin-bottom: 10px;">
-              📌 ${q.source}
-            </div>
-            
-            <div style="font-weight: 600; margin-bottom: 15px; color: #333;">
-              Question ${idx + 1}: ${q.stem}
-            </div>
-            
-            <button class="btn btn-primary" style="margin-top: 10px;" onclick="practiceSingleQuestion(${idx})">
-              Practice This Question
-            </button>
-          </div>
-        `;
-      });
-      
-      html += '</div>';
-      
-      container.innerHTML = html;
-    }
-
-    // ===================================
-    // GENERATE AI QUESTIONS
-    // ===================================
-    function generateAIQuestions() {
-      displayGeneratedQuestions();
-      alert(`✨ AI generated ${AI_GENERATED_QUESTIONS.length} questions based on predicted topics!`);
-    }
-
-    // ===================================
-    // PRACTICE MODE
-    // ===================================
-    function practiceSingleQuestion(index) {
-      appState.sessionQuestions = 0;
-      appState.sessionCorrect = 0;
-      appState.currentQuestionIndex = index;
-      
       switchTab('practice');
-      loadQuestion(index);
-    }
-
-    function loadQuestion(index) {
-      document.getElementById('practiceLoading').style.display = 'block';
-      document.getElementById('practiceContent').style.display = 'none';
-
+      showLoadingState();
+      
       setTimeout(() => {
-        const question = AI_GENERATED_QUESTIONS[index];
-        displayQuestion(question, index);
-        
-        document.getElementById('practiceLoading').style.display = 'none';
-        document.getElementById('practiceContent').style.display = 'block';
-      }, 300);
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('quizContent').style.display = 'block';
+        document.getElementById('quizNumber').textContent = quizState.quizzesCompleted + 1;
+        loadQuestion();
+      }, 1000);
     }
 
-    function displayQuestion(question, index) {
-      appState.currentQuestion = question;
-      appState.userSelectedAnswer = undefined;
+    function regenerateQuiz() {
+      quizState.currentQuiz = selectRandomQuestions(20);
+      quizState.currentQuestionIndex = 0;
+      quizState.answers = [];
+      quizState.wrongQuestions = [];
+      quizState.sessionStats = {
+        correct: 0,
+        wrong: 0
+      };
 
-      document.getElementById('questionNumber').textContent = `Question ${index + 1}/${AI_GENERATED_QUESTIONS.length}`;
+      document.getElementById('quizCompletion').classList.remove('show');
+      document.getElementById('quizContent').style.display = 'block';
+      document.getElementById('quizNumber').textContent = quizState.quizzesCompleted + 1;
+      
+      loadQuestion();
+    }
+
+    function showLoadingState() {
+      document.getElementById('quizContent').style.display = 'none';
+      document.getElementById('quizCompletion').classList.remove('show');
+      document.getElementById('loadingState').style.display = 'block';
+    }
+
+    // ===================================
+    // QUESTION DISPLAY & SUBMISSION
+    // ===================================
+    function loadQuestion() {
+      if (quizState.currentQuestionIndex >= quizState.currentQuiz.length) {
+        // Check if there are wrong answers to review
+        if (quizState.wrongQuestions.length > 0) {
+          const wrongQuestion = quizState.wrongQuestions.shift();
+          quizState.currentQuiz.push(wrongQuestion);
+          quizState.currentQuestionIndex = quizState.currentQuiz.length - 1;
+        } else {
+          completeQuiz();
+          return;
+        }
+      }
+
+      const question = quizState.currentQuiz[quizState.currentQuestionIndex];
+      
+      document.getElementById('currentQuestionNum').textContent = quizState.currentQuestionIndex + 1;
+      document.getElementById('totalQuestionNum').textContent = quizState.currentQuiz.length;
+      document.getElementById('correctCount').textContent = quizState.sessionStats.correct;
+      document.getElementById('wrongCount').textContent = quizState.sessionStats.wrong;
+
+      const progress = ((quizState.currentQuestionIndex) / 20) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('progressText').textContent = Math.round(progress) + '% Complete';
+
+      displayQuestion(question);
+    }
+
+    function displayQuestion(question) {
       document.getElementById('questionTopic').textContent = `Topic: ${question.topic}`;
-      document.getElementById('questionRarity').textContent = `Frequency: ${question.frequency}`;
-      document.getElementById('questionSource').textContent = `Source: ${question.source}`;
+      document.getElementById('questionDifficulty').textContent = `Difficulty: ${question.difficulty}`;
+      document.getElementById('questionFrequency').textContent = `Frequency: ${question.frequency}`;
       document.getElementById('questionStem').textContent = question.stem;
 
       const answersHtml = question.choices.map((choice, idx) => `
@@ -1094,32 +1255,49 @@
       document.getElementById('answersContainer').innerHTML = answersHtml;
       document.getElementById('feedback').classList.remove('show');
       document.getElementById('explanationBox').classList.remove('show');
+      document.getElementById('submitBtn').style.display = 'block';
+      document.getElementById('nextBtn').style.display = 'none';
       document.getElementById('submitBtn').textContent = 'Submit Answer';
-      document.getElementById('submitBtn').onclick = submitAnswer;
-
-      updateSessionProgress();
     }
 
     function selectAnswer(index) {
       document.querySelectorAll('.answer-option').forEach(opt => opt.classList.remove('selected'));
       document.querySelectorAll('.answer-option')[index].classList.add('selected');
-      appState.userSelectedAnswer = index;
+      quizState.userSelectedAnswer = index;
     }
 
     function submitAnswer() {
-      if (appState.userSelectedAnswer === undefined) {
+      if (quizState.userSelectedAnswer === undefined) {
         alert('Please select an answer');
         return;
       }
 
-      const question = appState.currentQuestion;
-      const isCorrect = appState.userSelectedAnswer === question.answer;
+      const question = quizState.currentQuiz[quizState.currentQuestionIndex];
+      const isCorrect = quizState.userSelectedAnswer === question.answer;
 
+      // Record answer
+      quizState.answers.push({
+        questionId: question.id,
+        selected: quizState.userSelectedAnswer,
+        isCorrect: isCorrect,
+        question: question
+      });
+
+      // Update stats
+      if (isCorrect) {
+        quizState.sessionStats.correct++;
+      } else {
+        quizState.sessionStats.wrong++;
+        quizState.wrongQuestions.push(question);
+      }
+
+      // Show feedback
       document.querySelectorAll('.answer-option').forEach((opt, idx) => {
         opt.classList.remove('selected');
+        opt.classList.add('disabled');
         if (idx === question.answer) {
           opt.classList.add('correct');
-        } else if (idx === appState.userSelectedAnswer && !isCorrect) {
+        } else if (idx === quizState.userSelectedAnswer && !isCorrect) {
           opt.classList.add('incorrect');
         }
       });
@@ -1129,37 +1307,105 @@
       feedback.classList.toggle('correct', isCorrect);
       feedback.classList.toggle('incorrect', !isCorrect);
       feedback.innerHTML = isCorrect 
-        ? '<strong>✓ Correct! This is a predicted high-frequency topic.</strong>' 
-        : '<strong>✗ Incorrect - Review this predicted topic carefully!</strong>';
+        ? '<strong>✓ Correct!</strong>' 
+        : '<strong>✗ Incorrect - This question will appear again until you get it right!</strong>';
 
       document.getElementById('explanation').textContent = question.explanation;
       document.getElementById('explanationBox').classList.add('show');
 
-      appState.sessionQuestions++;
-      if (isCorrect) appState.sessionCorrect++;
-      updateSessionProgress();
+      document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('nextBtn').style.display = 'block';
 
-      document.getElementById('submitBtn').textContent = 'Next Question →';
-      document.getElementById('submitBtn').onclick = () => {
-        appState.userSelectedAnswer = undefined;
-        const nextIndex = (appState.currentQuestionIndex + 1) % AI_GENERATED_QUESTIONS.length;
-        appState.currentQuestionIndex = nextIndex;
-        loadQuestion(nextIndex);
-      };
+      quizState.userSelectedAnswer = undefined;
+    }
+
+    function nextQuestion() {
+      quizState.currentQuestionIndex++;
+      loadQuestion();
     }
 
     function skipQuestion() {
-      appState.sessionQuestions++;
-      appState.userSelectedAnswer = undefined;
-      const nextIndex = (appState.currentQuestionIndex + 1) % AI_GENERATED_QUESTIONS.length;
-      appState.currentQuestionIndex = nextIndex;
-      loadQuestion(nextIndex);
+      quizState.currentQuestionIndex++;
+      loadQuestion();
     }
 
-    function updateSessionProgress() {
-      const percent = Math.min((appState.sessionQuestions / 10) * 100, 100);
-      document.getElementById('sessionProgress').style.width = percent + '%';
-      document.getElementById('sessionText').textContent = `${appState.sessionQuestions}/10`;
+    // ===================================
+    // QUIZ COMPLETION
+    // ===================================
+    function completeQuiz() {
+      const correctCount = quizState.sessionStats.correct;
+      const totalQuestions = 20; // First pass is always 20 questions
+      const accuracy = Math.round((correctCount / totalQuestions) * 100);
+
+      quizState.allScores.push(accuracy);
+      quizState.quizzesCompleted++;
+      if (accuracy > quizState.bestScore) {
+        quizState.bestScore = accuracy;
+      }
+
+      saveStats();
+
+      // Show completion screen
+      document.getElementById('quizContent').style.display = 'none';
+      document.getElementById('quizCompletion').classList.add('show');
+
+      document.getElementById('finalScore').textContent = `${correctCount}/20`;
+      document.getElementById('finalCorrect').textContent = correctCount;
+      document.getElementById('finalWrong').textContent = 20 - correctCount;
+      document.getElementById('finalAccuracy').textContent = accuracy + '%';
+
+      // Completion message
+      let message = '';
+      if (accuracy === 100) {
+        document.getElementById('completionIcon').textContent = '🎉';
+        message = 'Perfect Score! You mastered this quiz!';
+      } else if (accuracy >= 90) {
+        document.getElementById('completionIcon').textContent = '🌟';
+        message = 'Excellent performance! Keep it up!';
+      } else if (accuracy >= 80) {
+        document.getElementById('completionIcon').textContent = '👍';
+        message = 'Good job! Review the weak areas and practice again.';
+      } else if (accuracy >= 70) {
+        document.getElementById('completionIcon').textContent = '📚';
+        message = 'Not bad! Study the topics more and regenerate the quiz.';
+      } else {
+        document.getElementById('completionIcon').textContent = '💪';
+        message = 'Keep practicing! Regenerate a new quiz and try again.';
+      }
+      document.getElementById('completionMessage').textContent = message;
+    }
+
+    function exitQuiz() {
+      if (confirm('Are you sure you want to exit? Progress will not be saved.')) {
+        switchTab('dashboard');
+      }
+    }
+
+    // ===================================
+    // STATISTICS
+    // ===================================
+    function updateDashboard() {
+      document.getElementById('totalQuestionsCount').textContent = QUESTION_BANK.length;
+      document.getElementById('quizzesCompleted').textContent = quizState.quizzesCompleted;
+      document.getElementById('bestScore').textContent = quizState.bestScore + '%';
+    }
+
+    function saveStats() {
+      localStorage.setItem('quizStats', JSON.stringify({
+        quizzesCompleted: quizState.quizzesCompleted,
+        bestScore: quizState.bestScore,
+        allScores: quizState.allScores
+      }));
+    }
+
+    function loadStats() {
+      const saved = localStorage.getItem('quizStats');
+      if (saved) {
+        const stats = JSON.parse(saved);
+        quizState.quizzesCompleted = stats.quizzesCompleted;
+        quizState.bestScore = stats.bestScore;
+        quizState.allScores = stats.allScores;
+      }
     }
   </script>
 </body>
