@@ -58,6 +58,19 @@
       margin-bottom: 20px;
     }
 
+    .status-bar {
+      background: #f0f0f0;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
     .nav-tabs {
       display: flex;
       gap: 15px;
@@ -218,6 +231,11 @@
       margin: 20px 0;
     }
 
+    .btn-small {
+      padding: 8px 15px;
+      font-size: 12px;
+    }
+
     /* ===================================
        PRACTICE MODE
        =================================== */
@@ -313,6 +331,29 @@
       background: #f8d7da;
       border-left: 4px solid #dc3545;
       color: #721c24;
+    }
+
+    .explanation-box {
+      background: #f0f7ff;
+      border-left: 4px solid #0c5460;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      display: none;
+    }
+
+    .explanation-box.show {
+      display: block;
+    }
+
+    .explanation-box h4 {
+      color: #0c5460;
+      margin-bottom: 10px;
+    }
+
+    .explanation-box p {
+      color: #0c5460;
+      line-height: 1.6;
     }
 
     /* ===================================
@@ -558,6 +599,9 @@
       margin-bottom: 12px;
       transition: all 0.2s;
       cursor: pointer;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
     }
 
     .task-card:hover {
@@ -566,28 +610,35 @@
 
     .task-card.completed {
       opacity: 0.6;
-      text-decoration: line-through;
       background: #e8e8e8;
+    }
+
+    .task-card.completed .task-title {
+      text-decoration: line-through;
+      color: #999;
     }
 
     .task-checkbox {
       width: 18px;
       height: 18px;
       cursor: pointer;
-      margin-right: 12px;
-      vertical-align: middle;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .task-content {
+      flex: 1;
     }
 
     .task-title {
       font-weight: 600;
       color: #333;
-      display: inline-block;
+      margin-bottom: 5px;
     }
 
     .task-meta {
       display: flex;
-      gap: 10px;
-      margin-top: 8px;
+      gap: 8px;
       font-size: 12px;
       color: #999;
       flex-wrap: wrap;
@@ -935,6 +986,11 @@
         border-left-color: #667eea;
         border-bottom: none;
       }
+
+      .status-bar {
+        gap: 15px;
+        padding: 15px 10px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -965,6 +1021,12 @@
       .answer-option {
         padding: 12px;
       }
+
+      .status-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
     }
   </style>
 </head>
@@ -974,7 +1036,12 @@
     <div class="header">
       <h1>🏥 MedOne AI</h1>
       <p>Taiwan Medical Licensing Exam Preparation System</p>
-      <p style="font-size: 14px; color: #999; margin-top: 10px;">Adaptive Learning • Unlimited Mock Exams • AI-Powered Questions • Progress Tracking</p>
+      <div class="status-bar">
+        <span>📚 <strong id="questionsCount">0</strong> Questions</span>
+        <span>🎓 <strong id="examsCount">0</strong> Mock Exams</span>
+        <span>📊 <strong id="accuracyStatus">0%</strong> Accuracy</span>
+        <span>✓ <strong id="tasksCount">0</strong> Tasks</span>
+      </div>
       
       <div class="nav-tabs">
         <button class="nav-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
@@ -983,6 +1050,7 @@
         <button class="nav-btn" onclick="switchTab('analytics')">📈 Analytics</button>
         <button class="nav-btn" onclick="switchTab('review')">🔍 Review</button>
         <button class="nav-btn" onclick="switchTab('todo')">✓ To-Do List</button>
+        <button class="nav-btn" onclick="switchTab('settings')">⚙️ Settings</button>
       </div>
     </div>
 
@@ -995,18 +1063,19 @@
           <div class="progress-bar">
             <div class="progress-fill" id="accuracyBar" style="width: 0%;"></div>
           </div>
+          <div class="stat-description">From all attempts</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-label">Average Response Time</div>
           <div class="stat-value" id="avgResponseTime">0s</div>
-          <div class="stat-description">Seconds per question</div>
+          <div class="stat-description">Per question</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-label">Questions Today</div>
           <div class="stat-value" id="questionsToday">0</div>
-          <div class="stat-description">Questions answered</div>
+          <div class="stat-description">Answered today</div>
         </div>
 
         <div class="stat-card">
@@ -1031,7 +1100,12 @@
       <div class="btn-group">
         <button class="btn btn-primary" onclick="startQuickPractice()">▶ Start Quick Practice</button>
         <button class="btn btn-secondary" onclick="generateNewExam()">+ Generate Mock Exam</button>
-        <button class="btn btn-secondary" onclick="viewRecentExams()">📋 Recent Exams</button>
+        <button class="btn btn-secondary" onclick="switchTab('exam')">📋 View Exams</button>
+        <button class="btn btn-secondary" onclick="loadDataFromFile()">📥 Load Questions</button>
+      </div>
+
+      <div id="loadingAlert" class="alert alert-info" style="display: none; margin-top: 20px;">
+        <strong>ℹ️ Note:</strong> Questions will be loaded from knowledge_nodes.json. Make sure the file is in the same directory as this HTML file.
       </div>
     </div>
 
@@ -1058,9 +1132,9 @@
 
             <div class="feedback" id="feedback"></div>
 
-            <div style="display: none;" id="explanationBox">
-              <h4 style="margin-bottom: 10px; color: #333;">Explanation</h4>
-              <p id="explanation" style="color: #666; line-height: 1.6;"></p>
+            <div class="explanation-box" id="explanationBox">
+              <h4>Explanation</h4>
+              <p id="explanation"></p>
             </div>
           </div>
 
@@ -1068,14 +1142,14 @@
             <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">Submit Answer</button>
             <button class="btn btn-secondary" id="skipBtn" onclick="skipQuestion()">Skip Question</button>
             <button class="btn btn-secondary" id="bookmarkBtn" onclick="bookmarkQuestion()">⭐ Bookmark</button>
-            <button class="btn btn-secondary" onclick="exitPractice()">Exit Practice</button>
+            <button class="btn btn-danger" onclick="exitPractice()">Exit Practice</button>
           </div>
 
           <div style="margin-top: 20px;">
             <div class="progress-bar">
               <div class="progress-fill" id="sessionProgress" style="width: 0%;"></div>
             </div>
-            <p style="text-align: center; font-size: 12px; color: #999;">Session Progress</p>
+            <p style="text-align: center; font-size: 12px; color: #999;">Session Progress: <span id="sessionProgressText">0/0</span></p>
           </div>
         </div>
       </div>
@@ -1088,7 +1162,7 @@
         <p style="color: #666; margin-bottom: 20px;">
           200 questions following official distribution:
           Anatomy 31 • Physiology 27 • Biochemistry 27 • Pharmacology 25 • Pathology 25 • 
-          Microbiology 17 • Immunology 11 • Histology 10 • Public Health 15 • Embryology 5 • Parasitology 7
+          Microbiology 17 • Immunology 11 • Histology 10 • Biostatistics 15 • Embryology 5 • Parasitology 7
         </p>
         <button class="btn btn-primary" onclick="generateNewExam()">+ Generate New Mock Exam</button>
       </div>
@@ -1104,6 +1178,8 @@
 
     <!-- ===== ANALYTICS TAB ===== -->
     <div id="analytics" class="tab-content">
+      <h2 style="color: #333; margin-bottom: 30px;">📈 Performance Analytics</h2>
+      
       <div class="analytics-grid">
         <div class="chart-container">
           <h3 class="chart-title">📊 Accuracy by Subject</h3>
@@ -1116,7 +1192,7 @@
         </div>
 
         <div class="chart-container">
-          <h3 class="chart-title">📊 Accuracy by Category</h3>
+          <h3 class="chart-title">📊 Study Progress</h3>
           <div id="categoryChart"></div>
         </div>
       </div>
@@ -1204,6 +1280,71 @@
         </div>
 
         <div id="todoList"></div>
+      </div>
+    </div>
+
+    <!-- ===== SETTINGS TAB ===== -->
+    <div id="settings" class="tab-content">
+      <div class="review-container">
+        <h2 style="color: #333; margin-bottom: 30px;">⚙️ Settings & Data Management</h2>
+
+        <div style="margin-bottom: 30px;">
+          <h3 style="color: #333; margin-bottom: 15px;">📥 Load Data</h3>
+          <p style="color: #666; margin-bottom: 15px;">Load questions from knowledge_nodes.json file</p>
+          <button class="btn btn-primary" onclick="loadDataFromFile()">Load Questions from File</button>
+          <button class="btn btn-secondary" style="margin-left: 10px;" onclick="loadSampleData()">Load Sample Data</button>
+        </div>
+
+        <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+          <h3 style="color: #333; margin-bottom: 15px;">📊 Data Statistics</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+            <div>
+              <p style="color: #999; font-size: 12px; margin-bottom: 5px;">TOTAL QUESTIONS</p>
+              <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="totalQuestionsCount">0</p>
+            </div>
+            <div>
+              <p style="color: #999; font-size: 12px; margin-bottom: 5px;">TOTAL EXAMS</p>
+              <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="totalExamsCount">0</p>
+            </div>
+            <div>
+              <p style="color: #999; font-size: 12px; margin-bottom: 5px;">TOTAL TASKS</p>
+              <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="totalTasksCount">0</p>
+            </div>
+            <div>
+              <p style="color: #999; font-size: 12px; margin-bottom: 5px;">STORAGE USED</p>
+              <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="storageUsed">0 KB</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 30px;">
+          <h3 style="color: #333; margin-bottom: 15px;">💾 Backup & Restore</h3>
+          <button class="btn btn-secondary" onclick="exportData()">📥 Export Data (JSON)</button>
+          <button class="btn btn-secondary" style="margin-left: 10px;" onclick="showImportModal()">📤 Import Data (JSON)</button>
+          <button class="btn btn-danger" style="margin-left: 10px;" onclick="clearAllData()">🗑️ Clear All Data</button>
+        </div>
+
+        <div style="margin-bottom: 30px; padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
+          <h3 style="color: #856404; margin-bottom: 10px;">⚠️ Data Storage</h3>
+          <p style="color: #856404;">
+            All data is stored locally in your browser's localStorage. It will persist across sessions but be cleared if you clear your browser data.
+            Export your data regularly for backup.
+          </p>
+        </div>
+
+        <div style="padding: 20px; background: #d1ecf1; border-left: 4px solid #0c5460; border-radius: 8px;">
+          <h3 style="color: #0c5460; margin-bottom: 10px;">ℹ️ File Format</h3>
+          <p style="color: #0c5460; margin-bottom: 10px;">
+            Place your <code style="background: white; padding: 2px 6px; border-radius: 3px;">knowledge_nodes.json</code> in the same directory as this HTML file.
+          </p>
+          <p style="color: #0c5460; font-size: 12px;">
+            Required file structure: 
+            <code style="background: white; padding: 2px 6px; border-radius: 3px;">{
+  "knowledge_nodes": [...],
+  "generated_questions_sample": [...]
+}</code>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -1301,9 +1442,24 @@
     </div>
   </div>
 
-  <!-- ===== SCRIPTS ===== -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <div id="importModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('importModal')">×</button>
+      <h2 class="modal-title">📤 Import Data</h2>
 
+      <div class="form-group">
+        <label class="form-label">Select JSON file to import:</label>
+        <input type="file" id="importFile" class="form-input" accept=".json">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal('importModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="importDataFromFile()">Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
   <script>
     // ===================================
     // GLOBAL STATE MANAGEMENT
@@ -1316,28 +1472,39 @@
       sessionCorrect: 0,
       taskManager: null,
       tasks: [],
-      currentTodoView: 'all'
+      currentTodoView: 'all',
+      allQuestions: [],
+      exams: [],
+      userSelectedAnswer: undefined
     };
+
+    // ===================================
+    // INITIALIZATION
+    // ===================================
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('MedOne AI initialized');
+      loadTasks();
+      loadExams();
+      updateDashboard();
+      updateStatusBar();
+      loadSampleQuestions();
+    });
 
     // ===================================
     // TAB SWITCHING
     // ===================================
     function switchTab(tabName) {
-      // Hide all tabs
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => tab.classList.remove('active'));
 
-      // Deactivate all buttons
       const buttons = document.querySelectorAll('.nav-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
 
-      // Show selected tab
       document.getElementById(tabName).classList.add('active');
       event.target.classList.add('active');
 
       appState.currentTab = tabName;
 
-      // Load tab-specific data
       if (tabName === 'dashboard') {
         updateDashboard();
       } else if (tabName === 'practice') {
@@ -1348,7 +1515,143 @@
         loadExamHistory();
       } else if (tabName === 'todo') {
         updateTodoList();
+      } else if (tabName === 'settings') {
+        updateSettingsPage();
       }
+    }
+
+    // ===================================
+    // DATA LOADING FUNCTIONS
+    // ===================================
+    async function loadDataFromFile() {
+      try {
+        const response = await fetch('knowledge_nodes.json');
+        if (!response.ok) {
+          showAlert('❌ Could not load knowledge_nodes.json. Make sure the file exists in the same directory as this HTML file.', 'error');
+          return;
+        }
+
+        const data = await response.json();
+        localStorage.setItem('medone_questions', JSON.stringify(data.generated_questions_sample || []));
+        appState.allQuestions = data.generated_questions_sample || [];
+
+        updateStatusBar();
+        showAlert(`✓ Loaded ${appState.allQuestions.length} questions successfully!`, 'success');
+      } catch (error) {
+        console.error('Error loading file:', error);
+        showAlert('❌ Error loading file: ' + error.message, 'error');
+      }
+    }
+
+    function loadSampleQuestions() {
+      const sampleQuestions = [
+        {
+          id: 'Q_001',
+          subject: 'Anatomy',
+          chapter: 'Central Nervous System',
+          topic: 'Cerebral Circulation',
+          concept: 'Middle Cerebral Artery Stroke',
+          stem: 'A 72-year-old male presents with acute onset weakness on the left side and difficulty speaking. What is the most likely diagnosis?',
+          choices: [
+            'Middle Cerebral Artery Stroke',
+            'Anterior Cerebral Artery Stroke',
+            'Posterior Cerebral Artery Stroke',
+            'Hemorrhagic Stroke'
+          ],
+          answer: 0,
+          explanation: 'The clinical presentation of acute hemiplegia with speech difficulty is classic for MCA stroke.',
+          difficulty: 'Medium',
+          highYield: true
+        },
+        {
+          id: 'Q_002',
+          subject: 'Physiology',
+          chapter: 'Cardiovascular',
+          topic: 'Cardiac Conduction',
+          concept: 'Atrial Fibrillation',
+          stem: 'A patient presents with palpitations and an irregularly irregular rhythm on ECG with no P waves. What is the diagnosis?',
+          choices: [
+            'Atrial Fibrillation',
+            'Atrial Flutter',
+            'Supraventricular Tachycardia',
+            'Ventricular Tachycardia'
+          ],
+          answer: 0,
+          explanation: 'The irregularly irregular rhythm and absent P waves are pathognomonic for atrial fibrillation.',
+          difficulty: 'Easy',
+          highYield: true
+        },
+        {
+          id: 'Q_003',
+          subject: 'Biochemistry',
+          chapter: 'Metabolism',
+          topic: 'Glycolysis',
+          concept: 'Pyruvate Dehydrogenase',
+          stem: 'Which enzyme catalyzes the conversion of pyruvate to Acetyl-CoA?',
+          choices: [
+            'Pyruvate Dehydrogenase',
+            'Pyruvate Kinase',
+            'Lactate Dehydrogenase',
+            'Aldolase'
+          ],
+          answer: 0,
+          explanation: 'Pyruvate dehydrogenase complex catalyzes the irreversible conversion of pyruvate to Acetyl-CoA.',
+          difficulty: 'Medium',
+          highYield: true
+        },
+        {
+          id: 'Q_004',
+          subject: 'Pharmacology',
+          chapter: 'Antimicrobials',
+          topic: 'Beta-Lactams',
+          concept: 'Penicillin Mechanism',
+          stem: 'MRSA infection should be treated with which of the following?',
+          choices: [
+            'Vancomycin',
+            'Amoxicillin',
+            'Ampicillin',
+            'Penicillin G'
+          ],
+          answer: 0,
+          explanation: 'MRSA is resistant to all beta-lactams. Vancomycin is the first-line treatment.',
+          difficulty: 'Easy',
+          highYield: true
+        },
+        {
+          id: 'Q_005',
+          subject: 'Pathology',
+          chapter: 'Neoplasia',
+          topic: 'Lung Cancer',
+          concept: 'Adenocarcinoma',
+          stem: 'What is the most common type of lung cancer in non-smokers?',
+          choices: [
+            'Adenocarcinoma',
+            'Squamous Cell Carcinoma',
+            'Small Cell Carcinoma',
+            'Large Cell Carcinoma'
+          ],
+          answer: 0,
+          explanation: 'Adenocarcinoma is the most common lung cancer type overall and especially in non-smokers.',
+          difficulty: 'Easy',
+          highYield: true
+        }
+      ];
+
+      const saved = localStorage.getItem('medone_questions');
+      if (!saved) {
+        localStorage.setItem('medone_questions', JSON.stringify(sampleQuestions));
+        appState.allQuestions = sampleQuestions;
+      } else {
+        appState.allQuestions = JSON.parse(saved);
+      }
+
+      updateStatusBar();
+    }
+
+    function loadSampleData() {
+      loadSampleQuestions();
+      showAlert('✓ Sample questions loaded successfully!', 'success');
+      updateStatusBar();
     }
 
     // ===================================
@@ -1373,6 +1676,15 @@
       document.getElementById('weakestSubject').textContent = stats.weakestSubject;
     }
 
+    function updateStatusBar() {
+      document.getElementById('questionsCount').textContent = appState.allQuestions.length;
+      document.getElementById('examsCount').textContent = appState.exams.length;
+      document.getElementById('tasksCount').textContent = appState.tasks.length;
+      
+      const stats = JSON.parse(localStorage.getItem('medone_user_stats')) || { accuracy: 0 };
+      document.getElementById('accuracyStatus').textContent = stats.accuracy + '%';
+    }
+
     // ===================================
     // PRACTICE FUNCTIONS
     // ===================================
@@ -1380,9 +1692,13 @@
       document.getElementById('practiceLoading').style.display = 'block';
       document.getElementById('practiceContent').style.display = 'none';
 
-      // Simulate loading question
       setTimeout(() => {
-        const question = generateSampleQuestion();
+        if (appState.allQuestions.length === 0) {
+          showAlert('No questions available. Load questions first!', 'warning');
+          return;
+        }
+
+        const question = appState.allQuestions[Math.floor(Math.random() * appState.allQuestions.length)];
         displayQuestion(question);
 
         document.getElementById('practiceLoading').style.display = 'none';
@@ -1390,31 +1706,11 @@
       }, 500);
     }
 
-    function generateSampleQuestion() {
-      const subjects = ['Anatomy', 'Physiology', 'Biochemistry', 'Pharmacology', 'Pathology'];
-      const difficulties = ['Easy', 'Medium', 'Hard'];
-
-      return {
-        id: 'q_' + Date.now(),
-        subject: subjects[Math.floor(Math.random() * subjects.length)],
-        difficulty: difficulties[Math.floor(Math.random() * difficulties.length)],
-        highYield: Math.random() > 0.7,
-        stem: 'Which of the following best describes the mechanism of action of penicillin antibiotics?',
-        choices: [
-          'Inhibition of bacterial protein synthesis',
-          'Inhibition of bacterial cell wall synthesis',
-          'Inhibition of bacterial DNA replication',
-          'Competitive inhibition of bacterial metabolic enzymes'
-        ],
-        correctAnswer: 1,
-        explanation: 'Penicillin antibiotics inhibit bacterial cell wall synthesis by binding to penicillin-binding proteins and inhibiting cross-linking of peptidoglycan, leading to cell wall weakening and bacterial lysis.'
-      };
-    }
-
     function displayQuestion(question) {
       appState.currentPracticeQuestion = question;
+      appState.userSelectedAnswer = undefined;
 
-      document.getElementById('questionNumber').textContent = `Question 1 of 200`;
+      document.getElementById('questionNumber').textContent = `Question ${appState.sessionQuestions + 1} of 200`;
       document.getElementById('questionSubject').textContent = `Subject: ${question.subject}`;
       document.getElementById('questionDifficulty').textContent = `Difficulty: ${question.difficulty}`;
       document.getElementById('questionHighYield').textContent = question.highYield ? '⭐ High-Yield' : '';
@@ -1428,8 +1724,9 @@
 
       document.getElementById('answersContainer').innerHTML = answersHtml;
       document.getElementById('feedback').classList.remove('show');
-      document.getElementById('explanationBox').style.display = 'none';
+      document.getElementById('explanationBox').classList.remove('show');
       document.getElementById('submitBtn').textContent = 'Submit Answer';
+      document.getElementById('submitBtn').onclick = submitAnswer;
     }
 
     function selectAnswer(index) {
@@ -1440,24 +1737,22 @@
 
     function submitAnswer() {
       if (appState.userSelectedAnswer === undefined) {
-        alert('Please select an answer');
+        showAlert('Please select an answer', 'warning');
         return;
       }
 
       const question = appState.currentPracticeQuestion;
-      const isCorrect = appState.userSelectedAnswer === question.correctAnswer;
+      const isCorrect = appState.userSelectedAnswer === question.answer;
 
-      // Update answer display
       document.querySelectorAll('.answer-option').forEach((opt, idx) => {
         opt.classList.remove('selected');
-        if (idx === question.correctAnswer) {
+        if (idx === question.answer) {
           opt.classList.add('correct');
         } else if (idx === appState.userSelectedAnswer && !isCorrect) {
           opt.classList.add('incorrect');
         }
       });
 
-      // Show feedback
       const feedback = document.getElementById('feedback');
       feedback.classList.add('show');
       feedback.classList.toggle('correct', isCorrect);
@@ -1466,48 +1761,50 @@
         ? '<strong>✓ Correct!</strong>' 
         : '<strong>✗ Incorrect</strong>';
 
-      // Show explanation
       document.getElementById('explanation').textContent = question.explanation;
-      document.getElementById('explanationBox').style.display = 'block';
+      document.getElementById('explanationBox').classList.add('show');
 
-      // Update stats
       appState.sessionQuestions++;
       if (isCorrect) appState.sessionCorrect++;
       updateSessionProgress();
 
-      // Change submit button to next
       document.getElementById('submitBtn').textContent = 'Next Question';
-      document.getElementById('submitBtn').onclick = loadNextQuestion;
-    }
-
-    function loadNextQuestion() {
-      appState.userSelectedAnswer = undefined;
-      loadPracticeQuestion();
+      document.getElementById('submitBtn').onclick = () => {
+        appState.userSelectedAnswer = undefined;
+        loadPracticeQuestion();
+      };
     }
 
     function skipQuestion() {
       appState.sessionQuestions++;
-      loadNextQuestion();
+      appState.userSelectedAnswer = undefined;
+      loadPracticeQuestion();
     }
 
     function bookmarkQuestion() {
-      alert('Question bookmarked!');
+      showAlert('✓ Question bookmarked!', 'success');
     }
 
     function exitPractice() {
+      const accuracy = appState.sessionQuestions > 0 
+        ? Math.round((appState.sessionCorrect / appState.sessionQuestions) * 100)
+        : 0;
+      showAlert(`✓ Session Complete: ${appState.sessionCorrect}/${appState.sessionQuestions} Correct (${accuracy}%)`, 'success');
+      appState.sessionQuestions = 0;
+      appState.sessionCorrect = 0;
       switchTab('dashboard');
-      showAlert(`Session Complete: ${appState.sessionCorrect}/${appState.sessionQuestions} Correct (${Math.round(appState.sessionCorrect/appState.sessionQuestions*100)}%)`);
     }
 
     function updateSessionProgress() {
       const percent = (appState.sessionQuestions / 200) * 100;
       document.getElementById('sessionProgress').style.width = percent + '%';
+      document.getElementById('sessionProgressText').textContent = `${appState.sessionQuestions}/200`;
     }
 
     function startQuickPractice() {
-      switchTab('practice');
       appState.sessionQuestions = 0;
       appState.sessionCorrect = 0;
+      switchTab('practice');
       loadPracticeQuestion();
     }
 
@@ -1515,7 +1812,7 @@
     // EXAM FUNCTIONS
     // ===================================
     function generateNewExam() {
-      const examId = 'Mock' + String(Math.floor(Math.random() * 1000)).padStart(3, '0');
+      const examId = 'Mock' + String(appState.exams.length + 1).padStart(3, '0');
       const exam = {
         id: examId,
         timestamp: new Date().toISOString(),
@@ -1525,19 +1822,18 @@
         status: 'pending'
       };
 
-      const exams = JSON.parse(localStorage.getItem('medone_exams') || '[]');
-      exams.push(exam);
-      localStorage.setItem('medone_exams', JSON.stringify(exams));
+      appState.exams.push(exam);
+      saveExams();
 
-      showAlert(`✓ ${examId} created with 200 questions`);
+      showAlert(`✓ ${examId} created with 200 questions`, 'success');
       loadExamHistory();
+      updateStatusBar();
     }
 
     function loadExamHistory() {
-      const exams = JSON.parse(localStorage.getItem('medone_exams') || '[]');
       const grid = document.getElementById('examGrid');
 
-      if (exams.length === 0) {
+      if (appState.exams.length === 0) {
         grid.innerHTML = `
           <div class="empty-state">
             <div class="empty-state-icon">📚</div>
@@ -1548,7 +1844,7 @@
         return;
       }
 
-      grid.innerHTML = exams.map(exam => `
+      grid.innerHTML = appState.exams.map(exam => `
         <div class="exam-card">
           <div class="exam-card-header">${exam.id}</div>
           <div class="exam-card-body">
@@ -1559,6 +1855,10 @@
             <div class="exam-stat">
               <span class="exam-stat-label">Questions</span>
               <span class="exam-stat-value">${exam.totalQuestions}</span>
+            </div>
+            <div class="exam-stat">
+              <span class="exam-stat-label">Score</span>
+              <span class="exam-stat-value">${exam.score}%</span>
             </div>
             <div class="exam-stat">
               <span class="exam-stat-label">Created</span>
@@ -1572,18 +1872,22 @@
 
     function startExam(examId) {
       switchTab('practice');
-      showAlert(`Starting exam ${examId}...`);
+      showAlert(`Starting exam ${examId}...`, 'info');
     }
 
-    function viewRecentExams() {
-      switchTab('exam');
+    function saveExams() {
+      localStorage.setItem('medone_exams', JSON.stringify(appState.exams));
+    }
+
+    function loadExams() {
+      const saved = localStorage.getItem('medone_exams');
+      appState.exams = saved ? JSON.parse(saved) : [];
     }
 
     // ===================================
     // ANALYTICS FUNCTIONS
     // ===================================
     function updateAnalytics() {
-      // Sample data
       const accuracyBySubject = {
         'Anatomy': 85,
         'Physiology': 78,
@@ -1598,19 +1902,15 @@
         'Hard': 68
       };
 
-      const accuracyByCategory = {
-        'Clinical Scenario': 80,
-        'Basic Recall': 88,
-        'Mechanism': 75,
-        'Diagnosis': 82
+      const progressData = {
+        'Questions Completed': 125,
+        'High-Yield Mastered': 45,
+        'Weak Topics': 15
       };
 
-      // Render charts
       renderChart('accuracyChart', accuracyBySubject);
       renderChart('difficultyChart', accuracyByDifficulty);
-      renderChart('categoryChart', accuracyByCategory);
-
-      // Update weekly progress
+      renderChart('categoryChart', progressData);
       updateWeeklyProgress();
     }
 
@@ -1644,8 +1944,7 @@
     // REVIEW FUNCTIONS
     // ===================================
     function filterReviewQuestions(type, value) {
-      // Filter implementation
-      console.log(`Filtering review by ${type}: ${value}`);
+      console.log(`Filtering by ${type}: ${value}`);
     }
 
     // ===================================
@@ -1692,7 +1991,12 @@
 
       closeModal('newTaskModal');
       updateTodoList();
-      showAlert('✓ Task created successfully!');
+      updateStatusBar();
+      showAlert('✓ Task created successfully!', 'success');
+
+      document.getElementById('taskTitle').value = '';
+      document.getElementById('taskDescription').value = '';
+      document.getElementById('taskDueDate').value = '';
     }
 
     function updateTodoList() {
@@ -1705,25 +2009,25 @@
         tasks = tasks.filter(t => t.completed);
       } else if (appState.currentTodoView === 'overdue') {
         const today = new Date().toISOString().split('T')[0];
-        tasks = tasks.filter(t => !t.completed && t.dueDate < today);
+        tasks = tasks.filter(t => !t.completed && t.dueDate && t.dueDate < today);
       }
 
       const html = tasks.map(task => `
         <div class="task-card ${task.completed ? 'completed' : ''}">
           <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} 
             onchange="toggleTask('${task.id}')">
-          <span class="task-title">${task.title}</span>
-          <div class="task-meta">
-            <span class="task-badge">${task.category}</span>
-            <span class="task-badge">${task.priority}</span>
-            ${task.dueDate ? `<span class="task-badge">Due: ${task.dueDate}</span>` : ''}
+          <div class="task-content">
+            <div class="task-title">${task.title}</div>
+            <div class="task-meta">
+              <span class="task-badge">${task.category}</span>
+              <span class="task-badge">${task.priority}</span>
+              ${task.dueDate ? `<span class="task-badge">Due: ${task.dueDate}</span>` : ''}
+            </div>
           </div>
         </div>
       `).join('');
 
       document.getElementById('todoList').innerHTML = html || '<p style="text-align: center; color: #999;">No tasks</p>';
-
-      // Update counts
       updateTaskCounts();
     }
 
@@ -1744,7 +2048,6 @@
     }
 
     function searchTodoTasks(query) {
-      // Search implementation
       console.log('Searching tasks:', query);
     }
 
@@ -1755,7 +2058,7 @@
       document.getElementById('todayTasksCount').textContent = 
         appState.tasks.filter(t => t.dueDate === today).length;
       document.getElementById('overdueTasksCount').textContent = 
-        appState.tasks.filter(t => !t.completed && t.dueDate < today).length;
+        appState.tasks.filter(t => !t.completed && t.dueDate && t.dueDate < today).length;
       document.getElementById('completedTasksCount').textContent = 
         appState.tasks.filter(t => t.completed).length;
     }
@@ -1770,26 +2073,104 @@
     }
 
     // ===================================
+    // SETTINGS FUNCTIONS
+    // ===================================
+    function updateSettingsPage() {
+      const questionsData = localStorage.getItem('medone_questions');
+      const examsData = localStorage.getItem('medone_exams');
+      const tasksData = localStorage.getItem('medone_tasks');
+
+      const questionCount = questionsData ? JSON.parse(questionsData).length : 0;
+      const examCount = examsData ? JSON.parse(examsData).length : 0;
+      const taskCount = tasksData ? JSON.parse(tasksData).length : 0;
+
+      const totalSize = (questionsData?.length || 0) + (examsData?.length || 0) + (tasksData?.length || 0);
+      const sizeInKB = Math.round(totalSize / 1024);
+
+      document.getElementById('totalQuestionsCount').textContent = questionCount;
+      document.getElementById('totalExamsCount').textContent = examCount;
+      document.getElementById('totalTasksCount').textContent = taskCount;
+      document.getElementById('storageUsed').textContent = sizeInKB + ' KB';
+    }
+
+    function exportData() {
+      const backup = {
+        questions: appState.allQuestions,
+        exams: appState.exams,
+        tasks: appState.tasks,
+        timestamp: new Date().toISOString()
+      };
+
+      const json = JSON.stringify(backup, null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `medone_backup_${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showAlert('✓ Data exported successfully!', 'success');
+    }
+
+    function showImportModal() {
+      document.getElementById('importModal').classList.add('active');
+    }
+
+    function importDataFromFile() {
+      const file = document.getElementById('importFile').files[0];
+      if (!file) {
+        showAlert('Please select a file', 'warning');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const backup = JSON.parse(e.target.result);
+          
+          if (backup.questions) appState.allQuestions = backup.questions;
+          if (backup.exams) appState.exams = backup.exams;
+          if (backup.tasks) appState.tasks = backup.tasks;
+
+          saveTasks();
+          saveExams();
+          localStorage.setItem('medone_questions', JSON.stringify(appState.allQuestions));
+
+          closeModal('importModal');
+          updateStatusBar();
+          showAlert('✓ Data imported successfully!', 'success');
+        } catch (error) {
+          showAlert('❌ Error importing file: ' + error.message, 'error');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function clearAllData() {
+      if (confirm('⚠️ This will clear ALL your data. Are you sure?')) {
+        localStorage.clear();
+        appState.tasks = [];
+        appState.exams = [];
+        appState.allQuestions = [];
+        updateStatusBar();
+        showAlert('✓ All data cleared', 'success');
+        location.reload();
+      }
+    }
+
+    // ===================================
     // UTILITY FUNCTIONS
     // ===================================
     function closeModal(modalId) {
       document.getElementById(modalId).classList.remove('active');
     }
 
-    function showAlert(message) {
+    function showAlert(message, type = 'info') {
       alert(message);
     }
-
-    // ===================================
-    // INITIALIZATION
-    // ===================================
-    document.addEventListener('DOMContentLoaded', () => {
-      loadTasks();
-      updateDashboard();
-      updateTodoList();
-
-      console.log('MedOne AI initialized successfully');
-    });
 
     // Close modals on background click
     document.addEventListener('click', (e) => {
