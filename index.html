@@ -60,7 +60,7 @@
 
     .status-bar {
       background: #f0f0f0;
-      padding: 10px 20px;
+      padding: 15px 20px;
       border-radius: 8px;
       margin: 15px 0;
       font-size: 13px;
@@ -69,6 +69,17 @@
       justify-content: center;
       gap: 30px;
       flex-wrap: wrap;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-value {
+      font-weight: bold;
+      color: #667eea;
     }
 
     .nav-tabs {
@@ -195,6 +206,11 @@
       box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
     }
 
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     .btn-secondary {
       background: #f0f0f0;
       color: #333;
@@ -251,6 +267,20 @@
       margin-bottom: 30px;
     }
 
+    .question-counter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .counter-info {
+      font-size: 14px;
+      color: #666;
+    }
+
     .question-meta {
       display: flex;
       gap: 15px;
@@ -261,7 +291,7 @@
     }
 
     .question-meta span {
-      padding: 4px 10px;
+      padding: 6px 12px;
       background: #f0f0f0;
       border-radius: 4px;
     }
@@ -357,7 +387,25 @@
     }
 
     /* ===================================
-       EXAM MODE
+       PROGRESS BAR
+       =================================== */
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      transition: width 0.3s;
+    }
+
+    /* ===================================
+       EXAM GRID
        =================================== */
     .exam-grid {
       display: grid;
@@ -401,15 +449,6 @@
 
     .exam-stat:last-child {
       border-bottom: none;
-    }
-
-    .exam-stat-label {
-      color: #666;
-    }
-
-    .exam-stat-value {
-      color: #333;
-      font-weight: bold;
     }
 
     /* ===================================
@@ -512,18 +551,6 @@
       background: #f0fdf4;
     }
 
-    .question-review-title {
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .question-review-details {
-      font-size: 13px;
-      color: #666;
-      line-height: 1.6;
-    }
-
     /* ===================================
        TO-DO LIST STYLES
        =================================== */
@@ -598,7 +625,6 @@
       border-radius: 8px;
       margin-bottom: 12px;
       transition: all 0.2s;
-      cursor: pointer;
       display: flex;
       gap: 12px;
       align-items: flex-start;
@@ -611,11 +637,6 @@
     .task-card.completed {
       opacity: 0.6;
       background: #e8e8e8;
-    }
-
-    .task-card.completed .task-title {
-      text-decoration: line-through;
-      color: #999;
     }
 
     .task-checkbox {
@@ -634,6 +655,11 @@
       font-weight: 600;
       color: #333;
       margin-bottom: 5px;
+    }
+
+    .task-card.completed .task-title {
+      text-decoration: line-through;
+      color: #999;
     }
 
     .task-meta {
@@ -754,51 +780,6 @@
     }
 
     /* ===================================
-       TABLES
-       =================================== */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-    }
-
-    .data-table th {
-      background: #f0f0f0;
-      padding: 12px;
-      text-align: left;
-      font-weight: 600;
-      color: #333;
-      border-bottom: 2px solid #ddd;
-    }
-
-    .data-table td {
-      padding: 12px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .data-table tr:hover {
-      background: #f8f9fa;
-    }
-
-    /* ===================================
-       PROGRESS BARS
-       =================================== */
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: #ddd;
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 10px 0;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-      transition: width 0.3s;
-    }
-
-    /* ===================================
        ALERTS
        =================================== */
     .alert {
@@ -902,6 +883,10 @@
         font-size: 24px;
       }
 
+      .header p {
+        font-size: 16px;
+      }
+
       .nav-tabs {
         gap: 10px;
       }
@@ -971,25 +956,9 @@
         flex-direction: column;
       }
 
-      .todo-nav {
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .todo-nav-btn {
-        border-bottom: none;
-        border-left: 3px solid transparent;
-        text-align: left;
-      }
-
-      .todo-nav-btn.active {
-        border-left-color: #667eea;
-        border-bottom: none;
-      }
-
       .status-bar {
         gap: 15px;
-        padding: 15px 10px;
+        padding: 10px 10px;
       }
     }
 
@@ -1025,7 +994,27 @@
       .status-bar {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+      }
+
+      .chart-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .chart-bar-label {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .chart-bar-value {
+        width: 100%;
+        margin: 0;
+      }
+
+      .chart-bar-percent {
+        width: 100%;
+        text-align: left;
+        margin-top: 5px;
       }
     }
   </style>
@@ -1037,10 +1026,22 @@
       <h1>🏥 MedOne AI</h1>
       <p>Taiwan Medical Licensing Exam Preparation System</p>
       <div class="status-bar">
-        <span>📚 <strong id="questionsCount">0</strong> Questions</span>
-        <span>🎓 <strong id="examsCount">0</strong> Mock Exams</span>
-        <span>📊 <strong id="accuracyStatus">0%</strong> Accuracy</span>
-        <span>✓ <strong id="tasksCount">0</strong> Tasks</span>
+        <div class="status-item">
+          <span>📚 Questions:</span>
+          <span class="status-value" id="questionsCount">0</span>
+        </div>
+        <div class="status-item">
+          <span>🎓 Exams:</span>
+          <span class="status-value" id="examsCount">0</span>
+        </div>
+        <div class="status-item">
+          <span>📊 Accuracy:</span>
+          <span class="status-value" id="accuracyStatus">0%</span>
+        </div>
+        <div class="status-item">
+          <span>✓ Tasks:</span>
+          <span class="status-value" id="tasksCount">0</span>
+        </div>
       </div>
       
       <div class="nav-tabs">
@@ -1091,21 +1092,21 @@
         </div>
 
         <div class="stat-card">
-          <div class="stat-label">Weakest Subject</div>
-          <div class="stat-value" id="weakestSubject" style="font-size: 18px;">—</div>
-          <div class="stat-description">Needs more focus</div>
+          <div class="stat-label">Questions Generated</div>
+          <div class="stat-value" id="questionsGenerated">0</div>
+          <div class="stat-description">From knowledge nodes</div>
         </div>
       </div>
 
       <div class="btn-group">
         <button class="btn btn-primary" onclick="startQuickPractice()">▶ Start Quick Practice</button>
-        <button class="btn btn-secondary" onclick="generateNewExam()">+ Generate Mock Exam</button>
+        <button class="btn btn-secondary" onclick="generateAllQuestionsFromNodes(); showAlert('✓ Generated ' + appState.allQuestions.length + ' unique questions!', 'success'); updateStatusBar();">🔄 Generate Questions</button>
         <button class="btn btn-secondary" onclick="switchTab('exam')">📋 View Exams</button>
-        <button class="btn btn-secondary" onclick="loadDataFromFile()">📥 Load Questions</button>
+        <button class="btn btn-secondary" onclick="generateNewExam()">+ Create Exam</button>
       </div>
 
-      <div id="loadingAlert" class="alert alert-info" style="display: none; margin-top: 20px;">
-        <strong>ℹ️ Note:</strong> Questions will be loaded from knowledge_nodes.json. Make sure the file is in the same directory as this HTML file.
+      <div class="alert alert-info" style="margin-top: 20px;">
+        <strong>💡 Tip:</strong> Click "Generate Questions" to create 70+ unique questions from knowledge nodes. Each question type has multiple variations!
       </div>
     </div>
 
@@ -1118,12 +1119,24 @@
         </div>
 
         <div id="practiceContent" style="display: none;">
+          <div class="question-counter">
+            <div class="counter-info">
+              <strong id="questionNumber">Question 1 of 200</strong>
+            </div>
+            <div class="progress-bar" style="width: 200px; margin: 0;">
+              <div class="progress-fill" id="sessionProgress" style="width: 0%;"></div>
+            </div>
+            <div class="counter-info" style="text-align: right;">
+              <strong id="sessionProgressText">0/200</strong>
+            </div>
+          </div>
+
           <div class="question-display">
             <div class="question-meta">
-              <span id="questionNumber">Question 1 of 200</span>
               <span id="questionSubject">Subject: —</span>
               <span id="questionDifficulty">Difficulty: Medium</span>
               <span id="questionHighYield">—</span>
+              <span id="questionType">Type: —</span>
             </div>
 
             <div class="question-stem" id="questionStem">Loading question...</div>
@@ -1133,23 +1146,16 @@
             <div class="feedback" id="feedback"></div>
 
             <div class="explanation-box" id="explanationBox">
-              <h4>Explanation</h4>
+              <h4>📖 Explanation</h4>
               <p id="explanation"></p>
             </div>
           </div>
 
           <div class="btn-group">
             <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">Submit Answer</button>
-            <button class="btn btn-secondary" id="skipBtn" onclick="skipQuestion()">Skip Question</button>
+            <button class="btn btn-secondary" id="skipBtn" onclick="skipQuestion()">⏭️ Skip</button>
             <button class="btn btn-secondary" id="bookmarkBtn" onclick="bookmarkQuestion()">⭐ Bookmark</button>
-            <button class="btn btn-danger" onclick="exitPractice()">Exit Practice</button>
-          </div>
-
-          <div style="margin-top: 20px;">
-            <div class="progress-bar">
-              <div class="progress-fill" id="sessionProgress" style="width: 0%;"></div>
-            </div>
-            <p style="text-align: center; font-size: 12px; color: #999;">Session Progress: <span id="sessionProgressText">0/0</span></p>
+            <button class="btn btn-danger" onclick="exitPractice()">❌ Exit</button>
           </div>
         </div>
       </div>
@@ -1160,9 +1166,7 @@
       <div style="margin-bottom: 30px;">
         <h2 style="color: #333; margin-bottom: 20px;">📝 Mock Exams (Taiwan Medical Step 1)</h2>
         <p style="color: #666; margin-bottom: 20px;">
-          200 questions following official distribution:
-          Anatomy 31 • Physiology 27 • Biochemistry 27 • Pharmacology 25 • Pathology 25 • 
-          Microbiology 17 • Immunology 11 • Histology 10 • Biostatistics 15 • Embryology 5 • Parasitology 7
+          200 questions following official distribution. Generate unlimited unique exams with randomized questions.
         </p>
         <button class="btn btn-primary" onclick="generateNewExam()">+ Generate New Mock Exam</button>
       </div>
@@ -1196,25 +1200,6 @@
           <div id="categoryChart"></div>
         </div>
       </div>
-
-      <div class="chart-container">
-        <h3 class="chart-title">📊 Weekly Progress</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Day</th>
-              <th>Questions</th>
-              <th>Accuracy</th>
-              <th>Time Spent</th>
-            </tr>
-          </thead>
-          <tbody id="weeklyProgressTable">
-            <tr>
-              <td colspan="4" style="text-align: center; color: #999;">No data available</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
 
     <!-- ===== REVIEW TAB ===== -->
@@ -1238,13 +1223,6 @@
             <option value="Pharmacology">Pharmacology</option>
             <option value="Pathology">Pathology</option>
           </select>
-
-          <select class="filter-select" onchange="filterReviewQuestions('difficulty', this.value)">
-            <option value="">All Difficulties</option>
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-          </select>
         </div>
 
         <div id="reviewQuestionsContainer">
@@ -1262,7 +1240,7 @@
       <div class="todo-container">
         <div class="todo-header">
           <h2 style="color: #333;">✓ Study To-Do List</h2>
-          <p style="color: #666; margin-top: 5px;">Track your medical exam preparation tasks</p>
+          <p style="color: #666; margin-top: 5px;">Track your exam preparation</p>
         </div>
 
         <div class="todo-controls">
@@ -1289,10 +1267,12 @@
         <h2 style="color: #333; margin-bottom: 30px;">⚙️ Settings & Data Management</h2>
 
         <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">📥 Load Data</h3>
-          <p style="color: #666; margin-bottom: 15px;">Load questions from knowledge_nodes.json file</p>
-          <button class="btn btn-primary" onclick="loadDataFromFile()">Load Questions from File</button>
-          <button class="btn btn-secondary" style="margin-left: 10px;" onclick="loadSampleData()">Load Sample Data</button>
+          <h3 style="color: #333; margin-bottom: 15px;">🚀 Quick Actions</h3>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="generateAllQuestionsFromNodes(); showAlert('✓ Generated ' + appState.allQuestions.length + ' questions!', 'success');">Generate 70+ Questions</button>
+            <button class="btn btn-secondary" onclick="generateNewExam();">Generate Mock Exam</button>
+            <button class="btn btn-secondary" onclick="startQuickPractice();">Start Practice</button>
+          </div>
         </div>
 
         <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
@@ -1318,31 +1298,22 @@
         </div>
 
         <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">💾 Backup & Restore</h3>
-          <button class="btn btn-secondary" onclick="exportData()">📥 Export Data (JSON)</button>
-          <button class="btn btn-secondary" style="margin-left: 10px;" onclick="showImportModal()">📤 Import Data (JSON)</button>
-          <button class="btn btn-danger" style="margin-left: 10px;" onclick="clearAllData()">🗑️ Clear All Data</button>
-        </div>
-
-        <div style="margin-bottom: 30px; padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
-          <h3 style="color: #856404; margin-bottom: 10px;">⚠️ Data Storage</h3>
-          <p style="color: #856404;">
-            All data is stored locally in your browser's localStorage. It will persist across sessions but be cleared if you clear your browser data.
-            Export your data regularly for backup.
-          </p>
+          <h3 style="color: #333; margin-bottom: 15px;">💾 Data Management</h3>
+          <button class="btn btn-secondary" onclick="exportData()">📥 Export Data</button>
+          <button class="btn btn-secondary" style="margin-left: 10px;" onclick="showImportModal()">📤 Import Data</button>
+          <button class="btn btn-danger" style="margin-left: 10px;" onclick="clearAllData()">🗑️ Clear All</button>
         </div>
 
         <div style="padding: 20px; background: #d1ecf1; border-left: 4px solid #0c5460; border-radius: 8px;">
-          <h3 style="color: #0c5460; margin-bottom: 10px;">ℹ️ File Format</h3>
+          <h3 style="color: #0c5460; margin-bottom: 10px;">ℹ️ About This App</h3>
           <p style="color: #0c5460; margin-bottom: 10px;">
-            Place your <code style="background: white; padding: 2px 6px; border-radius: 3px;">knowledge_nodes.json</code> in the same directory as this HTML file.
+            <strong>MedOne AI</strong> is an adaptive learning platform for Taiwan Medical Licensing Exam preparation.
           </p>
-          <p style="color: #0c5460; font-size: 12px;">
-            Required file structure: 
-            <code style="background: white; padding: 2px 6px; border-radius: 3px;">{
-  "knowledge_nodes": [...],
-  "generated_questions_sample": [...]
-}</code>
+          <p style="color: #0c5460; font-size: 13px;">
+            • 70+ auto-generated questions from knowledge nodes<br>
+            • 200-question mock exams following official distribution<br>
+            • Adaptive learning with performance tracking<br>
+            • All data stored locally in browser
           </p>
         </div>
       </div>
@@ -1460,6 +1431,7 @@
   </div>
 
   <!-- ===== SCRIPTS ===== -->
+  <script src="question_generator.js"></script>
   <script>
     // ===================================
     // GLOBAL STATE MANAGEMENT
@@ -1478,16 +1450,28 @@
       userSelectedAnswer: undefined
     };
 
+    let questionGenerator = null;
+
     // ===================================
     // INITIALIZATION
     // ===================================
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('MedOne AI initialized');
+      console.log('MedOne AI initializing...');
+      
+      // Initialize question generator
+      questionGenerator = new DynamicQuestionGenerator();
+      
       loadTasks();
       loadExams();
+
+      // Generate questions automatically
+      console.log('Generating initial questions...');
+      generateAllQuestionsFromNodes();
+
       updateDashboard();
       updateStatusBar();
-      loadSampleQuestions();
+
+      console.log('✓ MedOne AI ready');
     });
 
     // ===================================
@@ -1521,137 +1505,342 @@
     }
 
     // ===================================
-    // DATA LOADING FUNCTIONS
+    // QUESTION GENERATION
     // ===================================
-    async function loadDataFromFile() {
-      try {
-        const response = await fetch('knowledge_nodes.json');
-        if (!response.ok) {
-          showAlert('❌ Could not load knowledge_nodes.json. Make sure the file exists in the same directory as this HTML file.', 'error');
-          return;
-        }
-
-        const data = await response.json();
-        localStorage.setItem('medone_questions', JSON.stringify(data.generated_questions_sample || []));
-        appState.allQuestions = data.generated_questions_sample || [];
-
-        updateStatusBar();
-        showAlert(`✓ Loaded ${appState.allQuestions.length} questions successfully!`, 'success');
-      } catch (error) {
-        console.error('Error loading file:', error);
-        showAlert('❌ Error loading file: ' + error.message, 'error');
+    function generateAllQuestionsFromNodes() {
+      if (!questionGenerator) {
+        questionGenerator = new DynamicQuestionGenerator();
       }
-    }
 
-    function loadSampleQuestions() {
-      const sampleQuestions = [
+      const knowledgeNodes = [
         {
-          id: 'Q_001',
-          subject: 'Anatomy',
-          chapter: 'Central Nervous System',
-          topic: 'Cerebral Circulation',
-          concept: 'Middle Cerebral Artery Stroke',
-          stem: 'A 72-year-old male presents with acute onset weakness on the left side and difficulty speaking. What is the most likely diagnosis?',
-          choices: [
-            'Middle Cerebral Artery Stroke',
-            'Anterior Cerebral Artery Stroke',
-            'Posterior Cerebral Artery Stroke',
-            'Hemorrhagic Stroke'
+          id: "node_anatomy_001",
+          subject: "Anatomy",
+          chapter: "Central Nervous System",
+          topic: "Cerebral Circulation",
+          concept: "Middle Cerebral Artery Stroke",
+          definition: "Occlusion of the MCA leading to ischemia affecting motor cortex and language areas",
+          characteristics: [
+            "Contralateral hemiplegia",
+            "Contralateral sensory loss",
+            "Homonymous hemianopia",
+            "Aphasia (dominant hemisphere)",
+            "Neglect syndrome"
           ],
-          answer: 0,
-          explanation: 'The clinical presentation of acute hemiplegia with speech difficulty is classic for MCA stroke.',
-          difficulty: 'Medium',
+          clinicalRelevance: [
+            "Acute onset weakness",
+            "Speech difficulty",
+            "Visual field loss",
+            "Facial droop",
+            "Most common ischemic stroke"
+          ],
+          relatedConcepts: [
+            "Anterior Cerebral Artery Stroke",
+            "Posterior Cerebral Artery Stroke",
+            "Lacunar Stroke",
+            "Hemorrhagic Stroke"
+          ],
+          mechanisms: [
+            "Thrombotic occlusion",
+            "Embolic occlusion",
+            "Hemodynamic insufficiency"
+          ],
+          nerves: ["Facial nerve", "Corticospinal tract"],
+          treatments: [
+            "Thrombolysis (tPA)",
+            "Mechanical thrombectomy",
+            "Antiplatelet therapy",
+            "Anticoagulation"
+          ],
+          negativeFeatures: ["Pupillary dilation", "Cerebellar signs", "Bilateral symptoms"],
+          difficulty: "Medium",
           highYield: true
         },
         {
-          id: 'Q_002',
-          subject: 'Physiology',
-          chapter: 'Cardiovascular',
-          topic: 'Cardiac Conduction',
-          concept: 'Atrial Fibrillation',
-          stem: 'A patient presents with palpitations and an irregularly irregular rhythm on ECG with no P waves. What is the diagnosis?',
-          choices: [
-            'Atrial Fibrillation',
-            'Atrial Flutter',
-            'Supraventricular Tachycardia',
-            'Ventricular Tachycardia'
+          id: "node_anatomy_002",
+          subject: "Anatomy",
+          chapter: "Peripheral Nervous System",
+          topic: "Brachial Plexus",
+          concept: "Erb's Palsy",
+          definition: "Upper brachial plexus injury (C5-C6) causing shoulder weakness",
+          characteristics: [
+            "Deltoid weakness",
+            "Loss of shoulder abduction",
+            "Waiter's tip position",
+            "Sensory loss over shoulder"
           ],
-          answer: 0,
-          explanation: 'The irregularly irregular rhythm and absent P waves are pathognomonic for atrial fibrillation.',
-          difficulty: 'Easy',
+          clinicalRelevance: [
+            "Obstetric injury",
+            "Shoulder dislocation",
+            "Birth trauma"
+          ],
+          relatedConcepts: [
+            "Klumpke's Palsy",
+            "Axillary nerve palsy",
+            "Radial nerve palsy"
+          ],
+          mechanisms: [
+            "Traction injury",
+            "Shoulder dislocation"
+          ],
+          nerves: ["C5-C6 nerve roots"],
+          treatments: [
+            "Physical therapy",
+            "Nerve surgery",
+            "Tendon transfer"
+          ],
+          negativeFeatures: ["Intact hand grip", "Intact wrist"],
+          difficulty: "Medium",
           highYield: true
         },
         {
-          id: 'Q_003',
-          subject: 'Biochemistry',
-          chapter: 'Metabolism',
-          topic: 'Glycolysis',
-          concept: 'Pyruvate Dehydrogenase',
-          stem: 'Which enzyme catalyzes the conversion of pyruvate to Acetyl-CoA?',
-          choices: [
-            'Pyruvate Dehydrogenase',
-            'Pyruvate Kinase',
-            'Lactate Dehydrogenase',
-            'Aldolase'
+          id: "node_physiology_001",
+          subject: "Physiology",
+          chapter: "Cardiovascular",
+          topic: "Cardiac Conduction",
+          concept: "Atrial Fibrillation",
+          definition: "Irregular cardiac rhythm from multiple atrial foci",
+          characteristics: [
+            "Irregular heart rate",
+            "Absence of P waves",
+            "Rapid ventricular rate",
+            "Risk of thromboembolism"
           ],
-          answer: 0,
-          explanation: 'Pyruvate dehydrogenase complex catalyzes the irreversible conversion of pyruvate to Acetyl-CoA.',
-          difficulty: 'Medium',
+          clinicalRelevance: [
+            "Palpitations",
+            "Dyspnea",
+            "Syncope",
+            "Stroke risk"
+          ],
+          relatedConcepts: [
+            "Atrial flutter",
+            "Supraventricular tachycardia",
+            "Ventricular fibrillation"
+          ],
+          mechanisms: [
+            "Atrial ectopic activity",
+            "Reentry circuits"
+          ],
+          receptors: ["Beta-1 adrenergic", "M2 muscarinic"],
+          treatments: [
+            "Beta-blockers",
+            "Amiodarone",
+            "Anticoagulation",
+            "Cardioversion"
+          ],
+          negativeFeatures: ["Regular rhythm", "P waves present"],
+          difficulty: "Medium",
           highYield: true
         },
         {
-          id: 'Q_004',
-          subject: 'Pharmacology',
-          chapter: 'Antimicrobials',
-          topic: 'Beta-Lactams',
-          concept: 'Penicillin Mechanism',
-          stem: 'MRSA infection should be treated with which of the following?',
-          choices: [
-            'Vancomycin',
-            'Amoxicillin',
-            'Ampicillin',
-            'Penicillin G'
+          id: "node_biochemistry_001",
+          subject: "Biochemistry",
+          chapter: "Metabolism",
+          topic: "Glycolysis",
+          concept: "Pyruvate Dehydrogenase",
+          definition: "Enzyme converting pyruvate to Acetyl-CoA",
+          characteristics: [
+            "Rate-limiting enzyme",
+            "Requires cofactors",
+            "Inhibited by high energy",
+            "Activated by AMP"
           ],
-          answer: 0,
-          explanation: 'MRSA is resistant to all beta-lactams. Vancomycin is the first-line treatment.',
-          difficulty: 'Easy',
+          clinicalRelevance: [
+            "Energy production",
+            "Metabolic regulation",
+            "Lactic acidosis"
+          ],
+          relatedConcepts: [
+            "Pyruvate kinase",
+            "Lactate dehydrogenase"
+          ],
+          mechanisms: [
+            "Oxidative decarboxylation",
+            "NAD+ reduction"
+          ],
+          enzymes: [
+            "Pyruvate dehydrogenase",
+            "E1 alpha subunit"
+          ],
+          treatments: [
+            "Thiamine",
+            "Dichloroacetate"
+          ],
+          negativeFeatures: ["Anaerobic conditions"],
+          difficulty: "Hard",
           highYield: true
         },
         {
-          id: 'Q_005',
-          subject: 'Pathology',
-          chapter: 'Neoplasia',
-          topic: 'Lung Cancer',
-          concept: 'Adenocarcinoma',
-          stem: 'What is the most common type of lung cancer in non-smokers?',
-          choices: [
-            'Adenocarcinoma',
-            'Squamous Cell Carcinoma',
-            'Small Cell Carcinoma',
-            'Large Cell Carcinoma'
+          id: "node_pharmacology_001",
+          subject: "Pharmacology",
+          chapter: "Antimicrobials",
+          topic: "Beta-Lactams",
+          concept: "Penicillin Mechanism",
+          definition: "Inhibits bacterial cell wall synthesis",
+          characteristics: [
+            "Bactericidal",
+            "Cell wall inhibition",
+            "Time-dependent killing",
+            "Low toxicity"
           ],
-          answer: 0,
-          explanation: 'Adenocarcinoma is the most common lung cancer type overall and especially in non-smokers.',
-          difficulty: 'Easy',
+          clinicalRelevance: [
+            "Bacterial infections",
+            "Surgical prophylaxis",
+            "Community-acquired"
+          ],
+          relatedConcepts: [
+            "Cephalosporins",
+            "Carbapenems",
+            "Vancomycin"
+          ],
+          mechanisms: [
+            "Binding to PBPs",
+            "Peptidoglycan inhibition"
+          ],
+          receptors: ["Penicillin-binding proteins"],
+          treatments: [
+            "Dosage adjustment",
+            "Beta-lactamase inhibitors"
+          ],
+          negativeFeatures: [
+            "No anaerobe coverage",
+            "No MRSA activity"
+          ],
+          difficulty: "Medium",
+          highYield: true
+        },
+        {
+          id: "node_pathology_001",
+          subject: "Pathology",
+          chapter: "Neoplasia",
+          topic: "Lung Cancer",
+          concept: "Adenocarcinoma of Lung",
+          definition: "Malignant tumor from mucus-secreting glands",
+          characteristics: [
+            "Peripheral location",
+            "Glandular differentiation",
+            "Advanced at diagnosis",
+            "Better prognosis"
+          ],
+          clinicalRelevance: [
+            "Productive cough",
+            "Hemoptysis",
+            "Dyspnea",
+            "Weight loss"
+          ],
+          relatedConcepts: [
+            "Squamous cell",
+            "Small cell",
+            "Mesothelioma"
+          ],
+          mechanisms: [
+            "Malignant transformation",
+            "EGFR activation"
+          ],
+          enzymes: ["EGFR"],
+          treatments: [
+            "Surgery",
+            "Chemotherapy",
+            "Targeted therapy",
+            "Immunotherapy"
+          ],
+          negativeFeatures: ["Central location"],
+          difficulty: "Hard",
+          highYield: true
+        },
+        {
+          id: "node_microbiology_001",
+          subject: "Microbiology",
+          chapter: "Bacterial",
+          topic: "Gram-Positive",
+          concept: "Staphylococcus aureus",
+          definition: "Gram-positive coccus causing infections",
+          characteristics: [
+            "Catalase positive",
+            "Coagulase positive",
+            "Grape clusters",
+            "Virulence factors"
+          ],
+          clinicalRelevance: [
+            "Skin infections",
+            "Osteomyelitis",
+            "Endocarditis",
+            "Sepsis"
+          ],
+          relatedConcepts: [
+            "Streptococcus",
+            "S. epidermidis"
+          ],
+          mechanisms: [
+            "Alpha-hemolysin",
+            "Biofilm formation"
+          ],
+          treatments: [
+            "Nafcillin",
+            "Vancomycin",
+            "Linezolid"
+          ],
+          negativeFeatures: ["Gram-negative"],
+          difficulty: "Medium",
+          highYield: true
+        },
+        {
+          id: "node_immunology_001",
+          subject: "Immunology",
+          chapter: "Hypersensitivity",
+          topic: "Type I",
+          concept: "IgE-Mediated Allergy",
+          definition: "Immediate hypersensitivity from mast cell degranulation",
+          characteristics: [
+            "Rapid onset",
+            "IgE antibodies",
+            "Mast cell activation",
+            "Life-threatening possible"
+          ],
+          clinicalRelevance: [
+            "Anaphylaxis",
+            "Urticaria",
+            "Allergic rhinitis",
+            "Food allergies"
+          ],
+          relatedConcepts: [
+            "Type II",
+            "Type III",
+            "Type IV"
+          ],
+          mechanisms: [
+            "IgE cross-linking",
+            "Mast cell activation",
+            "Histamine release"
+          ],
+          receptors: ["IgE receptors"],
+          treatments: [
+            "Epinephrine",
+            "Antihistamines",
+            "Corticosteroids",
+            "Immunotherapy"
+          ],
+          negativeFeatures: ["Delayed onset"],
+          difficulty: "Medium",
           highYield: true
         }
       ];
 
-      const saved = localStorage.getItem('medone_questions');
-      if (!saved) {
-        localStorage.setItem('medone_questions', JSON.stringify(sampleQuestions));
-        appState.allQuestions = sampleQuestions;
-      } else {
-        appState.allQuestions = JSON.parse(saved);
-      }
+      // Generate questions
+      let allQuestions = [];
+      knowledgeNodes.forEach(node => {
+        const generated = questionGenerator.generateQuestionsFromNode(node);
+        allQuestions = allQuestions.concat(generated);
+      });
 
-      updateStatusBar();
-    }
+      // Save to localStorage
+      localStorage.setItem('medone_questions', JSON.stringify(allQuestions));
+      appState.allQuestions = allQuestions;
 
-    function loadSampleData() {
-      loadSampleQuestions();
-      showAlert('✓ Sample questions loaded successfully!', 'success');
+      console.log(`✓ Generated ${allQuestions.length} unique questions`);
       updateStatusBar();
+      
+      return allQuestions;
     }
 
     // ===================================
@@ -1663,8 +1852,7 @@
         avgTime: 0,
         todayQuestions: 0,
         streak: 0,
-        examsGenerated: 0,
-        weakestSubject: 'N/A'
+        examsGenerated: 0
       };
 
       document.getElementById('overallAccuracy').textContent = stats.accuracy + '%';
@@ -1673,7 +1861,7 @@
       document.getElementById('questionsToday').textContent = stats.todayQuestions;
       document.getElementById('studyStreak').textContent = stats.streak + ' days';
       document.getElementById('examsGenerated').textContent = stats.examsGenerated;
-      document.getElementById('weakestSubject').textContent = stats.weakestSubject;
+      document.getElementById('questionsGenerated').textContent = appState.allQuestions.length;
     }
 
     function updateStatusBar() {
@@ -1694,11 +1882,17 @@
 
       setTimeout(() => {
         if (appState.allQuestions.length === 0) {
-          showAlert('No questions available. Load questions first!', 'warning');
+          generateAllQuestionsFromNodes();
+        }
+
+        if (appState.allQuestions.length === 0) {
+          showAlert('No questions available. Generate questions first!', 'error');
           return;
         }
 
-        const question = appState.allQuestions[Math.floor(Math.random() * appState.allQuestions.length)];
+        const randomIndex = Math.floor(Math.random() * appState.allQuestions.length);
+        const question = appState.allQuestions[randomIndex];
+
         displayQuestion(question);
 
         document.getElementById('practiceLoading').style.display = 'none';
@@ -1710,10 +1904,11 @@
       appState.currentPracticeQuestion = question;
       appState.userSelectedAnswer = undefined;
 
-      document.getElementById('questionNumber').textContent = `Question ${appState.sessionQuestions + 1} of 200`;
+      document.getElementById('questionNumber').textContent = `Question ${appState.sessionQuestions + 1}`;
       document.getElementById('questionSubject').textContent = `Subject: ${question.subject}`;
       document.getElementById('questionDifficulty').textContent = `Difficulty: ${question.difficulty}`;
       document.getElementById('questionHighYield').textContent = question.highYield ? '⭐ High-Yield' : '';
+      document.getElementById('questionType').textContent = `Type: ${question.questionType}`;
       document.getElementById('questionStem').textContent = question.stem;
 
       const answersHtml = question.choices.map((choice, idx) => `
@@ -1727,6 +1922,8 @@
       document.getElementById('explanationBox').classList.remove('show');
       document.getElementById('submitBtn').textContent = 'Submit Answer';
       document.getElementById('submitBtn').onclick = submitAnswer;
+
+      updateSessionProgress();
     }
 
     function selectAnswer(index) {
@@ -1768,7 +1965,7 @@
       if (isCorrect) appState.sessionCorrect++;
       updateSessionProgress();
 
-      document.getElementById('submitBtn').textContent = 'Next Question';
+      document.getElementById('submitBtn').textContent = 'Next Question →';
       document.getElementById('submitBtn').onclick = () => {
         appState.userSelectedAnswer = undefined;
         loadPracticeQuestion();
@@ -1782,26 +1979,29 @@
     }
 
     function bookmarkQuestion() {
-      showAlert('✓ Question bookmarked!', 'success');
+      showAlert('⭐ Question bookmarked!', 'success');
     }
 
     function exitPractice() {
       const accuracy = appState.sessionQuestions > 0 
         ? Math.round((appState.sessionCorrect / appState.sessionQuestions) * 100)
         : 0;
-      showAlert(`✓ Session Complete: ${appState.sessionCorrect}/${appState.sessionQuestions} Correct (${accuracy}%)`, 'success');
+      showAlert(`✓ Session: ${appState.sessionCorrect}/${appState.sessionQuestions} (${accuracy}%)`, 'success');
       appState.sessionQuestions = 0;
       appState.sessionCorrect = 0;
       switchTab('dashboard');
     }
 
     function updateSessionProgress() {
-      const percent = (appState.sessionQuestions / 200) * 100;
+      const percent = Math.min((appState.sessionQuestions / 200) * 100, 100);
       document.getElementById('sessionProgress').style.width = percent + '%';
       document.getElementById('sessionProgressText').textContent = `${appState.sessionQuestions}/200`;
     }
 
     function startQuickPractice() {
+      if (appState.allQuestions.length === 0) {
+        generateAllQuestionsFromNodes();
+      }
       appState.sessionQuestions = 0;
       appState.sessionCorrect = 0;
       switchTab('practice');
@@ -1824,7 +2024,6 @@
 
       appState.exams.push(exam);
       saveExams();
-
       showAlert(`✓ ${examId} created with 200 questions`, 'success');
       loadExamHistory();
       updateStatusBar();
@@ -1838,7 +2037,7 @@
           <div class="empty-state">
             <div class="empty-state-icon">📚</div>
             <div class="empty-state-text">No exams generated yet</div>
-            <p>Click "Generate New Mock Exam" to create your first exam</p>
+            <p>Click "Generate New Mock Exam" to create</p>
           </div>
         `;
         return;
@@ -1849,20 +2048,20 @@
           <div class="exam-card-header">${exam.id}</div>
           <div class="exam-card-body">
             <div class="exam-stat">
-              <span class="exam-stat-label">Status</span>
-              <span class="exam-stat-value">${exam.status}</span>
+              <span>Status:</span>
+              <span><strong>${exam.status}</strong></span>
             </div>
             <div class="exam-stat">
-              <span class="exam-stat-label">Questions</span>
-              <span class="exam-stat-value">${exam.totalQuestions}</span>
+              <span>Questions:</span>
+              <span><strong>${exam.totalQuestions}</strong></span>
             </div>
             <div class="exam-stat">
-              <span class="exam-stat-label">Score</span>
-              <span class="exam-stat-value">${exam.score}%</span>
+              <span>Score:</span>
+              <span><strong>${exam.score}%</strong></span>
             </div>
             <div class="exam-stat">
-              <span class="exam-stat-label">Created</span>
-              <span class="exam-stat-value">${new Date(exam.timestamp).toLocaleDateString()}</span>
+              <span>Created:</span>
+              <span><strong>${new Date(exam.timestamp).toLocaleDateString()}</strong></span>
             </div>
             <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="startExam('${exam.id}')">Start Exam</button>
           </div>
@@ -1872,7 +2071,7 @@
 
     function startExam(examId) {
       switchTab('practice');
-      showAlert(`Starting exam ${examId}...`, 'info');
+      showAlert(`Starting ${examId}...`, 'info');
     }
 
     function saveExams() {
@@ -1885,7 +2084,7 @@
     }
 
     // ===================================
-    // ANALYTICS FUNCTIONS
+    // ANALYTICS
     // ===================================
     function updateAnalytics() {
       const accuracyBySubject = {
@@ -1903,15 +2102,14 @@
       };
 
       const progressData = {
-        'Questions Completed': 125,
-        'High-Yield Mastered': 45,
-        'Weak Topics': 15
+        'Questions': 125,
+        'High-Yield': 45,
+        'Weak Areas': 15
       };
 
       renderChart('accuracyChart', accuracyBySubject);
       renderChart('difficultyChart', accuracyByDifficulty);
       renderChart('categoryChart', progressData);
-      updateWeeklyProgress();
     }
 
     function renderChart(elementId, data) {
@@ -1926,29 +2124,15 @@
       document.getElementById(elementId).innerHTML = html;
     }
 
-    function updateWeeklyProgress() {
-      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-      const html = days.map(day => `
-        <tr>
-          <td>${day}</td>
-          <td>${Math.floor(Math.random() * 50)}</td>
-          <td>${Math.floor(Math.random() * 100)}%</td>
-          <td>${Math.floor(Math.random() * 300)} min</td>
-        </tr>
-      `).join('');
-
-      document.getElementById('weeklyProgressTable').innerHTML = html;
-    }
-
     // ===================================
-    // REVIEW FUNCTIONS
+    // REVIEW
     // ===================================
     function filterReviewQuestions(type, value) {
-      console.log(`Filtering by ${type}: ${value}`);
+      console.log(`Filtering: ${type} = ${value}`);
     }
 
     // ===================================
-    // TO-DO LIST FUNCTIONS
+    // TO-DO LIST
     // ===================================
     function openNewTaskModal() {
       document.getElementById('newTaskModal').classList.add('active');
@@ -1992,7 +2176,7 @@
       closeModal('newTaskModal');
       updateTodoList();
       updateStatusBar();
-      showAlert('✓ Task created successfully!', 'success');
+      showAlert('✓ Task created!', 'success');
 
       document.getElementById('taskTitle').value = '';
       document.getElementById('taskDescription').value = '';
@@ -2048,7 +2232,7 @@
     }
 
     function searchTodoTasks(query) {
-      console.log('Searching tasks:', query);
+      console.log('Search:', query);
     }
 
     function updateTaskCounts() {
@@ -2073,7 +2257,7 @@
     }
 
     // ===================================
-    // SETTINGS FUNCTIONS
+    // SETTINGS
     // ===================================
     function updateSettingsPage() {
       const questionsData = localStorage.getItem('medone_questions');
@@ -2112,7 +2296,7 @@
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
-      showAlert('✓ Data exported successfully!', 'success');
+      showAlert('✓ Data exported!', 'success');
     }
 
     function showImportModal() {
@@ -2122,7 +2306,7 @@
     function importDataFromFile() {
       const file = document.getElementById('importFile').files[0];
       if (!file) {
-        showAlert('Please select a file', 'warning');
+        showAlert('Select a file', 'warning');
         return;
       }
 
@@ -2141,28 +2325,28 @@
 
           closeModal('importModal');
           updateStatusBar();
-          showAlert('✓ Data imported successfully!', 'success');
+          showAlert('✓ Data imported!', 'success');
         } catch (error) {
-          showAlert('❌ Error importing file: ' + error.message, 'error');
+          showAlert('Error: ' + error.message, 'error');
         }
       };
       reader.readAsText(file);
     }
 
     function clearAllData() {
-      if (confirm('⚠️ This will clear ALL your data. Are you sure?')) {
+      if (confirm('⚠️ Clear ALL data?')) {
         localStorage.clear();
         appState.tasks = [];
         appState.exams = [];
         appState.allQuestions = [];
         updateStatusBar();
-        showAlert('✓ All data cleared', 'success');
+        showAlert('✓ Cleared', 'success');
         location.reload();
       }
     }
 
     // ===================================
-    // UTILITY FUNCTIONS
+    // UTILITY
     // ===================================
     function closeModal(modalId) {
       document.getElementById(modalId).classList.remove('active');
@@ -2172,7 +2356,7 @@
       alert(message);
     }
 
-    // Close modals on background click
+    // Close modals on click
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('modal')) {
         e.target.classList.remove('active');
