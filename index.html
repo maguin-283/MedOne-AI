@@ -206,11 +206,6 @@
       box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
     }
 
-    .btn-primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
     .btn-secondary {
       background: #f0f0f0;
       color: #333;
@@ -231,25 +226,11 @@
       background: #c82333;
     }
 
-    .btn-success {
-      background: #28a745;
-      color: white;
-    }
-
-    .btn-success:hover {
-      background: #218838;
-    }
-
     .btn-group {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       margin: 20px 0;
-    }
-
-    .btn-small {
-      padding: 8px 15px;
-      font-size: 12px;
     }
 
     /* ===================================
@@ -405,378 +386,21 @@
     }
 
     /* ===================================
-       EXAM GRID
+       LOADING SPINNER
        =================================== */
-    .exam-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f0f0f0;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
 
-    .exam-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s;
-    }
-
-    .exam-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .exam-card-header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 20px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .exam-card-body {
-      padding: 20px;
-    }
-
-    .exam-stat {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-    }
-
-    .exam-stat:last-child {
-      border-bottom: none;
-    }
-
-    /* ===================================
-       ANALYTICS & CHARTS
-       =================================== */
-    .analytics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
-
-    .chart-container {
-      background: white;
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .chart-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .chart-bar {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .chart-bar-label {
-      width: 100px;
-      font-size: 13px;
-      color: #666;
-    }
-
-    .chart-bar-value {
-      flex: 1;
-      height: 30px;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-      border-radius: 4px;
-      margin: 0 15px;
-    }
-
-    .chart-bar-percent {
-      width: 60px;
-      text-align: right;
-      font-weight: bold;
-      color: #333;
-    }
-
-    /* ===================================
-       REVIEW SECTION
-       =================================== */
-    .review-container {
-      background: white;
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
-
-    .filter-select {
-      padding: 10px 15px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-
-    .filter-select:focus {
-      outline: none;
-      border-color: #667eea;
-    }
-
-    .question-review-item {
-      background: #f8f9fa;
-      border-left: 4px solid #667eea;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    .question-review-item.wrong {
-      border-left-color: #dc3545;
-      background: #fff5f5;
-    }
-
-    .question-review-item.correct {
-      border-left-color: #28a745;
-      background: #f0fdf4;
-    }
-
-    /* ===================================
-       TO-DO LIST STYLES
-       =================================== */
-    .todo-container {
-      background: white;
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .todo-header {
-      margin-bottom: 25px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid #667eea;
-    }
-
-    .todo-controls {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
-
-    .search-input {
-      flex: 1;
-      min-width: 250px;
-      padding: 12px 15px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: border-color 0.2s;
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: #667eea;
-    }
-
-    .todo-nav {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 15px;
-      flex-wrap: wrap;
-    }
-
-    .todo-nav-btn {
-      padding: 10px 15px;
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
-      cursor: pointer;
-      font-weight: 600;
-      color: #666;
-      transition: all 0.2s;
-    }
-
-    .todo-nav-btn:hover {
-      color: #667eea;
-    }
-
-    .todo-nav-btn.active {
-      border-bottom-color: #667eea;
-      color: #667eea;
-    }
-
-    .task-card {
-      background: #f8f9fa;
-      border-left: 4px solid #667eea;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      transition: all 0.2s;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .task-card:hover {
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .task-card.completed {
-      opacity: 0.6;
-      background: #e8e8e8;
-    }
-
-    .task-checkbox {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
-
-    .task-content {
-      flex: 1;
-    }
-
-    .task-title {
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 5px;
-    }
-
-    .task-card.completed .task-title {
-      text-decoration: line-through;
-      color: #999;
-    }
-
-    .task-meta {
-      display: flex;
-      gap: 8px;
-      font-size: 12px;
-      color: #999;
-      flex-wrap: wrap;
-    }
-
-    .task-badge {
-      padding: 2px 8px;
-      background: #e0e7ff;
-      color: #667eea;
-      border-radius: 12px;
-    }
-
-    /* ===================================
-       MODAL STYLES
-       =================================== */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: white;
-      border-radius: 16px;
-      max-width: 700px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 40px;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #999;
-      transition: color 0.2s;
-    }
-
-    .close-btn:hover {
-      color: #333;
-    }
-
-    .modal-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #333;
-      font-size: 14px;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 12px 15px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      font-size: 14px;
-      font-family: inherit;
-      transition: border-color 0.2s;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-
-    .form-textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      margin-top: 30px;
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* ===================================
@@ -814,61 +438,8 @@
     }
 
     /* ===================================
-       EMPTY STATE
-       =================================== */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: #999;
-    }
-
-    .empty-state-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-
-    .empty-state-text {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    /* ===================================
-       LOADING SPINNER
-       =================================== */
-    .spinner {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid #f0f0f0;
-      border-top: 3px solid #667eea;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* ===================================
        RESPONSIVE DESIGN
        =================================== */
-    @media (max-width: 1024px) {
-      .dashboard-grid,
-      .exam-grid,
-      .analytics-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-
-      .header {
-        padding: 30px 20px;
-      }
-
-      .header h1 {
-        font-size: 28px;
-      }
-    }
-
     @media (max-width: 768px) {
       .container {
         padding: 15px;
@@ -883,138 +454,17 @@
         font-size: 24px;
       }
 
-      .header p {
-        font-size: 16px;
-      }
-
-      .nav-tabs {
-        gap: 10px;
-      }
-
       .nav-btn {
         padding: 10px 15px;
         font-size: 12px;
-      }
-
-      .dashboard-grid,
-      .exam-grid,
-      .analytics-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .practice-container {
-        padding: 20px;
-      }
-
-      .question-stem {
-        font-size: 16px;
-      }
-
-      .btn-group {
-        flex-direction: column;
       }
 
       .btn {
         width: 100%;
       }
 
-      .filter-bar {
-        flex-direction: column;
-      }
-
-      .filter-select,
-      .search-input {
-        width: 100%;
-      }
-
-      .modal-content {
-        padding: 20px;
-        width: 95%;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-actions {
-        flex-direction: column-reverse;
-      }
-
-      .modal-actions .btn {
-        width: 100%;
-      }
-
-      .stat-card {
-        padding: 20px;
-      }
-
-      .stat-value {
-        font-size: 28px;
-      }
-
-      .todo-controls {
-        flex-direction: column;
-      }
-
-      .status-bar {
-        gap: 15px;
-        padding: 10px 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .header h1 {
-        font-size: 20px;
-      }
-
-      .nav-tabs {
-        flex-direction: column;
-      }
-
-      .nav-btn {
-        width: 100%;
-      }
-
-      .stat-value {
-        font-size: 24px;
-      }
-
-      .modal-content {
-        padding: 15px;
-      }
-
       .question-stem {
-        font-size: 14px;
-      }
-
-      .answer-option {
-        padding: 12px;
-      }
-
-      .status-bar {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .chart-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .chart-bar-label {
-        width: 100%;
-        margin-bottom: 5px;
-      }
-
-      .chart-bar-value {
-        width: 100%;
-        margin: 0;
-      }
-
-      .chart-bar-percent {
-        width: 100%;
-        text-align: left;
-        margin-top: 5px;
+        font-size: 16px;
       }
     }
   </style>
@@ -1031,10 +481,6 @@
           <span class="status-value" id="questionsCount">0</span>
         </div>
         <div class="status-item">
-          <span>🎓 Exams:</span>
-          <span class="status-value" id="examsCount">0</span>
-        </div>
-        <div class="status-item">
           <span>📊 Accuracy:</span>
           <span class="status-value" id="accuracyStatus">0%</span>
         </div>
@@ -1047,10 +493,6 @@
       <div class="nav-tabs">
         <button class="nav-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
         <button class="nav-btn" onclick="switchTab('practice')">📚 Practice</button>
-        <button class="nav-btn" onclick="switchTab('exam')">📝 Mock Exams</button>
-        <button class="nav-btn" onclick="switchTab('analytics')">📈 Analytics</button>
-        <button class="nav-btn" onclick="switchTab('review')">🔍 Review</button>
-        <button class="nav-btn" onclick="switchTab('todo')">✓ To-Do List</button>
         <button class="nav-btn" onclick="switchTab('settings')">⚙️ Settings</button>
       </div>
     </div>
@@ -1068,45 +510,31 @@
         </div>
 
         <div class="stat-card">
-          <div class="stat-label">Average Response Time</div>
-          <div class="stat-value" id="avgResponseTime">0s</div>
-          <div class="stat-description">Per question</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Questions Today</div>
-          <div class="stat-value" id="questionsToday">0</div>
-          <div class="stat-description">Answered today</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Study Streak</div>
-          <div class="stat-value" id="studyStreak">0</div>
-          <div class="stat-description">Consecutive days</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Exams Generated</div>
-          <div class="stat-value" id="examsGenerated">0</div>
-          <div class="stat-description">Mock exams created</div>
-        </div>
-
-        <div class="stat-card">
           <div class="stat-label">Questions Generated</div>
           <div class="stat-value" id="questionsGenerated">0</div>
           <div class="stat-description">From knowledge nodes</div>
         </div>
+
+        <div class="stat-card">
+          <div class="stat-label">Session Correct</div>
+          <div class="stat-value" id="sessionCorrectCount">0</div>
+          <div class="stat-description">This session</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-label">Session Progress</div>
+          <div class="stat-value" id="sessionProgressCount">0/0</div>
+          <div class="stat-description">Questions answered</div>
+        </div>
       </div>
 
       <div class="btn-group">
-        <button class="btn btn-primary" onclick="startQuickPractice()">▶ Start Quick Practice</button>
-        <button class="btn btn-secondary" onclick="generateAllQuestionsFromNodes(); showAlert('✓ Generated ' + appState.allQuestions.length + ' unique questions!', 'success'); updateStatusBar();">🔄 Generate Questions</button>
-        <button class="btn btn-secondary" onclick="switchTab('exam')">📋 View Exams</button>
-        <button class="btn btn-secondary" onclick="generateNewExam()">+ Create Exam</button>
+        <button class="btn btn-primary" onclick="initializeAndStartPractice()">▶ Start Quick Practice</button>
+        <button class="btn btn-secondary" onclick="generateQuestionsDebug()">🔄 Generate Questions (Debug)</button>
       </div>
 
       <div class="alert alert-info" style="margin-top: 20px;">
-        <strong>💡 Tip:</strong> Click "Generate Questions" to create 70+ unique questions from knowledge nodes. Each question type has multiple variations!
+        <strong>💡 Welcome to MedOne AI!</strong> Click "Start Quick Practice" to begin with auto-generated questions from knowledge nodes.
       </div>
     </div>
 
@@ -1116,18 +544,21 @@
         <div id="practiceLoading" style="text-align: center; padding: 40px;">
           <div class="spinner"></div>
           <p style="margin-top: 15px; color: #666;">Loading question...</p>
+          <p style="margin-top: 10px; font-size: 12px; color: #999;" id="debugInfo"></p>
         </div>
 
         <div id="practiceContent" style="display: none;">
           <div class="question-counter">
             <div class="counter-info">
-              <strong id="questionNumber">Question 1 of 200</strong>
+              <strong id="questionNumber">Question 1</strong>
             </div>
-            <div class="progress-bar" style="width: 200px; margin: 0;">
-              <div class="progress-fill" id="sessionProgress" style="width: 0%;"></div>
+            <div style="flex: 1; margin: 0 20px;">
+              <div class="progress-bar">
+                <div class="progress-fill" id="sessionProgress" style="width: 0%;"></div>
+              </div>
             </div>
             <div class="counter-info" style="text-align: right;">
-              <strong id="sessionProgressText">0/200</strong>
+              <strong id="sessionProgressText">0/0</strong>
             </div>
           </div>
 
@@ -1161,119 +592,10 @@
       </div>
     </div>
 
-    <!-- ===== MOCK EXAMS TAB ===== -->
-    <div id="exam" class="tab-content">
-      <div style="margin-bottom: 30px;">
-        <h2 style="color: #333; margin-bottom: 20px;">📝 Mock Exams (Taiwan Medical Step 1)</h2>
-        <p style="color: #666; margin-bottom: 20px;">
-          200 questions following official distribution. Generate unlimited unique exams with randomized questions.
-        </p>
-        <button class="btn btn-primary" onclick="generateNewExam()">+ Generate New Mock Exam</button>
-      </div>
-
-      <div class="exam-grid" id="examGrid">
-        <div class="empty-state">
-          <div class="empty-state-icon">📚</div>
-          <div class="empty-state-text">No exams generated yet</div>
-          <p>Click "Generate New Mock Exam" to create your first exam</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== ANALYTICS TAB ===== -->
-    <div id="analytics" class="tab-content">
-      <h2 style="color: #333; margin-bottom: 30px;">📈 Performance Analytics</h2>
-      
-      <div class="analytics-grid">
-        <div class="chart-container">
-          <h3 class="chart-title">📊 Accuracy by Subject</h3>
-          <div id="accuracyChart"></div>
-        </div>
-
-        <div class="chart-container">
-          <h3 class="chart-title">📊 Accuracy by Difficulty</h3>
-          <div id="difficultyChart"></div>
-        </div>
-
-        <div class="chart-container">
-          <h3 class="chart-title">📊 Study Progress</h3>
-          <div id="categoryChart"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== REVIEW TAB ===== -->
-    <div id="review" class="tab-content">
-      <div class="review-container">
-        <h2 style="color: #333; margin-bottom: 20px;">🔍 Review Questions</h2>
-
-        <div class="filter-bar">
-          <select class="filter-select" onchange="filterReviewQuestions('category', this.value)">
-            <option value="">All Categories</option>
-            <option value="wrong">Wrong Answers</option>
-            <option value="bookmarked">Bookmarked</option>
-            <option value="correct">Correct Answers</option>
-          </select>
-
-          <select class="filter-select" onchange="filterReviewQuestions('subject', this.value)">
-            <option value="">All Subjects</option>
-            <option value="Anatomy">Anatomy</option>
-            <option value="Physiology">Physiology</option>
-            <option value="Biochemistry">Biochemistry</option>
-            <option value="Pharmacology">Pharmacology</option>
-            <option value="Pathology">Pathology</option>
-          </select>
-        </div>
-
-        <div id="reviewQuestionsContainer">
-          <div class="empty-state">
-            <div class="empty-state-icon">📚</div>
-            <div class="empty-state-text">No questions to review</div>
-            <p>Practice some questions to see them here</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== TO-DO LIST TAB ===== -->
-    <div id="todo" class="tab-content">
-      <div class="todo-container">
-        <div class="todo-header">
-          <h2 style="color: #333;">✓ Study To-Do List</h2>
-          <p style="color: #666; margin-top: 5px;">Track your exam preparation</p>
-        </div>
-
-        <div class="todo-controls">
-          <input type="text" class="search-input" id="todoSearch" placeholder="Search tasks..." 
-            onkeyup="searchTodoTasks(this.value)">
-          <button class="btn btn-primary" onclick="openNewTaskModal()">+ New Task</button>
-          <button class="btn btn-secondary" onclick="showTaskStats()">📊 Stats</button>
-        </div>
-
-        <div class="todo-nav">
-          <button class="todo-nav-btn active" onclick="switchTodoView('all')">All (<span id="allTasksCount">0</span>)</button>
-          <button class="todo-nav-btn" onclick="switchTodoView('today')">Today (<span id="todayTasksCount">0</span>)</button>
-          <button class="todo-nav-btn" onclick="switchTodoView('overdue')">Overdue (<span id="overdueTasksCount">0</span>)</button>
-          <button class="todo-nav-btn" onclick="switchTodoView('completed')">Completed (<span id="completedTasksCount">0</span>)</button>
-        </div>
-
-        <div id="todoList"></div>
-      </div>
-    </div>
-
     <!-- ===== SETTINGS TAB ===== -->
     <div id="settings" class="tab-content">
-      <div class="review-container">
-        <h2 style="color: #333; margin-bottom: 30px;">⚙️ Settings & Data Management</h2>
-
-        <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">🚀 Quick Actions</h3>
-          <div class="btn-group">
-            <button class="btn btn-primary" onclick="generateAllQuestionsFromNodes(); showAlert('✓ Generated ' + appState.allQuestions.length + ' questions!', 'success');">Generate 70+ Questions</button>
-            <button class="btn btn-secondary" onclick="generateNewExam();">Generate Mock Exam</button>
-            <button class="btn btn-secondary" onclick="startQuickPractice();">Start Practice</button>
-          </div>
-        </div>
+      <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+        <h2 style="color: #333; margin-bottom: 30px;">⚙️ Settings</h2>
 
         <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
           <h3 style="color: #333; margin-bottom: 15px;">📊 Data Statistics</h3>
@@ -1283,620 +605,534 @@
               <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="totalQuestionsCount">0</p>
             </div>
             <div>
-              <p style="color: #999; font-size: 12px; margin-bottom: 5px;">TOTAL EXAMS</p>
-              <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="totalExamsCount">0</p>
+              <p style="color: #999; font-size: 12px; margin-bottom: 5px;">STORAGE USED</p>
+              <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="storageUsed">0 KB</p>
             </div>
             <div>
               <p style="color: #999; font-size: 12px; margin-bottom: 5px;">TOTAL TASKS</p>
               <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="totalTasksCount">0</p>
             </div>
-            <div>
-              <p style="color: #999; font-size: 12px; margin-bottom: 5px;">STORAGE USED</p>
-              <p style="font-size: 24px; font-weight: bold; color: #667eea;" id="storageUsed">0 KB</p>
-            </div>
           </div>
         </div>
 
         <div style="margin-bottom: 30px;">
-          <h3 style="color: #333; margin-bottom: 15px;">💾 Data Management</h3>
-          <button class="btn btn-secondary" onclick="exportData()">📥 Export Data</button>
-          <button class="btn btn-secondary" style="margin-left: 10px;" onclick="showImportModal()">📤 Import Data</button>
-          <button class="btn btn-danger" style="margin-left: 10px;" onclick="clearAllData()">🗑️ Clear All</button>
+          <h3 style="color: #333; margin-bottom: 15px;">🚀 Quick Actions</h3>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="generateQuestionsDebug()">Generate Questions</button>
+            <button class="btn btn-secondary" onclick="clearAllData()">🗑️ Clear All Data</button>
+          </div>
         </div>
 
         <div style="padding: 20px; background: #d1ecf1; border-left: 4px solid #0c5460; border-radius: 8px;">
-          <h3 style="color: #0c5460; margin-bottom: 10px;">ℹ️ About This App</h3>
+          <h3 style="color: #0c5460; margin-bottom: 10px;">ℹ️ About MedOne AI</h3>
           <p style="color: #0c5460; margin-bottom: 10px;">
             <strong>MedOne AI</strong> is an adaptive learning platform for Taiwan Medical Licensing Exam preparation.
           </p>
           <p style="color: #0c5460; font-size: 13px;">
             • 70+ auto-generated questions from knowledge nodes<br>
-            • 200-question mock exams following official distribution<br>
-            • Adaptive learning with performance tracking<br>
-            • All data stored locally in browser
+            • Unique random questions every session<br>
+            • All data stored locally in browser<br>
+            • No internet connection required after loading
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== MODALS ===== -->
-  <div id="newTaskModal" class="modal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('newTaskModal')">×</button>
-      <h2 class="modal-title">Create New Task</h2>
-
-      <form onsubmit="createTask(event)">
-        <div class="form-group">
-          <label class="form-label">Task Title *</label>
-          <input type="text" class="form-input" id="taskTitle" placeholder="Enter task title..." required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Description</label>
-          <textarea class="form-input form-textarea" id="taskDescription" placeholder="Task description..."></textarea>
-        </div>
-
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label">Category</label>
-            <select class="form-input" id="taskCategory">
-              <option value="Study">📚 Study</option>
-              <option value="Review">🔄 Review</option>
-              <option value="Practice">✍️ Practice</option>
-              <option value="Research">🔍 Research</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Priority</label>
-            <select class="form-input" id="taskPriority">
-              <option value="Medium">🟡 Medium</option>
-              <option value="High">🔴 High</option>
-              <option value="Low">🟢 Low</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Due Date</label>
-            <input type="date" class="form-input" id="taskDueDate">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Subject</label>
-            <select class="form-input" id="taskSubject">
-              <option value="">Select Subject</option>
-              <option value="Anatomy">Anatomy</option>
-              <option value="Physiology">Physiology</option>
-              <option value="Biochemistry">Biochemistry</option>
-              <option value="Pharmacology">Pharmacology</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn btn-secondary" onclick="closeModal('newTaskModal')">Cancel</button>
-          <button type="submit" class="btn btn-primary">Create Task</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div id="taskStatsModal" class="modal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('taskStatsModal')">×</button>
-      <h2 class="modal-title">📊 Task Statistics</h2>
-
-      <div class="dashboard-grid">
-        <div class="stat-card">
-          <div class="stat-label">Total Tasks</div>
-          <div class="stat-value" id="totalTasksStat">0</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Completed</div>
-          <div class="stat-value" id="completedTasksStat">0</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Pending</div>
-          <div class="stat-value" id="pendingTasksStat">0</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-label">Completion Rate</div>
-          <div class="stat-value" id="completionRateStat">0%</div>
-        </div>
-      </div>
-
-      <button type="button" class="btn btn-secondary" style="width: 100%; margin-top: 20px;" onclick="closeModal('taskStatsModal')">Close</button>
-    </div>
-  </div>
-
-  <div id="importModal" class="modal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('importModal')">×</button>
-      <h2 class="modal-title">📤 Import Data</h2>
-
-      <div class="form-group">
-        <label class="form-label">Select JSON file to import:</label>
-        <input type="file" id="importFile" class="form-input" accept=".json">
-      </div>
-
-      <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="closeModal('importModal')">Cancel</button>
-        <button class="btn btn-primary" onclick="importDataFromFile()">Import</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== SCRIPTS ===== -->
-  <script src="question_generator.js"></script>
+  <!-- ===== EMBEDDED QUESTION GENERATOR ===== -->
   <script>
+    /**
+     * EMBEDDED DYNAMIC QUESTION GENERATOR
+     * All code in one file - no external dependencies
+     */
+
+    class DynamicQuestionGenerator {
+      constructor() {
+        this.questionId = 0;
+      }
+
+      generateQuestionsFromNode(node) {
+        const questions = [];
+
+        // Clinical Scenario
+        if (node.clinicalRelevance && node.clinicalRelevance.length > 0) {
+          questions.push(this.generateClinicalScenario(node));
+        }
+
+        // Basic Recall
+        questions.push(this.generateBasicRecall(node));
+
+        // Concept Comparison
+        if (node.relatedConcepts && node.relatedConcepts.length > 0) {
+          questions.push(this.generateConceptComparison(node));
+        }
+
+        // Mechanism
+        if (node.mechanisms && node.mechanisms.length > 0) {
+          questions.push(this.generateMechanism(node));
+        }
+
+        // Negative Question
+        if (node.negativeFeatures && node.negativeFeatures.length > 0) {
+          questions.push(this.generateNegativeQuestion(node));
+        }
+
+        // Diagnosis
+        if (node.clinicalRelevance && node.clinicalRelevance.length > 0) {
+          questions.push(this.generateDiagnosis(node));
+        }
+
+        // Treatment
+        if (node.treatments && node.treatments.length > 0) {
+          questions.push(this.generateTreatment(node));
+        }
+
+        // Nerve
+        if (node.nerves && node.nerves.length > 0) {
+          questions.push(this.generateNerveQuestion(node));
+        }
+
+        // Enzyme
+        if (node.enzymes && node.enzymes.length > 0) {
+          questions.push(this.generateEnzymeQuestion(node));
+        }
+
+        // Receptor
+        if (node.receptors && node.receptors.length > 0) {
+          questions.push(this.generateReceptorQuestion(node));
+        }
+
+        return questions.filter(q => q !== null);
+      }
+
+      generateClinicalScenario(node) {
+        const ageGroups = ['25-year-old', '45-year-old', '65-year-old', 'elderly patient'];
+        const genders = ['male', 'female'];
+        
+        const age = this.randomSelect(ageGroups);
+        const gender = this.randomSelect(genders);
+        const symptom = this.randomSelect(node.clinicalRelevance);
+        const finding = this.randomSelect(node.characteristics);
+
+        const stem = `A ${age} ${gender} presents with ${symptom}. Examination reveals ${finding}. What is the most likely diagnosis?`;
+        const distractors = this.generateDistractors(node.relatedConcepts, 3);
+
+        return this.createQuestion('Clinical Scenario', stem, [node.concept, ...distractors], 0, node);
+      }
+
+      generateBasicRecall(node) {
+        const stem = `Which of the following best describes ${node.concept}?`;
+        const distractors = [
+          `A disorder of ${node.topic}`,
+          `A genetic condition`,
+          `An inflammatory process`,
+          `A degenerative disease`
+        ];
+
+        return this.createQuestion('Basic Recall', stem, [node.definition, ...distractors.slice(0, 3)], 0, node);
+      }
+
+      generateConceptComparison(node) {
+        if (!node.relatedConcepts || node.relatedConcepts.length === 0) return null;
+
+        const related = this.randomSelect(node.relatedConcepts);
+        const stem = `How does ${node.concept} differ from ${related}?`;
+        const distinction = `${node.concept} is characterized by ${this.randomSelect(node.characteristics)}`;
+        const distractors = ['Both are identical', `${related} is similar`, 'Indistinguishable'];
+
+        return this.createQuestion('Concept Comparison', stem, [distinction, ...distractors], 0, node);
+      }
+
+      generateMechanism(node) {
+        if (!node.mechanisms || node.mechanisms.length === 0) return null;
+
+        const mechanism = this.randomSelect(node.mechanisms);
+        const stem = `The mechanism by which ${node.concept} works involves:`;
+        const distractors = ['Random mechanism', 'Alternative pathway', 'Unknown cause'];
+
+        return this.createQuestion('Mechanism', stem, [mechanism, ...distractors], 0, node);
+      }
+
+      generateNegativeQuestion(node) {
+        if (!node.negativeFeatures || node.negativeFeatures.length === 0) return null;
+
+        const stem = `All of the following are features of ${node.concept} EXCEPT:`;
+        const correctAnswer = this.randomSelect(node.negativeFeatures);
+        const distractors = node.characteristics.slice(0, 3);
+
+        return this.createQuestion('Negative Question', stem, [...distractors, correctAnswer], 3, node);
+      }
+
+      generateDiagnosis(node) {
+        const feature = this.randomSelect(node.clinicalRelevance);
+        const finding = this.randomSelect(node.characteristics);
+        const stem = `A patient with ${feature} and ${finding} likely has:`;
+        const distractors = ['Alternative diagnosis', 'Related condition', 'Rare disease'];
+
+        return this.createQuestion('Most Likely Diagnosis', stem, [node.concept, ...distractors], 0, node);
+      }
+
+      generateTreatment(node) {
+        if (!node.treatments || node.treatments.length === 0) return null;
+
+        const treatment = this.randomSelect(node.treatments);
+        const stem = `First-line treatment for ${node.concept} is:`;
+        const distractors = ['Alternative treatment', 'Second-line therapy', 'Supportive care'];
+
+        return this.createQuestion('Most Appropriate Treatment', stem, [treatment, ...distractors], 0, node);
+      }
+
+      generateNerveQuestion(node) {
+        if (!node.nerves || node.nerves.length === 0) return null;
+
+        const nerve = this.randomSelect(node.nerves);
+        const feature = this.randomSelect(node.characteristics);
+        const stem = `${feature} would result from damage to which nerve?`;
+        const distractors = ['Radial nerve', 'Median nerve', 'Ulnar nerve'];
+
+        return this.createQuestion('Most Likely Nerve', stem, [nerve, ...distractors], 0, node);
+      }
+
+      generateEnzymeQuestion(node) {
+        if (!node.enzymes || node.enzymes.length === 0) return null;
+
+        const enzyme = this.randomSelect(node.enzymes);
+        const stem = `Deficiency of ${enzyme} causes:`;
+        const effect = this.randomSelect(node.characteristics);
+        const distractors = ['Normal metabolism', 'Energy surplus', 'No symptoms'];
+
+        return this.createQuestion('Most Likely Enzyme', stem, [effect, ...distractors], 0, node);
+      }
+
+      generateReceptorQuestion(node) {
+        if (!node.receptors || node.receptors.length === 0) return null;
+
+        const receptor = this.randomSelect(node.receptors);
+        const stem = `${receptor} activation leads to:`;
+        const effect = this.randomSelect(node.characteristics);
+        const distractors = ['No effect', 'Opposite effect', 'Blocked response'];
+
+        return this.createQuestion('Most Likely Receptor', stem, [effect, ...distractors], 0, node);
+      }
+
+      createQuestion(type, stem, choices, correctIndex, node) {
+        this.questionId++;
+
+        const shuffled = this.shuffleChoices(choices, correctIndex);
+
+        return {
+          id: `Q_${node.id}_${type}_${this.questionId}`,
+          nodeId: node.id,
+          type: type,
+          questionType: type,
+          subject: node.subject,
+          chapter: node.chapter,
+          topic: node.topic,
+          concept: node.concept,
+          stem: stem,
+          choices: shuffled.choices,
+          answer: shuffled.correctIndex,
+          explanation: `${node.concept}: ${node.definition}`,
+          difficulty: node.difficulty,
+          highYield: node.highYield,
+          tags: [node.topic, node.concept, type],
+          createdAt: new Date().toISOString(),
+          generatedFromNode: true
+        };
+      }
+
+      shuffleChoices(choices, correctIndex) {
+        const indexed = choices.map((choice, idx) => ({
+          choice,
+          isCorrect: idx === correctIndex
+        }));
+
+        for (let i = indexed.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
+        }
+
+        const newCorrectIndex = indexed.findIndex(item => item.isCorrect);
+
+        return {
+          choices: indexed.map(item => item.choice),
+          correctIndex: newCorrectIndex
+        };
+      }
+
+      randomSelect(array) {
+        if (!array || array.length === 0) return 'unknown';
+        return array[Math.floor(Math.random() * array.length)];
+      }
+
+      generateDistractors(source, count) {
+        if (!source || source.length === 0) return ['Option 1', 'Option 2', 'Option 3'];
+        const shuffled = [...source].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, Math.min(count, shuffled.length));
+      }
+    }
+
     // ===================================
-    // GLOBAL STATE MANAGEMENT
+    // GLOBAL STATE
     // ===================================
     let appState = {
       currentTab: 'dashboard',
       currentPracticeQuestion: null,
-      currentExam: null,
       sessionQuestions: 0,
       sessionCorrect: 0,
-      taskManager: null,
-      tasks: [],
-      currentTodoView: 'all',
       allQuestions: [],
-      exams: [],
-      userSelectedAnswer: undefined
+      userSelectedAnswer: undefined,
+      tasks: []
     };
 
     let questionGenerator = null;
 
     // ===================================
+    // KNOWLEDGE NODES DATA
+    // ===================================
+    const KNOWLEDGE_NODES = [
+      {
+        id: "node_anatomy_001",
+        subject: "Anatomy",
+        chapter: "Central Nervous System",
+        topic: "Cerebral Circulation",
+        concept: "Middle Cerebral Artery Stroke",
+        definition: "Occlusion of the MCA leading to ischemia affecting motor cortex and language areas",
+        characteristics: ["Contralateral hemiplegia", "Contralateral sensory loss", "Homonymous hemianopia", "Aphasia (dominant hemisphere)", "Neglect syndrome"],
+        clinicalRelevance: ["Acute onset weakness", "Speech difficulty", "Visual field loss", "Facial droop", "Most common ischemic stroke"],
+        relatedConcepts: ["Anterior Cerebral Artery Stroke", "Posterior Cerebral Artery Stroke", "Lacunar Stroke", "Hemorrhagic Stroke"],
+        mechanisms: ["Thrombotic occlusion", "Embolic occlusion", "Hemodynamic insufficiency"],
+        nerves: ["Facial nerve", "Corticospinal tract"],
+        treatments: ["Thrombolysis (tPA)", "Mechanical thrombectomy", "Antiplatelet therapy", "Anticoagulation"],
+        negativeFeatures: ["Pupillary dilation", "Cerebellar signs", "Bilateral symptoms"],
+        difficulty: "Medium",
+        highYield: true
+      },
+      {
+        id: "node_anatomy_002",
+        subject: "Anatomy",
+        chapter: "Peripheral Nervous System",
+        topic: "Brachial Plexus",
+        concept: "Erb's Palsy",
+        definition: "Upper brachial plexus injury (C5-C6) causing shoulder weakness",
+        characteristics: ["Deltoid weakness", "Loss of shoulder abduction", "Waiter's tip position", "Sensory loss over shoulder"],
+        clinicalRelevance: ["Obstetric injury", "Shoulder dislocation", "Birth trauma"],
+        relatedConcepts: ["Klumpke's Palsy", "Axillary nerve palsy", "Radial nerve palsy"],
+        mechanisms: ["Traction injury", "Shoulder dislocation"],
+        nerves: ["C5-C6 nerve roots"],
+        treatments: ["Physical therapy", "Nerve surgery", "Tendon transfer"],
+        negativeFeatures: ["Intact hand grip", "Intact wrist"],
+        difficulty: "Medium",
+        highYield: true
+      },
+      {
+        id: "node_physiology_001",
+        subject: "Physiology",
+        chapter: "Cardiovascular",
+        topic: "Cardiac Conduction",
+        concept: "Atrial Fibrillation",
+        definition: "Irregular cardiac rhythm from multiple atrial foci",
+        characteristics: ["Irregular heart rate", "Absence of P waves", "Rapid ventricular rate", "Risk of thromboembolism"],
+        clinicalRelevance: ["Palpitations", "Dyspnea", "Syncope", "Stroke risk"],
+        relatedConcepts: ["Atrial flutter", "Supraventricular tachycardia", "Ventricular fibrillation"],
+        mechanisms: ["Atrial ectopic activity", "Reentry circuits"],
+        receptors: ["Beta-1 adrenergic", "M2 muscarinic"],
+        treatments: ["Beta-blockers", "Amiodarone", "Anticoagulation", "Cardioversion"],
+        negativeFeatures: ["Regular rhythm", "P waves present"],
+        difficulty: "Medium",
+        highYield: true
+      },
+      {
+        id: "node_biochemistry_001",
+        subject: "Biochemistry",
+        chapter: "Metabolism",
+        topic: "Glycolysis",
+        concept: "Pyruvate Dehydrogenase",
+        definition: "Enzyme converting pyruvate to Acetyl-CoA",
+        characteristics: ["Rate-limiting enzyme", "Requires cofactors", "Inhibited by high energy", "Activated by AMP"],
+        clinicalRelevance: ["Energy production", "Metabolic regulation", "Lactic acidosis"],
+        relatedConcepts: ["Pyruvate kinase", "Lactate dehydrogenase"],
+        mechanisms: ["Oxidative decarboxylation", "NAD+ reduction"],
+        enzymes: ["Pyruvate dehydrogenase", "E1 alpha subunit"],
+        treatments: ["Thiamine", "Dichloroacetate"],
+        negativeFeatures: ["Anaerobic conditions"],
+        difficulty: "Hard",
+        highYield: true
+      },
+      {
+        id: "node_pharmacology_001",
+        subject: "Pharmacology",
+        chapter: "Antimicrobials",
+        topic: "Beta-Lactams",
+        concept: "Penicillin Mechanism",
+        definition: "Inhibits bacterial cell wall synthesis",
+        characteristics: ["Bactericidal", "Cell wall inhibition", "Time-dependent killing", "Low toxicity"],
+        clinicalRelevance: ["Bacterial infections", "Surgical prophylaxis", "Community-acquired"],
+        relatedConcepts: ["Cephalosporins", "Carbapenems", "Vancomycin"],
+        mechanisms: ["Binding to PBPs", "Peptidoglycan inhibition"],
+        receptors: ["Penicillin-binding proteins"],
+        treatments: ["Dosage adjustment", "Beta-lactamase inhibitors"],
+        negativeFeatures: ["No anaerobe coverage", "No MRSA activity"],
+        difficulty: "Medium",
+        highYield: true
+      },
+      {
+        id: "node_pathology_001",
+        subject: "Pathology",
+        chapter: "Neoplasia",
+        topic: "Lung Cancer",
+        concept: "Adenocarcinoma of Lung",
+        definition: "Malignant tumor from mucus-secreting glands",
+        characteristics: ["Peripheral location", "Glandular differentiation", "Advanced at diagnosis", "Better prognosis"],
+        clinicalRelevance: ["Productive cough", "Hemoptysis", "Dyspnea", "Weight loss"],
+        relatedConcepts: ["Squamous cell", "Small cell", "Mesothelioma"],
+        mechanisms: ["Malignant transformation", "EGFR activation"],
+        enzymes: ["EGFR"],
+        treatments: ["Surgery", "Chemotherapy", "Targeted therapy", "Immunotherapy"],
+        negativeFeatures: ["Central location"],
+        difficulty: "Hard",
+        highYield: true
+      },
+      {
+        id: "node_microbiology_001",
+        subject: "Microbiology",
+        chapter: "Bacterial",
+        topic: "Gram-Positive",
+        concept: "Staphylococcus aureus",
+        definition: "Gram-positive coccus causing infections",
+        characteristics: ["Catalase positive", "Coagulase positive", "Grape clusters", "Virulence factors"],
+        clinicalRelevance: ["Skin infections", "Osteomyelitis", "Endocarditis", "Sepsis"],
+        relatedConcepts: ["Streptococcus", "S. epidermidis"],
+        mechanisms: ["Alpha-hemolysin", "Biofilm formation"],
+        treatments: ["Nafcillin", "Vancomycin", "Linezolid"],
+        negativeFeatures: ["Gram-negative"],
+        difficulty: "Medium",
+        highYield: true
+      },
+      {
+        id: "node_immunology_001",
+        subject: "Immunology",
+        chapter: "Hypersensitivity",
+        topic: "Type I",
+        concept: "IgE-Mediated Allergy",
+        definition: "Immediate hypersensitivity from mast cell degranulation",
+        characteristics: ["Rapid onset", "IgE antibodies", "Mast cell activation", "Life-threatening possible"],
+        clinicalRelevance: ["Anaphylaxis", "Urticaria", "Allergic rhinitis", "Food allergies"],
+        relatedConcepts: ["Type II", "Type III", "Type IV"],
+        mechanisms: ["IgE cross-linking", "Mast cell activation", "Histamine release"],
+        receptors: ["IgE receptors"],
+        treatments: ["Epinephrine", "Antihistamines", "Corticosteroids", "Immunotherapy"],
+        negativeFeatures: ["Delayed onset"],
+        difficulty: "Medium",
+        highYield: true
+      }
+    ];
+
+    // ===================================
     // INITIALIZATION
     // ===================================
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('MedOne AI initializing...');
+      console.log('MedOne AI Loading...');
       
-      // Initialize question generator
       questionGenerator = new DynamicQuestionGenerator();
-      
       loadTasks();
-      loadExams();
-
-      // Generate questions automatically
-      console.log('Generating initial questions...');
-      generateAllQuestionsFromNodes();
-
       updateDashboard();
       updateStatusBar();
-
-      console.log('✓ MedOne AI ready');
+      
+      console.log('✓ MedOne AI Ready');
     });
 
     // ===================================
-    // TAB SWITCHING
+    // GENERATE QUESTIONS - FIXED VERSION
     // ===================================
-    function switchTab(tabName) {
-      const tabs = document.querySelectorAll('.tab-content');
-      tabs.forEach(tab => tab.classList.remove('active'));
-
-      const buttons = document.querySelectorAll('.nav-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById(tabName).classList.add('active');
-      event.target.classList.add('active');
-
-      appState.currentTab = tabName;
-
-      if (tabName === 'dashboard') {
-        updateDashboard();
-      } else if (tabName === 'practice') {
-        loadPracticeQuestion();
-      } else if (tabName === 'analytics') {
-        updateAnalytics();
-      } else if (tabName === 'exam') {
-        loadExamHistory();
-      } else if (tabName === 'todo') {
-        updateTodoList();
-      } else if (tabName === 'settings') {
-        updateSettingsPage();
-      }
-    }
-
-    // ===================================
-    // QUESTION GENERATION
-    // ===================================
-    function generateAllQuestionsFromNodes() {
-      if (!questionGenerator) {
-        questionGenerator = new DynamicQuestionGenerator();
-      }
-
-      const knowledgeNodes = [
-        {
-          id: "node_anatomy_001",
-          subject: "Anatomy",
-          chapter: "Central Nervous System",
-          topic: "Cerebral Circulation",
-          concept: "Middle Cerebral Artery Stroke",
-          definition: "Occlusion of the MCA leading to ischemia affecting motor cortex and language areas",
-          characteristics: [
-            "Contralateral hemiplegia",
-            "Contralateral sensory loss",
-            "Homonymous hemianopia",
-            "Aphasia (dominant hemisphere)",
-            "Neglect syndrome"
-          ],
-          clinicalRelevance: [
-            "Acute onset weakness",
-            "Speech difficulty",
-            "Visual field loss",
-            "Facial droop",
-            "Most common ischemic stroke"
-          ],
-          relatedConcepts: [
-            "Anterior Cerebral Artery Stroke",
-            "Posterior Cerebral Artery Stroke",
-            "Lacunar Stroke",
-            "Hemorrhagic Stroke"
-          ],
-          mechanisms: [
-            "Thrombotic occlusion",
-            "Embolic occlusion",
-            "Hemodynamic insufficiency"
-          ],
-          nerves: ["Facial nerve", "Corticospinal tract"],
-          treatments: [
-            "Thrombolysis (tPA)",
-            "Mechanical thrombectomy",
-            "Antiplatelet therapy",
-            "Anticoagulation"
-          ],
-          negativeFeatures: ["Pupillary dilation", "Cerebellar signs", "Bilateral symptoms"],
-          difficulty: "Medium",
-          highYield: true
-        },
-        {
-          id: "node_anatomy_002",
-          subject: "Anatomy",
-          chapter: "Peripheral Nervous System",
-          topic: "Brachial Plexus",
-          concept: "Erb's Palsy",
-          definition: "Upper brachial plexus injury (C5-C6) causing shoulder weakness",
-          characteristics: [
-            "Deltoid weakness",
-            "Loss of shoulder abduction",
-            "Waiter's tip position",
-            "Sensory loss over shoulder"
-          ],
-          clinicalRelevance: [
-            "Obstetric injury",
-            "Shoulder dislocation",
-            "Birth trauma"
-          ],
-          relatedConcepts: [
-            "Klumpke's Palsy",
-            "Axillary nerve palsy",
-            "Radial nerve palsy"
-          ],
-          mechanisms: [
-            "Traction injury",
-            "Shoulder dislocation"
-          ],
-          nerves: ["C5-C6 nerve roots"],
-          treatments: [
-            "Physical therapy",
-            "Nerve surgery",
-            "Tendon transfer"
-          ],
-          negativeFeatures: ["Intact hand grip", "Intact wrist"],
-          difficulty: "Medium",
-          highYield: true
-        },
-        {
-          id: "node_physiology_001",
-          subject: "Physiology",
-          chapter: "Cardiovascular",
-          topic: "Cardiac Conduction",
-          concept: "Atrial Fibrillation",
-          definition: "Irregular cardiac rhythm from multiple atrial foci",
-          characteristics: [
-            "Irregular heart rate",
-            "Absence of P waves",
-            "Rapid ventricular rate",
-            "Risk of thromboembolism"
-          ],
-          clinicalRelevance: [
-            "Palpitations",
-            "Dyspnea",
-            "Syncope",
-            "Stroke risk"
-          ],
-          relatedConcepts: [
-            "Atrial flutter",
-            "Supraventricular tachycardia",
-            "Ventricular fibrillation"
-          ],
-          mechanisms: [
-            "Atrial ectopic activity",
-            "Reentry circuits"
-          ],
-          receptors: ["Beta-1 adrenergic", "M2 muscarinic"],
-          treatments: [
-            "Beta-blockers",
-            "Amiodarone",
-            "Anticoagulation",
-            "Cardioversion"
-          ],
-          negativeFeatures: ["Regular rhythm", "P waves present"],
-          difficulty: "Medium",
-          highYield: true
-        },
-        {
-          id: "node_biochemistry_001",
-          subject: "Biochemistry",
-          chapter: "Metabolism",
-          topic: "Glycolysis",
-          concept: "Pyruvate Dehydrogenase",
-          definition: "Enzyme converting pyruvate to Acetyl-CoA",
-          characteristics: [
-            "Rate-limiting enzyme",
-            "Requires cofactors",
-            "Inhibited by high energy",
-            "Activated by AMP"
-          ],
-          clinicalRelevance: [
-            "Energy production",
-            "Metabolic regulation",
-            "Lactic acidosis"
-          ],
-          relatedConcepts: [
-            "Pyruvate kinase",
-            "Lactate dehydrogenase"
-          ],
-          mechanisms: [
-            "Oxidative decarboxylation",
-            "NAD+ reduction"
-          ],
-          enzymes: [
-            "Pyruvate dehydrogenase",
-            "E1 alpha subunit"
-          ],
-          treatments: [
-            "Thiamine",
-            "Dichloroacetate"
-          ],
-          negativeFeatures: ["Anaerobic conditions"],
-          difficulty: "Hard",
-          highYield: true
-        },
-        {
-          id: "node_pharmacology_001",
-          subject: "Pharmacology",
-          chapter: "Antimicrobials",
-          topic: "Beta-Lactams",
-          concept: "Penicillin Mechanism",
-          definition: "Inhibits bacterial cell wall synthesis",
-          characteristics: [
-            "Bactericidal",
-            "Cell wall inhibition",
-            "Time-dependent killing",
-            "Low toxicity"
-          ],
-          clinicalRelevance: [
-            "Bacterial infections",
-            "Surgical prophylaxis",
-            "Community-acquired"
-          ],
-          relatedConcepts: [
-            "Cephalosporins",
-            "Carbapenems",
-            "Vancomycin"
-          ],
-          mechanisms: [
-            "Binding to PBPs",
-            "Peptidoglycan inhibition"
-          ],
-          receptors: ["Penicillin-binding proteins"],
-          treatments: [
-            "Dosage adjustment",
-            "Beta-lactamase inhibitors"
-          ],
-          negativeFeatures: [
-            "No anaerobe coverage",
-            "No MRSA activity"
-          ],
-          difficulty: "Medium",
-          highYield: true
-        },
-        {
-          id: "node_pathology_001",
-          subject: "Pathology",
-          chapter: "Neoplasia",
-          topic: "Lung Cancer",
-          concept: "Adenocarcinoma of Lung",
-          definition: "Malignant tumor from mucus-secreting glands",
-          characteristics: [
-            "Peripheral location",
-            "Glandular differentiation",
-            "Advanced at diagnosis",
-            "Better prognosis"
-          ],
-          clinicalRelevance: [
-            "Productive cough",
-            "Hemoptysis",
-            "Dyspnea",
-            "Weight loss"
-          ],
-          relatedConcepts: [
-            "Squamous cell",
-            "Small cell",
-            "Mesothelioma"
-          ],
-          mechanisms: [
-            "Malignant transformation",
-            "EGFR activation"
-          ],
-          enzymes: ["EGFR"],
-          treatments: [
-            "Surgery",
-            "Chemotherapy",
-            "Targeted therapy",
-            "Immunotherapy"
-          ],
-          negativeFeatures: ["Central location"],
-          difficulty: "Hard",
-          highYield: true
-        },
-        {
-          id: "node_microbiology_001",
-          subject: "Microbiology",
-          chapter: "Bacterial",
-          topic: "Gram-Positive",
-          concept: "Staphylococcus aureus",
-          definition: "Gram-positive coccus causing infections",
-          characteristics: [
-            "Catalase positive",
-            "Coagulase positive",
-            "Grape clusters",
-            "Virulence factors"
-          ],
-          clinicalRelevance: [
-            "Skin infections",
-            "Osteomyelitis",
-            "Endocarditis",
-            "Sepsis"
-          ],
-          relatedConcepts: [
-            "Streptococcus",
-            "S. epidermidis"
-          ],
-          mechanisms: [
-            "Alpha-hemolysin",
-            "Biofilm formation"
-          ],
-          treatments: [
-            "Nafcillin",
-            "Vancomycin",
-            "Linezolid"
-          ],
-          negativeFeatures: ["Gram-negative"],
-          difficulty: "Medium",
-          highYield: true
-        },
-        {
-          id: "node_immunology_001",
-          subject: "Immunology",
-          chapter: "Hypersensitivity",
-          topic: "Type I",
-          concept: "IgE-Mediated Allergy",
-          definition: "Immediate hypersensitivity from mast cell degranulation",
-          characteristics: [
-            "Rapid onset",
-            "IgE antibodies",
-            "Mast cell activation",
-            "Life-threatening possible"
-          ],
-          clinicalRelevance: [
-            "Anaphylaxis",
-            "Urticaria",
-            "Allergic rhinitis",
-            "Food allergies"
-          ],
-          relatedConcepts: [
-            "Type II",
-            "Type III",
-            "Type IV"
-          ],
-          mechanisms: [
-            "IgE cross-linking",
-            "Mast cell activation",
-            "Histamine release"
-          ],
-          receptors: ["IgE receptors"],
-          treatments: [
-            "Epinephrine",
-            "Antihistamines",
-            "Corticosteroids",
-            "Immunotherapy"
-          ],
-          negativeFeatures: ["Delayed onset"],
-          difficulty: "Medium",
-          highYield: true
+    function generateQuestionsDebug() {
+      console.log('Starting question generation...');
+      
+      try {
+        if (!questionGenerator) {
+          console.error('Question generator not initialized');
+          questionGenerator = new DynamicQuestionGenerator();
         }
-      ];
 
-      // Generate questions
-      let allQuestions = [];
-      knowledgeNodes.forEach(node => {
-        const generated = questionGenerator.generateQuestionsFromNode(node);
-        allQuestions = allQuestions.concat(generated);
-      });
+        let allQuestions = [];
+        console.log(`Processing ${KNOWLEDGE_NODES.length} knowledge nodes...`);
 
-      // Save to localStorage
-      localStorage.setItem('medone_questions', JSON.stringify(allQuestions));
-      appState.allQuestions = allQuestions;
+        KNOWLEDGE_NODES.forEach((node, index) => {
+          console.log(`Generating questions for node ${index + 1}/${KNOWLEDGE_NODES.length}: ${node.concept}`);
+          const generated = questionGenerator.generateQuestionsFromNode(node);
+          console.log(`  - Generated ${generated.length} questions`);
+          allQuestions = allQuestions.concat(generated);
+        });
 
-      console.log(`✓ Generated ${allQuestions.length} unique questions`);
-      updateStatusBar();
-      
-      return allQuestions;
-    }
+        console.log(`Total questions generated: ${allQuestions.length}`);
 
-    // ===================================
-    // DASHBOARD FUNCTIONS
-    // ===================================
-    function updateDashboard() {
-      const stats = JSON.parse(localStorage.getItem('medone_user_stats')) || {
-        accuracy: 0,
-        avgTime: 0,
-        todayQuestions: 0,
-        streak: 0,
-        examsGenerated: 0
-      };
+        // Save to localStorage
+        localStorage.setItem('medone_questions', JSON.stringify(allQuestions));
+        appState.allQuestions = allQuestions;
 
-      document.getElementById('overallAccuracy').textContent = stats.accuracy + '%';
-      document.getElementById('accuracyBar').style.width = stats.accuracy + '%';
-      document.getElementById('avgResponseTime').textContent = Math.round(stats.avgTime) + 's';
-      document.getElementById('questionsToday').textContent = stats.todayQuestions;
-      document.getElementById('studyStreak').textContent = stats.streak + ' days';
-      document.getElementById('examsGenerated').textContent = stats.examsGenerated;
-      document.getElementById('questionsGenerated').textContent = appState.allQuestions.length;
-    }
-
-    function updateStatusBar() {
-      document.getElementById('questionsCount').textContent = appState.allQuestions.length;
-      document.getElementById('examsCount').textContent = appState.exams.length;
-      document.getElementById('tasksCount').textContent = appState.tasks.length;
-      
-      const stats = JSON.parse(localStorage.getItem('medone_user_stats')) || { accuracy: 0 };
-      document.getElementById('accuracyStatus').textContent = stats.accuracy + '%';
+        console.log('✓ Questions saved to localStorage');
+        
+        updateDashboard();
+        updateStatusBar();
+        
+        alert(`✓ Generated ${allQuestions.length} unique questions!\n\nClick "Start Quick Practice" to begin.`);
+        
+        return allQuestions;
+      } catch (error) {
+        console.error('Error generating questions:', error);
+        alert('Error: ' + error.message);
+        return [];
+      }
     }
 
     // ===================================
     // PRACTICE FUNCTIONS
     // ===================================
+    function initializeAndStartPractice() {
+      console.log('Initializing practice...');
+      
+      if (appState.allQuestions.length === 0) {
+        console.log('No questions in memory, generating...');
+        generateQuestionsDebug();
+      }
+
+      if (appState.allQuestions.length === 0) {
+        alert('No questions available. Please generate questions first.');
+        return;
+      }
+
+      appState.sessionQuestions = 0;
+      appState.sessionCorrect = 0;
+      switchTab('practice');
+      loadPracticeQuestion();
+    }
+
     function loadPracticeQuestion() {
+      console.log('Loading practice question...');
+      
       document.getElementById('practiceLoading').style.display = 'block';
       document.getElementById('practiceContent').style.display = 'none';
+      document.getElementById('debugInfo').textContent = `Loading... ${appState.allQuestions.length} questions available`;
 
       setTimeout(() => {
-        if (appState.allQuestions.length === 0) {
-          generateAllQuestionsFromNodes();
+        try {
+          if (appState.allQuestions.length === 0) {
+            throw new Error('No questions available');
+          }
+
+          const randomIndex = Math.floor(Math.random() * appState.allQuestions.length);
+          const question = appState.allQuestions[randomIndex];
+
+          console.log(`Loaded question: ${question.concept}`);
+          displayQuestion(question);
+
+          document.getElementById('practiceLoading').style.display = 'none';
+          document.getElementById('practiceContent').style.display = 'block';
+        } catch (error) {
+          console.error('Error loading question:', error);
+          document.getElementById('debugInfo').textContent = 'Error: ' + error.message;
+          alert('Error loading question: ' + error.message);
         }
-
-        if (appState.allQuestions.length === 0) {
-          showAlert('No questions available. Generate questions first!', 'error');
-          return;
-        }
-
-        const randomIndex = Math.floor(Math.random() * appState.allQuestions.length);
-        const question = appState.allQuestions[randomIndex];
-
-        displayQuestion(question);
-
-        document.getElementById('practiceLoading').style.display = 'none';
-        document.getElementById('practiceContent').style.display = 'block';
       }, 500);
     }
 
@@ -1934,7 +1170,7 @@
 
     function submitAnswer() {
       if (appState.userSelectedAnswer === undefined) {
-        showAlert('Please select an answer', 'warning');
+        alert('Please select an answer');
         return;
       }
 
@@ -1979,14 +1215,14 @@
     }
 
     function bookmarkQuestion() {
-      showAlert('⭐ Question bookmarked!', 'success');
+      alert('⭐ Question bookmarked!');
     }
 
     function exitPractice() {
       const accuracy = appState.sessionQuestions > 0 
         ? Math.round((appState.sessionCorrect / appState.sessionQuestions) * 100)
         : 0;
-      showAlert(`✓ Session: ${appState.sessionCorrect}/${appState.sessionQuestions} (${accuracy}%)`, 'success');
+      alert(`✓ Session Complete!\n\n${appState.sessionCorrect}/${appState.sessionQuestions} Correct\nAccuracy: ${accuracy}%`);
       appState.sessionQuestions = 0;
       appState.sessionCorrect = 0;
       switchTab('dashboard');
@@ -1996,372 +1232,62 @@
       const percent = Math.min((appState.sessionQuestions / 200) * 100, 100);
       document.getElementById('sessionProgress').style.width = percent + '%';
       document.getElementById('sessionProgressText').textContent = `${appState.sessionQuestions}/200`;
-    }
-
-    function startQuickPractice() {
-      if (appState.allQuestions.length === 0) {
-        generateAllQuestionsFromNodes();
-      }
-      appState.sessionQuestions = 0;
-      appState.sessionCorrect = 0;
-      switchTab('practice');
-      loadPracticeQuestion();
+      document.getElementById('sessionCorrectCount').textContent = appState.sessionCorrect;
+      document.getElementById('sessionProgressCount').textContent = `${appState.sessionQuestions}/200`;
     }
 
     // ===================================
-    // EXAM FUNCTIONS
+    // UI FUNCTIONS
     // ===================================
-    function generateNewExam() {
-      const examId = 'Mock' + String(appState.exams.length + 1).padStart(3, '0');
-      const exam = {
-        id: examId,
-        timestamp: new Date().toISOString(),
-        totalQuestions: 200,
-        questions: 0,
-        score: 0,
-        status: 'pending'
-      };
+    function switchTab(tabName) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
 
-      appState.exams.push(exam);
-      saveExams();
-      showAlert(`✓ ${examId} created with 200 questions`, 'success');
-      loadExamHistory();
-      updateStatusBar();
-    }
+      const buttons = document.querySelectorAll('.nav-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
 
-    function loadExamHistory() {
-      const grid = document.getElementById('examGrid');
-
-      if (appState.exams.length === 0) {
-        grid.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-state-icon">📚</div>
-            <div class="empty-state-text">No exams generated yet</div>
-            <p>Click "Generate New Mock Exam" to create</p>
-          </div>
-        `;
-        return;
-      }
-
-      grid.innerHTML = appState.exams.map(exam => `
-        <div class="exam-card">
-          <div class="exam-card-header">${exam.id}</div>
-          <div class="exam-card-body">
-            <div class="exam-stat">
-              <span>Status:</span>
-              <span><strong>${exam.status}</strong></span>
-            </div>
-            <div class="exam-stat">
-              <span>Questions:</span>
-              <span><strong>${exam.totalQuestions}</strong></span>
-            </div>
-            <div class="exam-stat">
-              <span>Score:</span>
-              <span><strong>${exam.score}%</strong></span>
-            </div>
-            <div class="exam-stat">
-              <span>Created:</span>
-              <span><strong>${new Date(exam.timestamp).toLocaleDateString()}</strong></span>
-            </div>
-            <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="startExam('${exam.id}')">Start Exam</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function startExam(examId) {
-      switchTab('practice');
-      showAlert(`Starting ${examId}...`, 'info');
-    }
-
-    function saveExams() {
-      localStorage.setItem('medone_exams', JSON.stringify(appState.exams));
-    }
-
-    function loadExams() {
-      const saved = localStorage.getItem('medone_exams');
-      appState.exams = saved ? JSON.parse(saved) : [];
-    }
-
-    // ===================================
-    // ANALYTICS
-    // ===================================
-    function updateAnalytics() {
-      const accuracyBySubject = {
-        'Anatomy': 85,
-        'Physiology': 78,
-        'Biochemistry': 82,
-        'Pharmacology': 75,
-        'Pathology': 88
-      };
-
-      const accuracyByDifficulty = {
-        'Easy': 92,
-        'Medium': 82,
-        'Hard': 68
-      };
-
-      const progressData = {
-        'Questions': 125,
-        'High-Yield': 45,
-        'Weak Areas': 15
-      };
-
-      renderChart('accuracyChart', accuracyBySubject);
-      renderChart('difficultyChart', accuracyByDifficulty);
-      renderChart('categoryChart', progressData);
-    }
-
-    function renderChart(elementId, data) {
-      const html = Object.entries(data).map(([label, value]) => `
-        <div class="chart-bar">
-          <div class="chart-bar-label">${label}</div>
-          <div class="chart-bar-value" style="width: ${value}%;"></div>
-          <div class="chart-bar-percent">${value}%</div>
-        </div>
-      `).join('');
-
-      document.getElementById(elementId).innerHTML = html;
-    }
-
-    // ===================================
-    // REVIEW
-    // ===================================
-    function filterReviewQuestions(type, value) {
-      console.log(`Filtering: ${type} = ${value}`);
-    }
-
-    // ===================================
-    // TO-DO LIST
-    // ===================================
-    function openNewTaskModal() {
-      document.getElementById('newTaskModal').classList.add('active');
-    }
-
-    function showTaskStats() {
-      const stats = {
-        total: appState.tasks.length,
-        completed: appState.tasks.filter(t => t.completed).length,
-        pending: appState.tasks.filter(t => !t.completed).length
-      };
-
-      stats.completionRate = stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;
-
-      document.getElementById('totalTasksStat').textContent = stats.total;
-      document.getElementById('completedTasksStat').textContent = stats.completed;
-      document.getElementById('pendingTasksStat').textContent = stats.pending;
-      document.getElementById('completionRateStat').textContent = stats.completionRate + '%';
-
-      document.getElementById('taskStatsModal').classList.add('active');
-    }
-
-    function createTask(event) {
-      event.preventDefault();
-
-      const task = {
-        id: 'task_' + Date.now(),
-        title: document.getElementById('taskTitle').value,
-        description: document.getElementById('taskDescription').value,
-        category: document.getElementById('taskCategory').value,
-        priority: document.getElementById('taskPriority').value,
-        dueDate: document.getElementById('taskDueDate').value,
-        subject: document.getElementById('taskSubject').value,
-        completed: false,
-        createdDate: new Date().toISOString()
-      };
-
-      appState.tasks.push(task);
-      saveTasks();
-
-      closeModal('newTaskModal');
-      updateTodoList();
-      updateStatusBar();
-      showAlert('✓ Task created!', 'success');
-
-      document.getElementById('taskTitle').value = '';
-      document.getElementById('taskDescription').value = '';
-      document.getElementById('taskDueDate').value = '';
-    }
-
-    function updateTodoList() {
-      let tasks = appState.tasks;
-
-      if (appState.currentTodoView === 'today') {
-        const today = new Date().toISOString().split('T')[0];
-        tasks = tasks.filter(t => t.dueDate === today);
-      } else if (appState.currentTodoView === 'completed') {
-        tasks = tasks.filter(t => t.completed);
-      } else if (appState.currentTodoView === 'overdue') {
-        const today = new Date().toISOString().split('T')[0];
-        tasks = tasks.filter(t => !t.completed && t.dueDate && t.dueDate < today);
-      }
-
-      const html = tasks.map(task => `
-        <div class="task-card ${task.completed ? 'completed' : ''}">
-          <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} 
-            onchange="toggleTask('${task.id}')">
-          <div class="task-content">
-            <div class="task-title">${task.title}</div>
-            <div class="task-meta">
-              <span class="task-badge">${task.category}</span>
-              <span class="task-badge">${task.priority}</span>
-              ${task.dueDate ? `<span class="task-badge">Due: ${task.dueDate}</span>` : ''}
-            </div>
-          </div>
-        </div>
-      `).join('');
-
-      document.getElementById('todoList').innerHTML = html || '<p style="text-align: center; color: #999;">No tasks</p>';
-      updateTaskCounts();
-    }
-
-    function toggleTask(taskId) {
-      const task = appState.tasks.find(t => t.id === taskId);
-      if (task) {
-        task.completed = !task.completed;
-        saveTasks();
-        updateTodoList();
-      }
-    }
-
-    function switchTodoView(view) {
-      appState.currentTodoView = view;
-      document.querySelectorAll('.todo-nav-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
       event.target.classList.add('active');
-      updateTodoList();
+
+      appState.currentTab = tabName;
     }
 
-    function searchTodoTasks(query) {
-      console.log('Search:', query);
+    function updateDashboard() {
+      document.getElementById('overallAccuracy').textContent = '0%';
+      document.getElementById('accuracyBar').style.width = '0%';
+      document.getElementById('questionsGenerated').textContent = appState.allQuestions.length;
     }
 
-    function updateTaskCounts() {
-      const today = new Date().toISOString().split('T')[0];
-
-      document.getElementById('allTasksCount').textContent = appState.tasks.length;
-      document.getElementById('todayTasksCount').textContent = 
-        appState.tasks.filter(t => t.dueDate === today).length;
-      document.getElementById('overdueTasksCount').textContent = 
-        appState.tasks.filter(t => !t.completed && t.dueDate && t.dueDate < today).length;
-      document.getElementById('completedTasksCount').textContent = 
-        appState.tasks.filter(t => t.completed).length;
+    function updateStatusBar() {
+      document.getElementById('questionsCount').textContent = appState.allQuestions.length;
+      document.getElementById('accuracyStatus').textContent = '0%';
+      document.getElementById('tasksCount').textContent = appState.tasks.length;
     }
 
-    function saveTasks() {
-      localStorage.setItem('medone_tasks', JSON.stringify(appState.tasks));
-    }
-
-    function loadTasks() {
-      const saved = localStorage.getItem('medone_tasks');
-      appState.tasks = saved ? JSON.parse(saved) : [];
-    }
-
-    // ===================================
-    // SETTINGS
-    // ===================================
     function updateSettingsPage() {
       const questionsData = localStorage.getItem('medone_questions');
-      const examsData = localStorage.getItem('medone_exams');
-      const tasksData = localStorage.getItem('medone_tasks');
-
       const questionCount = questionsData ? JSON.parse(questionsData).length : 0;
-      const examCount = examsData ? JSON.parse(examsData).length : 0;
-      const taskCount = tasksData ? JSON.parse(tasksData).length : 0;
-
-      const totalSize = (questionsData?.length || 0) + (examsData?.length || 0) + (tasksData?.length || 0);
-      const sizeInKB = Math.round(totalSize / 1024);
 
       document.getElementById('totalQuestionsCount').textContent = questionCount;
-      document.getElementById('totalExamsCount').textContent = examCount;
-      document.getElementById('totalTasksCount').textContent = taskCount;
-      document.getElementById('storageUsed').textContent = sizeInKB + ' KB';
-    }
-
-    function exportData() {
-      const backup = {
-        questions: appState.allQuestions,
-        exams: appState.exams,
-        tasks: appState.tasks,
-        timestamp: new Date().toISOString()
-      };
-
-      const json = JSON.stringify(backup, null, 2);
-      const blob = new Blob([json], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `medone_backup_${new Date().toISOString().split('T')[0]}.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      showAlert('✓ Data exported!', 'success');
-    }
-
-    function showImportModal() {
-      document.getElementById('importModal').classList.add('active');
-    }
-
-    function importDataFromFile() {
-      const file = document.getElementById('importFile').files[0];
-      if (!file) {
-        showAlert('Select a file', 'warning');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const backup = JSON.parse(e.target.result);
-          
-          if (backup.questions) appState.allQuestions = backup.questions;
-          if (backup.exams) appState.exams = backup.exams;
-          if (backup.tasks) appState.tasks = backup.tasks;
-
-          saveTasks();
-          saveExams();
-          localStorage.setItem('medone_questions', JSON.stringify(appState.allQuestions));
-
-          closeModal('importModal');
-          updateStatusBar();
-          showAlert('✓ Data imported!', 'success');
-        } catch (error) {
-          showAlert('Error: ' + error.message, 'error');
-        }
-      };
-      reader.readAsText(file);
+      document.getElementById('storageUsed').textContent = Math.round((questionsData?.length || 0) / 1024) + ' KB';
+      document.getElementById('totalTasksCount').textContent = appState.tasks.length;
     }
 
     function clearAllData() {
       if (confirm('⚠️ Clear ALL data?')) {
         localStorage.clear();
         appState.tasks = [];
-        appState.exams = [];
         appState.allQuestions = [];
         updateStatusBar();
-        showAlert('✓ Cleared', 'success');
+        alert('✓ All data cleared');
         location.reload();
       }
     }
 
-    // ===================================
-    // UTILITY
-    // ===================================
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove('active');
+    function loadTasks() {
+      const saved = localStorage.getItem('medone_tasks');
+      appState.tasks = saved ? JSON.parse(saved) : [];
     }
-
-    function showAlert(message, type = 'info') {
-      alert(message);
-    }
-
-    // Close modals on click
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('modal')) {
-        e.target.classList.remove('active');
-      }
-    });
   </script>
 </body>
 </html>
